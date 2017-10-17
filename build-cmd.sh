@@ -39,7 +39,7 @@ echo "3.5.0.5" > "$stage/version.txt"
 build=${AUTOBUILD_BUILD_ID:=0}
 
 case "$AUTOBUILD_PLATFORM" in
-    windows32)
+    windows)
         load_vsvars
 
         # prepare the staging dirs
