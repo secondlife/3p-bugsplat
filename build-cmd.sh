@@ -46,15 +46,14 @@ case "$AUTOBUILD_PLATFORM" in
         mkdir -p "$stage/LICENSES"
         mkdir -p "$stage/include/bugsplat"
         mkdir -p "$stage/lib/release"
-        mkdir -p "$stage/bin/release"
 
         # copy files
         cp "$BUGSPLAT_DIR/BUGSPLAT_LICENSE.txt" "$stage/LICENSES"
         cp "$BUGSPLAT_DIR/inc/BugSplat.h" "$stage/include/bugsplat"
         cp "$BUGSPLAT_DIR/lib/BugSplat.lib" "$stage/lib/release"
-        cp "$BUGSPLAT_DIR/bin/BsSndRpt.exe" "$stage/bin/release"
-        cp "$BUGSPLAT_DIR/bin/BugSplat.dll" "$stage/bin/release"
-        cp "$BUGSPLAT_DIR/bin/BugSplatRC.dll" "$stage/bin/release"
+        cp "$BUGSPLAT_DIR/bin/BsSndRpt.exe" "$stage/lib/release"
+        cp "$BUGSPLAT_DIR/bin/BugSplat.dll" "$stage/lib/release"
+        cp "$BUGSPLAT_DIR/bin/BugSplatRC.dll" "$stage/lib/release"
     ;;
     windows64)
         load_vsvars
@@ -63,15 +62,14 @@ case "$AUTOBUILD_PLATFORM" in
         mkdir -p "$stage/LICENSES"
         mkdir -p "$stage/include/bugsplat"
         mkdir -p "$stage/lib/release"
-        mkdir -p "$stage/bin/release"
 
         # copy files
         cp "$BUGSPLAT_DIR/BUGSPLAT_LICENSE.txt" "$stage/LICENSES"
         cp "$BUGSPLAT_DIR/inc/BugSplat.h" "$stage/include/bugsplat"
         cp "$BUGSPLAT_DIR/lib64/BugSplat64.lib" "$stage/lib/release"
-        cp "$BUGSPLAT_DIR/bin64/BsSndRpt64.exe" "$stage/bin/release"
-        cp "$BUGSPLAT_DIR/bin64/BugSplat64.dll" "$stage/bin/release"
-        cp "$BUGSPLAT_DIR/bin64/BugSplatRc64.dll" "$stage/bin/release"
+        cp "$BUGSPLAT_DIR/bin64/BsSndRpt64.exe" "$stage/lib/release"
+        cp "$BUGSPLAT_DIR/bin64/BugSplat64.dll" "$stage/lib/release"
+        cp "$BUGSPLAT_DIR/bin64/BugSplatRc64.dll" "$stage/lib/release"
     ;;
     darwin*)
         echo "This project is not currently supported for $AUTOBUILD_PLATFORM" 1>&2 ; exit 1
