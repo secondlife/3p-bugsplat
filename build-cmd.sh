@@ -66,7 +66,7 @@ case "$AUTOBUILD_PLATFORM" in
         # copy files
         cp "$BUGSPLAT_DIR/BUGSPLAT_LICENSE.txt" "$stage/LICENSES"
         cp "$BUGSPLAT_DIR/inc/BugSplat.h" "$stage/include/bugsplat"
-        cp "$BUGSPLAT_DIR/lib64/BugSplat64.lib" "$stage/lib/release"
+        cp "$BUGSPLAT_DIR/lib64/BugSplat64.lib" "$stage/lib/release/BugSplat.lib"  # rename since we can't branch on 32/64 in CMake files
         cp "$BUGSPLAT_DIR/bin64/BsSndRpt64.exe" "$stage/lib/release"
         cp "$BUGSPLAT_DIR/bin64/BugSplat64.dll" "$stage/lib/release"
         cp "$BUGSPLAT_DIR/bin64/BugSplatRc64.dll" "$stage/lib/release"

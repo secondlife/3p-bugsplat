@@ -106,7 +106,7 @@
           <key>manifest</key>
           <array>
             <string>include/bugsplat/BugSplat.h</string>
-            <string>lib/release/BugSplat64.lib</string>
+            <string>lib/release/BugSplat.lib</string>
             <string>lib/release/BsSndRpt64.exe</string>
             <string>lib/release/BugSplat64.dll</string>
             <string>lib/release/BugSplatRc64.dll</string>
