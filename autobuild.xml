@@ -81,9 +81,9 @@
           <array>
             <string>include/bugsplat/BugSplat.h</string>
             <string>lib/release/BugSplat.lib</string>
-            <string>bin/release/BsSndRpt.exe</string>
-            <string>bin/release/BugSplat.dll</string>
-            <string>bin/release/BugSplatRC.dll</string>
+            <string>lib/release/BsSndRpt.exe</string>
+            <string>lib/release/BugSplat.dll</string>
+            <string>lib/release/BugSplatRC.dll</string>
           </array>
           <key>name</key>
           <string>windows</string>
@@ -107,9 +107,9 @@
           <array>
             <string>include/bugsplat/BugSplat.h</string>
             <string>lib/release/BugSplat64.lib</string>
-            <string>bin/release/BsSndRpt64.exe</string>
-            <string>bin/release/BugSplat64.dll</string>
-            <string>bin/release/BugSplatRc64.dll</string>
+            <string>lib/release/BsSndRpt64.exe</string>
+            <string>lib/release/BugSplat64.dll</string>
+            <string>lib/release/BugSplatRc64.dll</string>
           </array>
           <key>name</key>
           <string>windows64</string>
