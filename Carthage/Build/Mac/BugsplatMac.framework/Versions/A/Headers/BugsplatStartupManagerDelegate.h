@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class BugsplatAttachment;
+
 @protocol BugsplatStartupManagerDelegate <NSObject>
 
 @optional
@@ -53,5 +55,23 @@
  * @param error The error returned.
  */
 - (void)bugsplatStartupManager:(BugsplatStartupManager *)bugsplatStartupManager didFailWithError:(NSError *)error;
+
+/** Return a BugsplatAttachment object providing an NSData object the crash report
+ being processed should contain
+  
+ Example implementation:
+ 
+ - (BugsplatAttachment *)attachmentForCrashManager:(BugsplatStartupManager *)bugsplatStartupManager {
+    NSData *data = [NSData dataWithContentsOfURL:@"mydatafile"];
+ 
+    BugsplatAttachment *attachment = [[BugsplatAttachment alloc] initWithFilename:@"myfile.data"
+                                                                   attachmentData:data
+                                                                      contentType:@"application/octet-stream"];
+    return attachment;
+ }
+ 
+ @param bugsplatStartupManager The `BugsplatStartupManager` instance invoking this delegate
+*/
+- (BugsplatAttachment *)attachmentForBugsplatStartupManager:(BugsplatStartupManager *)bugsplatStartupManager;
 
 @end
