@@ -38,8 +38,7 @@ pushd "${APP_DIR}"
 
 INFO_PLIST="/tmp/${PRODUCT_NAME}-Info.plist"
 rm ${INFO_PLIST}
-otool -X -s __TEXT __info_plist ${PRODUCT_NAME} | xxd -r >> $INFO_PLIST 2>&1
-sed -i .bak '1s/^[^<]*//' ${INFO_PLIST} 
+otool -X -s __TEXT __info_plist ${PRODUCT_NAME} | sed 's/Contents.*//' | xxd -r >> $INFO_PLIST 2>&1
 
 APP_VERSION=$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" "${INFO_PLIST}")
 BUGSPLAT_SERVER_URL=$(/usr/libexec/PlistBuddy -c "Print BugsplatServerURL" "${INFO_PLIST}")
@@ -63,8 +62,7 @@ echo "Signing into bugsplat and storing session cookie for use in upload" >> $LO
 
 COOKIEPATH="/tmp/bugsplat-cookie.txt"
 rm "${COOKIEPATH}"
-curl -b "${COOKIEPATH}" -c "${COOKIEPATH}" "https://${BUGSPLAT_DOMAIN}/login"
-curl -b "${COOKIEPATH}" -c "${COOKIEPATH}" --data "currusername=${BUGSPLAT_USER}&currpasswd=${BUGSPLAT_PASS}" "https://${BUGSPLAT_DOMAIN}/browse/login.php"
+curl -b "${COOKIEPATH}" -c "${COOKIEPATH}" --data "currusername=${BUGSPLAT_USER}&currpasswd=${BUGSPLAT_PASS}" "${BUGSPLAT_SERVER_URL}/browse/login.php"
 
 echo "Uploading /tmp/${PRODUCT_NAME}.xcarchive.zip to ${UPLOAD_URL}" >> $LOG 2>&1
 
