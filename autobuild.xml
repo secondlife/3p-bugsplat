@@ -57,7 +57,7 @@
           </map>
           <key>manifest</key>
           <array>
-            <string>foo</string>
+            <string>lib</string>
           </array>
           <key>name</key>
           <string>darwin64</string>
