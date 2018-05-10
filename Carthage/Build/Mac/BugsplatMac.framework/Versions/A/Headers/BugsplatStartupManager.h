@@ -30,6 +30,12 @@
 @property (nonatomic, strong) NSBundle *hostBundle;
 
 /*!
+ *  Provide custom banner image for crash reporter.
+ *  Can set directly in code or provide an image named bugsplat-logo in main bundle. Can be in asset catalog.
+ */
+@property (nonatomic, strong) NSImage *bannerImage;
+
+/*!
  *  Submit crash reports without asking the user
  *
  *  _YES_: The crash report will be submitted without asking the user

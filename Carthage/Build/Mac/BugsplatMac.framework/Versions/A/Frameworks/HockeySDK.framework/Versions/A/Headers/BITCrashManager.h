@@ -120,6 +120,11 @@ typedef NS_ENUM(NSUInteger, BITCrashManagerUserInput) {
  */
 @property (nonatomic, assign) BOOL askUserDetails;
 
+/**
+ *  Custom banner image (440x110) to be presented in crash reporter window.  Scales down propertionately.
+ */
+@property (nonatomic, strong) NSImage *bannerImage;
+
 
 /**
  *  Trap fatal signals via a Mach exception server. This is now used by default!
@@ -261,17 +266,6 @@ typedef NS_ENUM(NSUInteger, BITCrashManagerUserInput) {
 ///-----------------------------------------------------------------------------
 /// @name Helper
 ///-----------------------------------------------------------------------------
-
-/**
- *  Detect if a debugger is attached to the app process
- *
- *  This is only invoked once on app startup and can not detect if the debugger is being
- *  attached during runtime!
- *
- *  @return BOOL if the debugger is attached on app startup
- */
-- (BOOL)isDebuggerAttached;
-
 
 /**
  * Lets the app crash for easy testing of the SDK
