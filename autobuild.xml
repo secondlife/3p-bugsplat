@@ -84,6 +84,7 @@
             <string>lib/release/BsSndRpt.exe</string>
             <string>lib/release/BugSplat.dll</string>
             <string>lib/release/BugSplatRC.dll</string>
+            <string>bin</string>
           </array>
           <key>name</key>
           <string>windows</string>
@@ -110,6 +111,7 @@
             <string>lib/release/BsSndRpt64.exe</string>
             <string>lib/release/BugSplat64.dll</string>
             <string>lib/release/BugSplatRc64.dll</string>
+            <string>bin</string>
           </array>
           <key>name</key>
           <string>windows64</string>

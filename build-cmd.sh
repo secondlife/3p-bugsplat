@@ -37,6 +37,7 @@ build=${AUTOBUILD_BUILD_ID:=0}
 mkdir -p "$stage/LICENSES"
 mkdir -p "$stage/include/bugsplat"
 mkdir -p "$stage/lib/release"
+mkdir -p "$stage/bin/release"
 
 case "$AUTOBUILD_PLATFORM" in
     windows*)
@@ -67,6 +68,10 @@ case "$AUTOBUILD_PLATFORM" in
         cp "$BUGSPLAT_DIR/$bin/BsSndRpt$sfx.exe" "$stage/lib/release"
         cp "$BUGSPLAT_DIR/$bin/BugSplat$sfx.dll" "$stage/lib/release"
         cp "$BUGSPLAT_DIR/$bin/$rcdll" "$stage/lib/release"
+
+        # There's only one SendPdbs.exe, and it's in bin, not in bin64.
+        # Include SendPdbs.exe.config.
+        cp -v "$BUGSPLAT_DIR/bin"/SendPdbs.exe* "$stage/bin/release/"
     ;;
     darwin*)
         # BugsplatMac version embedded in the framework's Info.plist
