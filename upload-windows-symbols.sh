@@ -16,7 +16,13 @@ sys.stdout.write(json.load(open(r'$build_data'))['Channel'])")"
      # viewer version -- explicitly ditch '\r' as bash only strips '\n'
      version="$(tr <"${build_dir}/newview/viewer_version.txt" -d '\r')"
 
-     pushd "${build_dir}/newview/Release"
+     # SendPdbs wants a single /f argument in which individual pathnames are
+     # separated by ';'
+     function wildjoin {
+         local IFS="$1"
+         shift
+         echo "$*"
+     }
 
      # upload to BugSplat -- don't echo credentials
      set +x
@@ -26,10 +32,9 @@ sys.stdout.write(json.load(open(r'$build_data'))['Channel'])")"
      source "$build_secrets_checkout/bugsplat/bugsplat.sh"
 
      args=(/a "$channel" /v "$version" /b second_life_callum_test \
-           /f "secondlife-bin.pdb;secondlife-bin.exe")
+           /f "$(wildjoin ';' "${build_dir}/newview/Release"/secondlife-bin.{pdb,exe})")
      echo "$SendPdbs" /u xxx /p xxx "${args[@]}"
      "$SendPdbs" /u "$BUGSPLAT_USER" /p "$BUGSPLAT_PASS" "${args[@]}"
 
      set -x
-     popd
 fi
