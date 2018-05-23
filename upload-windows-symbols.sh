@@ -8,11 +8,6 @@ then
      # autobuild.xml ensures that it's packaged in the tarball
      SendPdbs="${build_dir}/packages/bin/release/SendPdbs.exe"
 
-     # viewer channel
-     build_data="$(cygpath -m "${build_dir}/build_data.json")"
-     channel="$(python -c "import sys, json
-sys.stdout.write(json.load(open(r'$build_data'))['Channel'])")"
-
      # viewer version -- explicitly ditch '\r' as bash only strips '\n'
      version="$(tr <"${build_dir}/newview/viewer_version.txt" -d '\r')"
 
@@ -31,7 +26,7 @@ sys.stdout.write(json.load(open(r'$build_data'))['Channel'])")"
      # defines BUGSPLAT_USER and BUGSPLAT_PASS
      source "$build_secrets_checkout/bugsplat/bugsplat.sh"
 
-     args=(/a "$channel" /v "$version" /b second_life_callum_test \
+     args=(/a "$viewer_channel" /v "$version" /b second_life_callum_test \
            /f "$(wildjoin ';' "${build_dir}/newview/Release"/secondlife-bin.{pdb,exe})")
      echo "$SendPdbs" /u xxx /p xxx "${args[@]}"
      "$SendPdbs" /u "$BUGSPLAT_USER" /p "$BUGSPLAT_PASS" "${args[@]}"
