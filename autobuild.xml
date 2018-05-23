@@ -37,6 +37,10 @@
               <string>default</string>
             </map>
           </map>
+          <key>manifest</key>
+          <array>
+            <string>upload-extensions</string>
+          </array>
           <key>name</key>
           <string>common</string>
         </map>

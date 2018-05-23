@@ -38,6 +38,7 @@ mkdir -p "$stage/LICENSES"
 mkdir -p "$stage/include/bugsplat"
 mkdir -p "$stage/lib/release"
 mkdir -p "$stage/bin/release"
+mkdir -p "$stage/upload-extensions"
 
 case "$AUTOBUILD_PLATFORM" in
     windows*)
@@ -72,6 +73,7 @@ case "$AUTOBUILD_PLATFORM" in
         # There's only one SendPdbs.exe, and it's in bin, not in bin64.
         # Include SendPdbs.exe.config.
         cp -v "$BUGSPLAT_DIR/bin"/SendPdbs.exe* "$stage/bin/release/"
+        cp -v "$top/upload-windows-symbols.sh" "$stage/upload-extensions/"
     ;;
     darwin*)
         # BugsplatMac version embedded in the framework's Info.plist
