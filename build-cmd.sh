@@ -81,7 +81,20 @@ case "$AUTOBUILD_PLATFORM" in
         Info_plist="$framework/Resources/Info.plist"
         BUGSPLAT_VERSION="$(python -c "import plistlib
 print plistlib.readPlist('$Info_plist')['CFBundleShortVersionString']")"
+        # Because of its embedded directory symlinks, copying the framework
+        # works much better if we kill the previous copy first.
+        stage_framework="$stage/lib/release/$(basename "$framework")"
+        [ -d "$stage_framework" ] && rm -rf "$stage_framework"
+        # We don't (yet) build from BugsplatMac source -- we just check in,
+        # and copy, the prebuilt version downloaded from BugSplat (sigh).
         cp -R "$framework" "$stage/lib/release"
+        # However, we do have a patched version of their upload-archive.sh
+        # script in the BugsplatMac source tree. Make sure that gets into the
+        # newly-copied framework.
+        cp -v "$top/BugsplatMac/upload-archive.sh" \
+              "$stage_framework/Versions/Current/Resources/"
+        # Now set up the upload-extensions script that will engage it.
+        cp -v "$top/upload-mac-symbols.sh" "$stage/upload-extensions/"
     ;;
     linux*)
         echo "This project is not currently supported for $AUTOBUILD_PLATFORM" 1>&2 ; exit 1
