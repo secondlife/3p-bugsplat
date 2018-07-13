@@ -6,6 +6,7 @@
 #define IDDETAILS2                      5
 #define IDI_TICK                        101
 #define IDI_ERR                         102
+#define IDC_OPTIN                       999
 #define IDD_CRASHREPORT                 1000
 #define IDD_PROGRESS                    1001
 #define IDC_CRASHDLGHEADER              1001
@@ -52,7 +53,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        1005
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1014
+#define _APS_NEXT_CONTROL_VALUE         1015
 #define _APS_NEXT_SYMED_VALUE           1000
 #endif
 #endif
