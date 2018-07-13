@@ -64,27 +64,28 @@ END
 // Dialog
 //
 
-IDD_CRASHREPORT DIALOGEX 0, 0, 293, 247
+IDD_CRASHREPORT DIALOGEX 0, 0, 293, 239
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Crash Report"
 FONT 8, "MS Shell Dlg", 0, 0, 0x0
 BEGIN
+    EDITTEXT        IDC_EDIT_DESCRIPTION,4,90,279,48,ES_MULTILINE | ES_AUTOVSCROLL | ES_WANTRETURN | WS_VSCROLL
+    EDITTEXT        IDC_EDIT_NAME,6,186,98,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_EMAILADDRESS,117,186,165,12,ES_AUTOHSCROLL
+    CONTROL         "Allow BugSplat to store this information for a period of up to one year.",IDC_OPTIN,
+                    "Button",BS_AUTOCHECKBOX | BS_MULTILINE | NOT WS_VISIBLE | WS_DISABLED | WS_TABSTOP,11,204,276,15
+    DEFPUSHBUTTON   "&Send Error Report",IDOK,33,218,63,14
+    PUSHBUTTON      "&Don't Send",IDCANCEL,119,218,40,14
+    PUSHBUTTON      "&View Report Details",IDDETAILS,183,218,67,14
     CONTROL         IDD_PROGRESS,IDC_STATIC,"Static",SS_BITMAP,0,0,293,30
     CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,0,31,293,1
     LTEXT           "A problem has caused your program to close.",IDC_STATIC,5,37,284,10
     LTEXT           "Reporting this error will help us make our product more reliable.  Please send this error report using the button below.  All information is treated as confidential and is only used to improve future versions of this program.",IDC_STATIC,5,50,275,27
-    EDITTEXT        IDC_EDIT_DESCRIPTION,4,94,279,38,ES_MULTILINE | ES_AUTOVSCROLL | ES_WANTRETURN | WS_VSCROLL
-    LTEXT           "The contact information below is optional. If provided, we may contact you with additional information about this error.",IDC_STATIC,5,140,276,25
-    LTEXT           "Name: (optional)",IDC_STATIC,6,186,86,8
-    EDITTEXT        IDC_EDIT_NAME,6,197,98,12,ES_AUTOHSCROLL
-    LTEXT           "Email Address: (optional)",IDC_STATIC,117,186,163,9
-    EDITTEXT        IDC_EDIT_EMAILADDRESS,117,197,165,12,ES_AUTOHSCROLL
-    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,0,216,291,1
-    DEFPUSHBUTTON   "&Send Error Report",IDOK,33,225,63,14
-    PUSHBUTTON      "&Don't Send",IDCANCEL,119,225,40,14
+    LTEXT           "Name: (optional)",IDC_STATIC,6,175,86,8
+    LTEXT           "Email Address: (optional)",IDC_STATIC,117,175,163,9
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,0,203,291,1
     LTEXT           "Please describe the events just before this dialog appeared:",IDC_STATIC,5,80,198,10
-    LTEXT           "Your email address will never be sold or used for marketing purposes.",IDC_STATIC,6,171,276,8
-    PUSHBUTTON      "&View Report Details",IDDETAILS,183,225,67,14
+    LTEXT           "Contact information below is optional. If you provide it, we will keep it confidential.  We will only contact you with  information relevant to this crash report.",IDC_STATIC,6,146,276,22
 END
 
 IDD_PROGRESS DIALOG 0, 0, 249, 102
@@ -145,7 +146,7 @@ GUIDELINES DESIGNINFO
 BEGIN
     IDD_CRASHREPORT, DIALOG
     BEGIN
-        BOTTOMMARGIN, 240
+        BOTTOMMARGIN, 232
     END
 
     IDD_PROGRESS, DIALOG

@@ -6,9 +6,7 @@
 // This header file contains the code used to add BugSplat crash reporting to
 // native Windows applications.
 //
-// For the simplest implementation read the documentation at 
-// https://www.bugsplat.com
-//
+// For more information, see the documentation at https://www.bugsplat.com/docs/platforms/cplusplus
 //
 // Copyright 2003-2017, BugSplat 
 // All rights reserved.
@@ -92,9 +90,11 @@ public:
 		MiniDumpValidTypeFlags = 0x003fffff,
 	} BS_MINIDUMP_TYPE;
 
-	// Get/set the minidump type.   Use with care.  Changing the minidump type can result in large crash file 
-	// uploads that may be rejected by BugSplat.   
+	//! Get the current minidump type
 	MiniDmpSender::BS_MINIDUMP_TYPE getMiniDumpType() const;
+
+	//! Set the minidump type.   Use with care.  Changing the minidump type can result in large crash file 
+	//! uploads that may be rejected by BugSplat. 
 	void setMiniDumpType(MiniDmpSender::BS_MINIDUMP_TYPE eType);
 
     //! Limited support for full memory minidumps: dump will be created and a message box displayed indicating path to dump file; app will then exit w/o reporting crash.
@@ -119,7 +119,10 @@ public:
 	//! Removes a file from the list created by sendAdditionalFile()
 	bool removeAdditionalFile(const __wchar_t * wszPath);
 
-    //! Use to set full path for crash report zip file; default is a path in the %TEMP% folder.
+	//! Set full path for log file; default is bugsplat.log in the %TEMP% folder.
+	void setLogFilePath(const __wchar_t * wszPath);
+	
+	//! Use to set full path for crash report zip file; default is a path in the %TEMP% folder.
     void setUserZipPath(const __wchar_t * wszPath);
 
     //! Use to set full path for BsSndRpt's resource DLL (allows dialog customizations, e.g. language); default is ./BugSplatRc.dll (or ./BugSplatRc64.dll).
@@ -136,7 +139,6 @@ public:
 
     //! Use to send a BugSplat crash report outside of the unhandled exception filters.
     //! For example, you could send a report directly from your own try/catch clause.
-    void createReport();
     void createReport(EXCEPTION_POINTERS * pExcepInfo);
     //! Use to send an XML stack trace to BugSplat, bypassing minidump creation.
     void createReport(const __wchar_t * wszStackTracePath);
@@ -204,7 +206,7 @@ private:
 
 //! These flags control output of the BugSplat log output, typically used for development/debugging.
 //! If MDSF_LOGCONSOLE is set, logging information is sent to the debugger console.
-//! If MDSF_LOGFILE is set, logging information is added to the file 'bugsplat.log' in the system temp directory and included in the crash report zip file.
+//! If MDSF_LOGFILE is set, logging information is added to a log file and is included in the crash report zip file.  
 #define MDSF_LOGCONSOLE         0x1000
 #define MDSF_LOGFILE            0x2000
 #define MDSF_LOG_VERBOSE        0x4000
@@ -213,7 +215,6 @@ private:
 
 //! nCode: MDSCB_EXCEPTIONCODE
 //! lVal1: EXCEPTION_RECORD*, pointer to the exception record responsible for the crash
-//!           Note: this might be NULL if report created using 'void createReport()' method
 //! lVal2: Reserved
 #define MDSCB_EXCEPTIONCODE            0x0050
 
