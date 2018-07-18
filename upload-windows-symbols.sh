@@ -26,7 +26,7 @@ then
      # defines BUGSPLAT_USER and BUGSPLAT_PASS
      source "$build_secrets_checkout/bugsplat/bugsplat.sh"
 
-     args=(/a "$viewer_channel" /v "$version" /b second_life_callum_test \
+     args=(/a "$viewer_channel" /v "$version" /b "$BUGSPLAT_DB" \
            /f "$(wildjoin ';' "${build_dir}/newview/Release"/secondlife-bin.{pdb,exe})")
      echo "$SendPdbs" /u xxx /p xxx "${args[@]}"
      "$SendPdbs" /u "$BUGSPLAT_USER" /p "$BUGSPLAT_PASS" "${args[@]}"
