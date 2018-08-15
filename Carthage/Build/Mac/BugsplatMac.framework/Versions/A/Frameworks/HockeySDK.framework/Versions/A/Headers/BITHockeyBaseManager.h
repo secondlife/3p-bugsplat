@@ -20,5 +20,9 @@
  */
 @property (nonatomic, copy) NSString *serverURL;
 
+/**
+ *  Flag to enable/disable storing user settings in keychain
+ */
+@property (nonatomic, assign) BOOL persistUserInfo;
 
 @end

@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class BugsplatAttachment;
 
 @protocol BugsplatStartupManagerDelegate <NSObject>
@@ -19,6 +21,27 @@
  * @param bugsplatStartupManager The `BugsplatStartupManager` instance invoking this delegate
  */
 - (NSString *)applicationLogForBugsplatStartupManager:(BugsplatStartupManager *)bugsplatStartupManager;
+
+/** Return any string based data the crash report being processed should contain
+ *
+ * @param bugsplatStartupManager The `BugsplatStartupManager` instance invoking this delegate
+ * @param signal The system crash signal
+ * @param exceptionName The exception name.  Only provided if crash is the result of an uncaught exception
+ * @param exceptionReason The exception reason.  Only provided if crash is the result of an uncaught exception
+ */
+- (NSString *)applicationKeyForBugsplatStartupManager:(BugsplatStartupManager *)bugsplatStartupManager signal:(NSString *)signal exceptionName:(NSString *)exceptionName exceptionReason:(NSString *)exceptionReason;
+
+/** Return a default user name to be displayed in the crash reporter UI
+ *
+ * @param bugsplatStartupManager The `BugsplatStartupManager` instance invoking this delegate
+ */
+- (NSString *)defaultUserNameForBugsplatStartupManager:(BugsplatStartupManager *)bugsplatStartupManager;
+
+/** Return a default user email to be displayed in the crash reporter UI
+ *
+ * @param bugsplatStartupManager The `BugsplatStartupManager` instance invoking this delegate
+ */
+- (NSString *)defaultUserEmailForBugsplatStartupManager:(BugsplatStartupManager *)bugsplatStartupManager;
 
 /**
  * Invoked before the user is asked to send a crash report, so you can do additional actions.
@@ -54,7 +77,7 @@
  * @param bugsplatStartupManager The `BugsplatStartupManager` instance invoking this delegate
  * @param error The error returned.
  */
-- (void)bugsplatStartupManager:(BugsplatStartupManager *)bugsplatStartupManager didFailWithError:(NSError *)error;
+- (void)bugsplatStartupManager:(BugsplatStartupManager *)bugsplatStartupManager didFailWithError:(nullable NSError *)error;
 
 /** Return a BugsplatAttachment object providing an NSData object the crash report
  being processed should contain
@@ -75,3 +98,5 @@
 - (BugsplatAttachment *)attachmentForBugsplatStartupManager:(BugsplatStartupManager *)bugsplatStartupManager;
 
 @end
+
+NS_ASSUME_NONNULL_END
