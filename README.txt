@@ -12,6 +12,15 @@ is supported by macports as well as homebrew:
 sudo port install carthage)
 and added the present Cartfile with contents as recommended.
 
+FIRST -- VERY IMPORTANT!!
+hg update vendor
+
+We DO have patches to the BugsplatMac.framework, notably to the
+upload-archive.sh script in its Resources directory. I've already been through
+losing the Linden patches due to unpacking a vendor drop before switching to
+the vendor branch, and having to restore them to the source repo from an
+earlier autobuild package tarball.
+
 Although the BugSplat page mentioned above says simply to run 'carthage', the
 Carthage Quick Start documentation https://github.com/Carthage/Carthage says
 to run 'carthage update', which I did.

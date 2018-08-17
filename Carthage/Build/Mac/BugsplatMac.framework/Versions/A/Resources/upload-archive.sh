@@ -3,8 +3,10 @@
 # (Above line comes out when placing in Xcode scheme)
 #
 
-LOG="/tmp/bugsplat-upload.log"
+LOG="/dev/stdout"
 
+if [ -z "$BUGSPLAT_USER" -o -z "$BUGSPLAT_PASS" ]
+then ## skip all this if credentials are already set in environment
 if [ ! -f "${HOME}/.bugsplat.conf" ]
 then
     echo "Missing bugsplat config file: ~/.bugsplat.conf" >> $LOG 2>&1
@@ -24,7 +26,19 @@ then
     echo "BUGSPLAT_PASS must be set in ~/.bugsplat.conf" >> $LOG 2>&1
     exit
 fi
+fi ## end of skipping ~/.bugsplat.conf
 
+if [ -n "$2" ]
+then # caller passed in APP and XCARCHIVE explicitly,
+     # instead of making the script find and zip the archive
+     APP="$1"
+     XCARCHIVE="$2"
+     PRODUCT_NAME="$(/usr/libexec/PlistBuddy -c "Print CFBundleExecutable" "${APP}/Contents/Info.plist")"
+     # The original script very explicitly expects to find the zipped
+     # XCARCHIVE at /tmp/$PRODUCT_NAME.xcarchive.zip -- sigh, should have been
+     # another shell variable. Move our XCARCHIVE there.
+     mv -v "$XCARCHIVE" "/tmp/$PRODUCT_NAME.xcarchive.zip" > "$LOG" 2>&1
+else ## "classic" invocation without APP and XCARCHIVE
 DATE=$( /bin/date +"%Y-%m-%d" )
 ARCHIVE_DIR="${HOME}/Library/Developer/Xcode/Archives/${DATE}"
 ARCHIVE=$( /bin/ls -t "${ARCHIVE_DIR}" | /usr/bin/grep xcarchive | /usr/bin/sed -n 1p )
@@ -32,6 +46,7 @@ ARCHIVE=$( /bin/ls -t "${ARCHIVE_DIR}" | /usr/bin/grep xcarchive | /usr/bin/sed 
 echo "Archive: ${ARCHIVE}" > $LOG 2>&1
 
 APP="${ARCHIVE_DIR}/${ARCHIVE}/Products/Applications/${PRODUCT_NAME}.app"
+fi ## "classic" invocation
 APP_VERSION=$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" "${APP}/Contents/Info.plist")
 BUGSPLAT_SERVER_URL=$(/usr/libexec/PlistBuddy -c "Print BugsplatServerURL" "${APP}/Contents/Info.plist")
 BUGSPLAT_SERVER_URL=${BUGSPLAT_SERVER_URL%/}
@@ -39,12 +54,15 @@ BUGSPLAT_SERVER_URL=${BUGSPLAT_SERVER_URL%/}
 UPLOAD_URL="${BUGSPLAT_SERVER_URL}/post/plCrashReporter/symbol/"
 
 echo "App version: ${APP_VERSION}" >> $LOG 2>&1
+if [ -z "$2" ]
+then ## skip this if XCARCHIVE was explicitly passed
 echo "Zipping ${ARCHIVE}" >> $LOG 2>&1
 
 /bin/rm "/tmp/${PRODUCT_NAME}.xcarchive.zip"
 cd "${ARCHIVE_DIR}/${ARCHIVE}"
 /usr/bin/zip -r "/tmp/${PRODUCT_NAME}.xcarchive.zip" *
 cd -
+fi ## skipping zipping
 
 UUID_CMD_OUT=$(xcrun dwarfdump --uuid "${APP}/Contents/MacOS/${PRODUCT_NAME}")
 UUID_CMD_OUT=$([[ "${UUID_CMD_OUT}" =~ ^(UUID: )([0-9a-zA-Z\-]+) ]] && echo ${BASH_REMATCH[2]})
