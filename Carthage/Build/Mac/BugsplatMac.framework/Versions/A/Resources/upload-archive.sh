@@ -3,7 +3,6 @@
 # (Above line comes out when placing in Xcode scheme)
 #
 
-set -x
 LOG="/dev/stdout"
 
 if [ -z "$BUGSPLAT_USER" -o -z "$BUGSPLAT_PASS" ]
