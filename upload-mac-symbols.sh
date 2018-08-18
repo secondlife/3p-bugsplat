@@ -27,6 +27,14 @@ then
      # need BugSplat credentials to post symbol files
      # defines BUGSPLAT_USER and BUGSPLAT_PASS
      source "$build_secrets_checkout/bugsplat/bugsplat.sh"
+     # Ho ho, the credentials are passed to curl to pass to a BugSplat web
+     # service -- and any + sign embedded in the username bollixes the
+     # receiver! Probably it's being converted to a space. Defend against that
+     # with a cheapo URL encoding.
+     # (Note to future maintainers: if we hit similar problems with other
+     # characters special to URL syntax, use an inline Python expression to
+     # URL-encode both credentials strings.)
+     BUGSPLAT_USER="${BUGSPLAT_USER/+/%2B}"
      export BUGSPLAT_USER
      export BUGSPLAT_PASS
 
