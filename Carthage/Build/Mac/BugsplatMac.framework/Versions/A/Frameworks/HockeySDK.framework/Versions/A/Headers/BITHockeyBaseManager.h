@@ -21,6 +21,16 @@
 @property (nonatomic, copy) NSString *serverURL;
 
 /**
+ *  Represents user's full name
+ */
+@property (nonatomic, copy) NSString *userName;
+
+/**
+ *  Represents user's email address
+ */
+@property (nonatomic, copy) NSString *userEmail;
+
+/**
  *  Flag to enable/disable storing user settings in keychain
  */
 @property (nonatomic, assign) BOOL persistUserInfo;
