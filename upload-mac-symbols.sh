@@ -31,6 +31,9 @@ then
      export BUGSPLAT_PASS
 
      "$upload_archive" "$app" "$xcarchive"
+     rc=$?
 
      set -x
+
+     [ $rc -eq 0 ] || fatal "BugSplat upload_archive.sh failed"
 fi
