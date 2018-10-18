@@ -18,7 +18,7 @@ then
      # .app as its first argument, and the path to the zipped archive as the
      # second.
      app_dir="${build_dir}/newview/${variant}"
-     app="$(ls -d "${app_dir}"/*.app/"Contents/Resources/Second Life Viewer.app")"
+     app="$(ls -d "${app_dir}"/*.app/"Contents/Resources/${viewer_channel}.app")"
      xcarchive="$(ls -d "${app_dir}"/*.xcarchive.zip)"
 
      # upload to BugSplat -- don't echo credentials
