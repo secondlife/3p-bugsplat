@@ -62,7 +62,7 @@ case "$AUTOBUILD_PLATFORM" in
         # version stamped into this BugSplat .exe.
         BUGSPLAT_VERSION="$("$top/query_version.sh" "$BUGSPLAT_DIR/bin/BsSndRpt.exe")"
         # and remove extraneous newlines
-        BUGSPLAT_VERSION="${BUGSPLAT_VERSION//$'\n'}"
+        BUGSPLAT_VERSION="${BUGSPLAT_VERSION//[$'\r\n']}"
 
         # copy files
         cp "$BUGSPLAT_DIR/inc/BugSplat.h" "$stage/include/bugsplat"
