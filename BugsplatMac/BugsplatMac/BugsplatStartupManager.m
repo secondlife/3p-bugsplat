@@ -6,7 +6,7 @@
 //  Copyright © 2016 Bugsplat. All rights reserved.
 //
 
-#import <HockeySDK/HockeySDK.h>
+#import "HockeySDK.h"
 #import "BugsplatStartupManager.h"
 #import "BugsplatStartupManagerDelegate.h"
 #import "BugsplatAttachment.h"
@@ -38,6 +38,7 @@ NSString *const kHockeyIdentifierPlaceholder = @"b0cf675cb9334a3e96eda0764f95e38
 	{
 		_autoSubmitCrashReport = NO;
 		_askUserDetails = YES;
+        _expirationTimeInterval = -1;
         
         [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:kHockeyIdentifierPlaceholder];
         
@@ -76,19 +77,49 @@ NSString *const kHockeyIdentifierPlaceholder = @"b0cf675cb9334a3e96eda0764f95e38
 - (void)setBannerImage:(NSImage *)bannerImage
 {
     _bannerImage = bannerImage;
-    [[BITHockeyManager sharedHockeyManager].crashManager setBannerImage:self.bannerImage];
+    [[[BITHockeyManager sharedHockeyManager] crashManager] setBannerImage:self.bannerImage];
 }
 
 - (void)setAskUserDetails:(BOOL)askUserDetails
 {
     _askUserDetails = askUserDetails;
-    [[BITHockeyManager sharedHockeyManager].crashManager setAskUserDetails:self.askUserDetails];
+    [[[BITHockeyManager sharedHockeyManager] crashManager] setAskUserDetails:self.askUserDetails];
+}
+
+- (void)setPersistUserDetails:(BOOL)persistUserDetails
+{
+    _persistUserDetails = persistUserDetails;
+    [[[BITHockeyManager sharedHockeyManager] crashManager] setPersistUserInfo:self.persistUserDetails];
+}
+
+- (void)setExpirationTimeInterval:(NSTimeInterval)expirationTimeInterval
+{
+    _expirationTimeInterval = expirationTimeInterval;
+    [[[BITHockeyManager sharedHockeyManager] crashManager] setExpirationTimeInterval:self.expirationTimeInterval];
 }
 
 - (void)setAutoSubmitCrashReport:(BOOL)autoSubmitCrashReport
 {
     _autoSubmitCrashReport = autoSubmitCrashReport;
-    [[BITHockeyManager sharedHockeyManager].crashManager setAutoSubmitCrashReport:self.autoSubmitCrashReport];
+    [[[BITHockeyManager sharedHockeyManager] crashManager] setAutoSubmitCrashReport:self.autoSubmitCrashReport];
+}
+
+- (void)setUserName:(NSString *)userName
+{
+    _userName = userName;
+    [[[BITHockeyManager sharedHockeyManager] crashManager] setUserName:_userName];
+}
+
+- (void)setUserEmail:(NSString *)userEmail
+{
+    _userEmail = userEmail;
+    [[[BITHockeyManager sharedHockeyManager] crashManager] setUserEmail:_userEmail];
+}
+
+- (void)setPresentModally:(BOOL)presentModally
+{
+    _presentModally = presentModally;
+    [[[BITHockeyManager sharedHockeyManager] crashManager] setPresentModally:_presentModally];
 }
 
 - (void)setDelegate:(id<BugsplatStartupManagerDelegate>)delegate
@@ -98,7 +129,7 @@ NSString *const kHockeyIdentifierPlaceholder = @"b0cf675cb9334a3e96eda0764f95e38
         _delegate = delegate;
     }
     
-    [BITHockeyManager sharedHockeyManager].delegate = self;
+    [[BITHockeyManager sharedHockeyManager] setDelegate:self];
 }
 
 #pragma mark - BITHockeyManagerDelegate
@@ -113,16 +144,50 @@ NSString *const kHockeyIdentifierPlaceholder = @"b0cf675cb9334a3e96eda0764f95e38
     return nil;
 }
 
-- (BITHockeyAttachment *)attachmentForCrashManager:(BITCrashManager *)crashManager;
+- (NSString *)applicationKeyForCrashManager:(BITCrashManager *)crashManager signal:(NSString *)signal exceptionName:(NSString *)exceptionName exceptionReason:(NSString *)exceptionReason
 {
-    if ([_delegate respondsToSelector:@selector(attachmentForBugsplatStartupManager:)])
+    if ([_delegate respondsToSelector:@selector(applicationKeyForBugsplatStartupManager:signal:exceptionName:exceptionReason:)])
     {
-        BugsplatAttachment *bugsplatAttachment = [_delegate attachmentForBugsplatStartupManager:self];
-        BITHockeyAttachment *hockeyAttachment = [[BITHockeyAttachment alloc] initWithFilename:bugsplatAttachment.filename
-                                                                         hockeyAttachmentData:bugsplatAttachment.attachmentData
-                                                                                  contentType:bugsplatAttachment.contentType];
+        return [_delegate applicationKeyForBugsplatStartupManager:self signal:signal exceptionName:exceptionName exceptionReason:exceptionReason];
+    }
+    
+    return nil;
+}
+
+- (NSArray<BITHockeyAttachment *> *)attachmentsForCrashManager:(BITCrashManager *)crashManager;
+{
+    if ([_delegate respondsToSelector:@selector(attachmentsForBugsplatStartupManager:)])
+    {
+        NSMutableArray *attachments = [[NSMutableArray alloc] init];
         
-        return hockeyAttachment;
+        NSArray *bugsplatAttachments = [_delegate attachmentsForBugsplatStartupManager:self];
+        
+        for (BugsplatAttachment *attachment in bugsplatAttachments)
+        {
+            BITHockeyAttachment *hockeyAttachment = [[BITHockeyAttachment alloc] initWithFilename:attachment.filename
+                                                                             hockeyAttachmentData:attachment.attachmentData
+                                                                                      contentType:attachment.contentType];
+            
+            [attachments addObject:hockeyAttachment];
+        }       
+        
+        return [attachments copy];
+    }
+    else if ([_delegate respondsToSelector:@selector(attachmentForBugsplatStartupManager:)])
+    {
+        
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+        
+        BugsplatAttachment *attachment = [_delegate attachmentForBugsplatStartupManager:self];
+        
+#pragma clang diagnostic pop
+        
+        BITHockeyAttachment *hockeyAttachment = [[BITHockeyAttachment alloc] initWithFilename:attachment.filename
+                                                                         hockeyAttachmentData:attachment.attachmentData
+                                                                                  contentType:attachment.contentType];
+        
+        return @[hockeyAttachment];
     }
     
     return nil;
