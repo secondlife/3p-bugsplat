@@ -75,7 +75,6 @@ case "$AUTOBUILD_PLATFORM" in
         # There's only one SendPdbs.exe, and it's in bin, not in bin64.
         # Include SendPdbs.exe.config.
         cp -v "$BUGSPLAT_DIR/bin"/SendPdbs.exe* "$stage/bin/release/"
-        cp -v "$BUGSPLAT_DIR/bin/PdbLibrary.dll" "$stage/bin/release/"
         cp -v "$top/upload-windows-symbols.sh" "$stage/upload-extensions/"
     ;;
     darwin*)
