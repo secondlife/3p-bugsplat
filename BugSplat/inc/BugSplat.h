@@ -8,7 +8,7 @@
 //
 // For more information, see the documentation at https://www.bugsplat.com/docs/platforms/cplusplus
 //
-// Copyright 2003-2017, BugSplat 
+// Copyright 2003-2019, BugSplat 
 // All rights reserved.
 //
 ///////////////////////////////////////////////////////////////////////////////
@@ -28,6 +28,9 @@
     #define MDS_EXPORT __declspec(dllimport)
 #endif
 
+#include <eh.h>
+#include <new.h>
+#include <signal.h>
 #include <Windows.h>
 
 //! If a callback function is registered with MiniDmpSender
@@ -97,10 +100,11 @@ public:
 	//! uploads that may be rejected by BugSplat. 
 	void setMiniDumpType(MiniDmpSender::BS_MINIDUMP_TYPE eType);
 
-    //! Limited support for full memory minidumps: dump will be created and a message box displayed indicating path to dump file; app will then exit w/o reporting crash.
-    bool enableFullMemoryDumpAndExit(bool enable = true);
-    //! Returns the current full minidump state 
-    bool isFullMemoryDumpAndExitEnabled() const;
+    //! Disable network access from BugSplat library.  When a crash occurs, the minidump will be created 
+	//! and a message box displayed indicating path to dump file; app will then exit w/o reporting crash to BugSplat.
+    bool disableNetworkAccess(bool enable = true);
+    //! Returns the current network access state 
+    bool isNetworkAccessDisabled() const;
 
     //! Set the option flags; see MDSF_FLAG... defines below.
     bool setFlags( DWORD dwFlags );
@@ -140,8 +144,12 @@ public:
     //! Use to send a BugSplat crash report outside of the unhandled exception filters.
     //! For example, you could send a report directly from your own try/catch clause.
     void createReport(EXCEPTION_POINTERS * pExcepInfo);
-    //! Use to send an XML stack trace to BugSplat, bypassing minidump creation.
-    void createReport(const __wchar_t * wszStackTracePath);
+
+	//! Use to send a report to BugSplat, bypassing minidump creation.  
+	//! See myConsoleCrasher for an example of the XML required schema.
+	//! This function does not exit, normal program flow continues.
+    void createReport(const __wchar_t * wszXmlReport);
+	
     //! Use to send a report and exit
     inline void createReportAndExit() { setFlags(getFlags() | 0x02/*MDSF_FORCEEXIT*/); throw NULL; }
 
@@ -153,6 +161,9 @@ public:
 
     //! Get path to minidump.  
     void getMinidumpPath(__wchar_t * buffer, size_t len);
+
+	//! Set the size of the guard byte buffer.  See the MDSF_USEGUARDMEMORY flag
+	int setGuardByteBufferSize(int nbytes);
 
     //! Internal method.
     LPVOID imp();
@@ -186,9 +197,9 @@ private:
 //! each minute.
 #define MDSF_DETECTHANGS        0x0008
 
-//! The guard memory flag causes the BugSplat library to pre-allocate a 4MB chunk of data
+//! The guard memory flag causes the BugSplat library to pre-allocate a 4MB (default) chunk of data
 //! on the heap. When a crash is encountered, this heap data is deleted and might be useful
-//! in low memory scenarios
+//! in low memory scenarios.  The size of the buffer can be controlled using setGuardByteBufferSize();
 #define MDSF_USEGUARDMEMORY     0x0010
 
 //! BugSplat operates using the SetUnhandledExceptionFilter method. Use this flag if you want to
@@ -218,8 +229,60 @@ private:
 //! lVal2: Reserved
 #define MDSCB_EXCEPTIONCODE            0x0050
 
-//! nCode: MDSCB_GETADDITIONALFILECOUNT
-//! lVal1: long*, pointer to long variable obtaining the additional file count
-//! lVal2: Reserved
-//#define MDSCB_GETADDITIONALFILECOUNT   0x0100  // obsolete:  please use sendAdditionalFile() instead
+//
+// Helper functions used to set CRT state.
+//
+inline void terminator() { int*z = 0; *z = 13; }
+inline void signal_handler(int) { terminator(); }
+inline void __cdecl invalid_parameter_handler(const wchar_t *, const wchar_t *, const wchar_t *, unsigned int, uintptr_t)
+{
+	terminator();
+}
+inline int memory_depleted(size_t)
+{
+	terminator();
+	return 0;
+}
+
+// This call should be made once from your app to enable collection of certain CRT exceptions
+inline void SetGlobalCRTExceptionBehavior()
+{
+	// There is a single set_terminate handler for all dynamically linked DLLs or EXEs; 
+	// even if you call set_terminate your handler may be replaced by another, 
+	// or you may be replacing a handler set by another DLL or EXE.
+	// See https://docs.microsoft.com/en-us/cpp/c-runtime-library/reference/set-terminate-crt?view=vs-2019
+	set_terminate(&terminator);
+
+	// Because there is only one _purecall_handler for each process, when you call _set_purecall_handler 
+	// it immediately impacts all threads. The last caller on any thread sets the handler.
+	// See https://docs.microsoft.com/en-us/cpp/c-runtime-library/reference/get-purecall-handler-set-purecall-handler?view=vs-2019
+	_set_purecall_handler(&terminator);
+
+	// Only one function can be specified as the global invalid argument handler at a time. 
+	// See https://docs.microsoft.com/en-us/cpp/c-runtime-library/reference/set-invalid-parameter-handler-set-thread-local-invalid-parameter-handler?view=vs-2019
+	_set_invalid_parameter_handler(&invalid_parameter_handler);
+
+	// There is a single _set_new_handler handler for all dynamically linked DLLs or executables; 
+	// even if you call _set_new_handler your handler might be replaced by another or that you are 
+	// replacing a handler set by another DLL or executable.
+	// See https://docs.microsoft.com/en-us/cpp/c-runtime-library/reference/set-new-handler?view=vs-2019
+	_set_new_handler(&memory_depleted);
+	_set_new_mode(1);
+}
+
+// This call should be made in each thread of your application to enable collection of certain CRT exceptions
+inline void SetPerThreadCRTExceptionBehavior()
+{
+	// Signal handling, required for each thread, at least for SIGABRT
+	signal(SIGABRT, signal_handler);
+	_set_abort_behavior(0, _WRITE_ABORT_MSG | _CALL_REPORTFAULT);
+	
+
+	// In a multithreaded environment, unexpected functions are maintained separately for each thread. 
+	// Each new thread needs to install its own unexpected function. Thus, each thread is in charge of 
+	// its own unexpected handling.
+	// See https://docs.microsoft.com/en-us/cpp/c-runtime-library/reference/set-unexpected-crt?view=vs-2019
+	set_unexpected(&terminator);
+}
+
 #endif //~BUGSPLAT_H
