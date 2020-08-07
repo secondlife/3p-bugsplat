@@ -217,7 +217,7 @@
             <summary>
             Aborts a multipart upload.
             
-            
+             
             <para>
             To verify that all parts have been removed, so you don't get charged for the part
             storage, you should call the List Parts operation and ensure the parts list is empty.
@@ -233,7 +233,7 @@
             <summary>
             Aborts a multipart upload.
             
-            
+             
             <para>
             To verify that all parts have been removed, so you don't get charged for the part
             storage, you should call the List Parts operation and ensure the parts list is empty.
@@ -247,7 +247,7 @@
             <summary>
             Aborts a multipart upload.
             
-            
+             
             <para>
             To verify that all parts have been removed, so you don't get charged for the part
             storage, you should call the List Parts operation and ensure the parts list is empty.
@@ -1634,9 +1634,9 @@
             <summary>
             Initiates a multipart upload and returns an upload ID.
             
-            
+             
             <para>
-            <b>Note:</b> After you initiate multipart upload and upload one or more parts, you
+             <b>Note:</b> After you initiate multipart upload and upload one or more parts, you
             must either complete or abort multipart upload in order to stop getting charged for
             storage of the uploaded parts. Only after you either complete or abort multipart upload,
             Amazon S3 frees up the parts storage and stops charging you for the parts storage.
@@ -1651,9 +1651,9 @@
             <summary>
             Initiates a multipart upload and returns an upload ID.
             
-            
+             
             <para>
-            <b>Note:</b> After you initiate multipart upload and upload one or more parts, you
+             <b>Note:</b> After you initiate multipart upload and upload one or more parts, you
             must either complete or abort multipart upload in order to stop getting charged for
             storage of the uploaded parts. Only after you either complete or abort multipart upload,
             Amazon S3 frees up the parts storage and stops charging you for the parts storage.
@@ -1667,9 +1667,9 @@
             <summary>
             Initiates a multipart upload and returns an upload ID.
             
-            
+             
             <para>
-            <b>Note:</b> After you initiate multipart upload and upload one or more parts, you
+             <b>Note:</b> After you initiate multipart upload and upload one or more parts, you
             must either complete or abort multipart upload in order to stop getting charged for
             storage of the uploaded parts. Only after you either complete or abort multipart upload,
             Amazon S3 frees up the parts storage and stops charging you for the parts storage.
@@ -2695,13 +2695,37 @@
             </param>
             <returns>The task object representing the asynchronous operation.</returns>
         </member>
+        <member name="M:Amazon.S3.AmazonS3Client.SelectObjectContent(Amazon.S3.Model.SelectObjectContentRequest)">
+            <summary>
+            This operation filters the contents of an Amazon S3 object based on a simple Structured
+            Query Language (SQL) statement. In the request, along with the SQL expression, you
+            must also specify a data serialization format (JSON or CSV) of the object. Amazon
+            S3 uses this to parse object data into records, and returns only records that match
+            the specified SQL expression. You must also specify the data serialization format
+            for the response.
+            </summary>
+            <param name="request">Container for the necessary parameters to execute the SelectObjectContent service method.</param>
+            
+            <returns>The response from the SelectObjectContent service method, as returned by S3.</returns>
+        </member>
+        <member name="M:Amazon.S3.AmazonS3Client.SelectObjectContentAsync(Amazon.S3.Model.SelectObjectContentRequest,System.Threading.CancellationToken)">
+            <summary>
+            Initiates the asynchronous execution of the SelectObjectContent operation.
+            </summary>
+            
+            <param name="request">Container for the necessary parameters to execute the SelectObjectContent operation.</param>
+            <param name="cancellationToken">
+                A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+            </param>
+            <returns>The task object representing the asynchronous operation.</returns>
+        </member>
         <member name="M:Amazon.S3.AmazonS3Client.UploadPart(Amazon.S3.Model.UploadPartRequest)">
             <summary>
             Uploads a part in a multipart upload.
             
-            
+             
             <para>
-            <b>Note:</b> After you initiate multipart upload and upload one or more parts, you
+             <b>Note:</b> After you initiate multipart upload and upload one or more parts, you
             must either complete or abort multipart upload in order to stop getting charged for
             storage of the uploaded parts. Only after you either complete or abort multipart upload,
             Amazon S3 frees up the parts storage and stops charging you for the parts storage.
@@ -4233,6 +4257,17 @@
             <param name="start"></param>
             <param name="end"></param>
         </member>
+        <member name="M:Amazon.S3.Model.ByteRange.#ctor(System.String)">
+            <summary>
+            Constructs a ByteRange and sets the header to the value specified.
+            </summary>
+            <param name="byteRangeValue"></param>
+        </member>
+        <member name="F:Amazon.S3.Model.ByteRange._formattedByteRange">
+            <summary>
+            A private string, represending the byte range.
+            </summary>
+        </member>
         <member name="P:Amazon.S3.Model.ByteRange.Start">
             <summary>
             The starting byte number of the range
@@ -5251,6 +5286,11 @@
             Value used for escaping where the field delimiter is part of the value.
             </summary>
         </member>
+        <member name="P:Amazon.S3.Model.CSVInput.AllowQuotedRecordDelimiter">
+            <summary>
+            Specifies that CSV field values may contain quoted record delimiters and such records should be allowed. Default value is FALSE. Setting this value to TRUE may lower performance.
+            </summary>
+        </member>
         <member name="T:Amazon.S3.Model.CSVOutput">
             <summary>
             Describes how CSV-formatted results are formatted.
@@ -5859,6 +5899,345 @@
             <summary>
             The id of the KMS key used to encrypt the replica object.
             </summary>
+        </member>
+        <member name="T:Amazon.S3.Model.ContinuationEvent">
+            <summary>
+            The Continuation Event.
+            </summary>
+        </member>
+        <member name="M:Amazon.S3.Model.ContinuationEvent.#ctor">
+            <summary>
+            Constructs a Continuation Event.
+            </summary>
+        </member>
+        <member name="M:Amazon.S3.Model.ContinuationEvent.#ctor(Amazon.Runtime.EventStreams.IEventStreamMessage)">
+            <summary>
+            Constructs a Continuation Event.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="T:Amazon.S3.Model.EndEvent">
+            <summary>
+            The End Event.
+            </summary>
+        </member>
+        <member name="M:Amazon.S3.Model.EndEvent.#ctor">
+            <summary>
+            Constructs an End Event.
+            </summary>
+        </member>
+        <member name="M:Amazon.S3.Model.EndEvent.#ctor(Amazon.Runtime.EventStreams.IEventStreamMessage)">
+            <summary>
+            Constructs an End Event.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="T:Amazon.S3.Model.IS3Event">
+            <summary>
+            Common Contract for S3 Events.
+            </summary>
+        </member>
+        <member name="T:Amazon.S3.Model.Progress">
+            <summary>
+            The Progress event details.
+            </summary>
+        </member>
+        <member name="P:Amazon.S3.Model.Progress.BytesScanned">
+            <summary>
+            Current number of object bytes scanned.
+            </summary>
+        </member>
+        <member name="P:Amazon.S3.Model.Progress.BytesProcessed">
+            <summary>
+            Current number of uncompressed object bytes processed.
+            </summary>
+        </member>
+        <member name="P:Amazon.S3.Model.Progress.BytesReturned">
+            <summary>
+            Total number of bytes of records payload data returned.
+            </summary>
+        </member>
+        <member name="M:Amazon.S3.Model.Progress.#ctor">
+            <summary>
+            Constructs a instance of Progress.
+            </summary>
+        </member>
+        <member name="T:Amazon.S3.Model.ProgressEvent">
+            <summary>
+            The Progress Event.
+            </summary>
+        </member>
+        <member name="P:Amazon.S3.Model.ProgressEvent.Details">
+            <summary>
+            The Progress event details.
+            </summary>
+        </member>
+        <member name="M:Amazon.S3.Model.ProgressEvent.#ctor">
+            <summary>
+            Constructs a ProgressEvent.
+            </summary>
+        </member>
+        <member name="M:Amazon.S3.Model.ProgressEvent.#ctor(Amazon.Runtime.EventStreams.IEventStreamMessage)">
+            <summary>
+            Constructs a ProgressEvent.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="T:Amazon.S3.Model.RecordsEvent">
+            <summary>
+            The Records Event
+            </summary>
+        </member>
+        <member name="P:Amazon.S3.Model.RecordsEvent.Payload">
+            <summary>
+            The byte array of partial, one or more result records.
+            <para></para>
+            Payload is a <see cref="T:System.IO.Stream"/>, which is not thread-safe.
+            </summary>
+        </member>
+        <member name="M:Amazon.S3.Model.RecordsEvent.#ctor">
+            <summary>
+            Constructs a RecordsEvent
+            </summary>
+        </member>
+        <member name="M:Amazon.S3.Model.RecordsEvent.#ctor(Amazon.Runtime.EventStreams.IEventStreamMessage)">
+            <summary>
+            Creates a new End Event.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="T:Amazon.S3.Model.S3EventStreamException">
+            <summary>
+            Modeled Exception that either comes over the stream from the service model, or wraps other exceptions for the purpose of raising events. If it is
+            modelled, it will be a subclass.
+            </summary>
+        </member>
+        <member name="M:Amazon.S3.Model.S3EventStreamException.#ctor">
+            <summary>
+            Creates a new S3EventStreamException
+            </summary>
+        </member>
+        <member name="M:Amazon.S3.Model.S3EventStreamException.#ctor(System.String)">
+            <summary>
+            Creates a new S3EventStreamException
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:Amazon.S3.Model.S3EventStreamException.#ctor(System.String,System.Exception)">
+            <summary>
+            Creates a new S3EventStreamException
+            </summary>
+            <param name="message"></param>
+            <param name="innerException"></param>
+        </member>
+        <member name="M:Amazon.S3.Model.S3EventStreamException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Constructs a new instance of the S3EventStreamException class with serialized data.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo" /> that holds the serialized object data about the exception being thrown.</param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext" /> that contains contextual information about the source or destination.</param>
+            <exception cref="T:System.ArgumentNullException">The <paramref name="info" /> parameter is null. </exception>
+            <exception cref="T:System.Runtime.Serialization.SerializationException">The class name is null or <see cref="P:System.Exception.HResult" /> is zero (0). </exception>
+        </member>
+        <member name="T:Amazon.S3.Model.ISelectObjectContentEventStream">
+            <summary>
+            The contract for the SelectObjectContentEventStream.
+            </summary>
+        </member>
+        <member name="E:Amazon.S3.Model.ISelectObjectContentEventStream.EventReceived">
+            <summary>
+            Event that encompasses all IS3Events.
+            </summary>
+        </member>
+        <member name="E:Amazon.S3.Model.ISelectObjectContentEventStream.ExceptionReceived">
+            <summary>
+            Event that encompasses S3EventStreamExceptions.
+            </summary>
+        </member>
+        <member name="E:Amazon.S3.Model.ISelectObjectContentEventStream.RecordsEventReceived">
+            <summary>
+            Reaised when a Records event is received.
+            </summary>
+        </member>
+        <member name="E:Amazon.S3.Model.ISelectObjectContentEventStream.StatsEventReceived">
+            <summary>
+            Reaised when a Stats event is received.
+            </summary>
+        </member>
+        <member name="E:Amazon.S3.Model.ISelectObjectContentEventStream.ProgressEventReceived">
+            <summary>
+            Reaised when a Progress event is received.
+            </summary>
+        </member>
+        <member name="E:Amazon.S3.Model.ISelectObjectContentEventStream.ContinuationEventReceived">
+            <summary>
+            Reaised when a Continuation event is received.
+            </summary>
+        </member>
+        <member name="E:Amazon.S3.Model.ISelectObjectContentEventStream.EndEventReceived">
+            <summary>
+            Reaised when an End event is received.
+            </summary>
+        </member>
+        <member name="T:Amazon.S3.Model.SelectObjectContentEventStream">
+            <summary>
+            A Stream of Events returned by the SelectObjectContent operation. Events can be retrieved from this stream by either
+            <list type="bullet">
+              <item><description>attaching handlers to listen events, and then call StartProcessing <i>or</i></description></item>
+              <item><description>enumerating over the events.</description></item>
+            </list>
+            <para></para>
+            These options should be treaded as mutually exclusive.
+            </summary>
+        </member>
+        <member name="P:Amazon.S3.Model.SelectObjectContentEventStream.EventMapping">
+            <summary>
+            The mapping of event message to a generator function to construct the matching Event Stream event.
+            </summary>
+        </member>
+        <member name="P:Amazon.S3.Model.SelectObjectContentEventStream.ExceptionMapping">
+            <summary>
+            The mapping of event message to a generator function to construct the matching Event Stream exception.
+            </summary>
+        </member>
+        <member name="P:Amazon.S3.Model.SelectObjectContentEventStream.IsProcessing">
+            <summary>
+            Whether the backround processing loop is running.
+            </summary>
+        </member>
+        <member name="E:Amazon.S3.Model.SelectObjectContentEventStream.EventReceived">
+            <summary>
+            Event that encompasses all IS3Events.
+            </summary>
+        </member>
+        <member name="E:Amazon.S3.Model.SelectObjectContentEventStream.ExceptionReceived">
+            <summary>
+            Event that encompasses S3EventStreamExceptions.
+            </summary>
+        </member>
+        <member name="E:Amazon.S3.Model.SelectObjectContentEventStream.RecordsEventReceived">
+            <summary>
+            Reaised when a Records event is received.
+            </summary>
+        </member>
+        <member name="E:Amazon.S3.Model.SelectObjectContentEventStream.StatsEventReceived">
+            <summary>
+            Reaised when a Stats event is received.
+            </summary>
+        </member>
+        <member name="E:Amazon.S3.Model.SelectObjectContentEventStream.ProgressEventReceived">
+            <summary>
+            Reaised when a Progress event is received.
+            </summary>
+        </member>
+        <member name="E:Amazon.S3.Model.SelectObjectContentEventStream.ContinuationEventReceived">
+            <summary>
+            Reaised when a Continuation event is received.
+            </summary>
+        </member>
+        <member name="E:Amazon.S3.Model.SelectObjectContentEventStream.EndEventReceived">
+            <summary>
+            Reaised when an End event is received.
+            </summary>
+        </member>
+        <member name="M:Amazon.S3.Model.SelectObjectContentEventStream.#ctor(System.IO.Stream)">
+            <summary>
+            Event Stream returned by SelectObjectContentStream.
+            <para></para>
+            Events can be retrieved from this stream by either
+            <list type="bullet">
+              <item><description>attaching handlers to listen events, and then call StartProcessing <i>or</i></description></item>
+              <item><description>enumerating over the events.</description></item>
+            </list>
+            <para></para>
+            These options should be treated as mutually exclusive.
+            </summary>
+            <param name="selectObjectStream">The network stream which events will be parsed from.</param>
+        </member>
+        <member name="M:Amazon.S3.Model.SelectObjectContentEventStream.#ctor(System.IO.Stream,Amazon.Runtime.EventStreams.Internal.IEventStreamDecoder)">
+            <summary>
+            Event Stream returned by SelectObjectContentStream.
+            <para></para>
+            Events can be retrieved from this stream by either
+            <list type="bullet">
+              <item><description>attaching handlers to listen events, and then call StartProcessing <i>or</i></description></item>
+              <item><description>enumerating over the events.</description></item>
+            </list>
+            <para></para>
+            These options should be treaded as mutually exclusive.
+            </summary>
+            <param name="selectObjectStream">The network stream which events will be parsed from.</param>
+            <param name="eventStreamDecoder">The decoder responsible for parsing events.</param>
+        </member>
+        <member name="T:Amazon.S3.Model.Stats">
+            <summary>
+            The Stats event details.
+            </summary>
+        </member>
+        <member name="P:Amazon.S3.Model.Stats.BytesScanned">
+            <summary>
+            Total number of object bytes scanned.
+            </summary>
+        </member>
+        <member name="P:Amazon.S3.Model.Stats.BytesProcessed">
+            <summary>
+            Total number of uncompressed object bytes processed.
+            </summary>
+        </member>
+        <member name="P:Amazon.S3.Model.Stats.BytesReturned">
+            <summary>
+            Total number of bytes of records payload data returned.
+            </summary>
+        </member>
+        <member name="M:Amazon.S3.Model.Stats.#ctor">
+            <summary>
+            Constructs an instance of Stats.
+            </summary>
+        </member>
+        <member name="T:Amazon.S3.Model.StatsEvent">
+            <summary>
+            The Stats Event.
+            </summary>
+        </member>
+        <member name="P:Amazon.S3.Model.StatsEvent.Details">
+            <summary>
+            The Stats event details.
+            </summary>
+        </member>
+        <member name="M:Amazon.S3.Model.StatsEvent.#ctor">
+            <summary>
+            Constructs a StatsEvent
+            </summary>
+        </member>
+        <member name="M:Amazon.S3.Model.StatsEvent.#ctor(Amazon.Runtime.EventStreams.IEventStreamMessage)">
+            <summary>
+            Constructs a ProgressEvent.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="T:Amazon.S3.Model.UnknownEventStreamEvent">
+            <summary>
+            This Event is returned if an event is retrieved from the event stream, but a generator function
+            for the event is not defined.
+            </summary>
+        </member>
+        <member name="M:Amazon.S3.Model.UnknownEventStreamEvent.#ctor">
+            <summary>
+            Constructs an UnknownEventStreamEvent.
+            </summary>
+        </member>
+        <member name="M:Amazon.S3.Model.UnknownEventStreamEvent.#ctor(Amazon.Runtime.EventStreams.IEventStreamMessage)">
+            <summary>
+            Constructs an UnknownEventStreamEvent.
+            </summary>
+            <param name="receivedMessage">The Message recieved from the event stream before conversion.</param>
+        </member>
+        <member name="M:Amazon.S3.Model.UnknownEventStreamEvent.#ctor(Amazon.Runtime.EventStreams.IEventStreamMessage,System.String)">
+             <summary>
+            Constructs an UnknownEventStreamEvent.
+             </summary>
+             <param name="receivedMessage">The Message recieved from the event stream before conversion.</param>
+             <param name="eventType">The event type.</param>
         </member>
         <member name="T:Amazon.S3.Model.Expiration">
             <summary>
@@ -7578,6 +7957,16 @@
             Describes the serialization of a CSV-encoded object.
             </summary>
         </member>
+        <member name="P:Amazon.S3.Model.InputSerialization.CompressionType">
+            <summary>
+            Specifies object's compression format. Valid values: NONE, GZIP. Default Value: NONE.
+            </summary>
+        </member>
+        <member name="P:Amazon.S3.Model.InputSerialization.JSON">
+            <summary>
+            Specifies JSON as object's input serialization format.
+            </summary>
+        </member>
         <member name="T:Amazon.S3.Model.InventoryConfiguration">
             <summary>
             Class for MetricsConfiguration
@@ -7697,6 +8086,26 @@
         <member name="P:Amazon.S3.Model.InventorySchedule.Frequency">
             <summary>
             Specifies how frequently inventory results are produced.
+            </summary>
+        </member>
+        <member name="T:Amazon.S3.Model.JSONInput">
+            <summary>
+            Specifies JSON as object's input serialization format.
+            </summary>
+        </member>
+        <member name="P:Amazon.S3.Model.JSONInput.JsonType">
+            <summary>
+            The type of JSON. Valid values: Document, Lines.
+            </summary>
+        </member>
+        <member name="T:Amazon.S3.Model.JSONOutput">
+            <summary>
+            Specifies JSON as request's output serialization format
+            </summary>
+        </member>
+        <member name="P:Amazon.S3.Model.JSONOutput.RecordDelimiter">
+            <summary>
+            The value used to separate individual records in the output.
             </summary>
         </member>
         <member name="T:Amazon.S3.Model.KeyVersion">
@@ -9033,6 +9442,11 @@
         <member name="P:Amazon.S3.Model.OutputSerialization.CSV">
             <summary>
             Describes the serialization of CSV-encoded Select results.
+            </summary>
+        </member>
+        <member name="P:Amazon.S3.Model.OutputSerialization.JSON">
+            <summary>
+            Specifies JSON as request's output serialization format.
             </summary>
         </member>
         <member name="T:Amazon.S3.Model.Owner">
@@ -10762,6 +11176,88 @@
         <member name="P:Amazon.S3.Model.S3ObjectVersion.IsDeleteMarker">
             <summary>
             If true, the object is a delete marker for a deleted object.
+            </summary>
+        </member>
+        <member name="T:Amazon.S3.Model.SelectObjectContentRequest">
+            <summary>
+            Request to filter the contents of an Amazon S3 object based on a simple Structured Query Language (SQL) statement.
+            <para>
+            In the request, along with the SQL expression, you must also specify a data serialization format (JSON or CSV) of the object.
+            Amazon S3 uses this to parse object data into records, and returns only records
+            that match the specified SQL expression. You must also specify the data serialization format for the response.
+            </para>
+            </summary>
+            <seealso href="https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectSELECTContent.html">
+            S3Select API Documentation
+            </seealso>
+        </member>
+        <member name="P:Amazon.S3.Model.SelectObjectContentRequest.Bucket">
+            <summary>
+            The S3 Bucket.
+            </summary>
+        </member>
+        <member name="P:Amazon.S3.Model.SelectObjectContentRequest.Key">
+            <summary>
+            The Object Key.
+            </summary>
+        </member>
+        <member name="P:Amazon.S3.Model.SelectObjectContentRequest.ServerSideCustomerEncryptionMethod">
+            <summary>
+            The SSE Algorithm used to encrypt the object.
+            </summary>
+            <seealso href="https://docs.aws.amazon.com/AmazonS3/latest/dev/ServerSideEncryptionCustomerKeys.html">
+            Server-Side Encryption (Using Customer-Provided Encryption Keys.
+            </seealso>
+        </member>
+        <member name="P:Amazon.S3.Model.SelectObjectContentRequest.ServerSideEncryptionCustomerProvidedKey">
+            <summary>
+            The SSE Customer Key.
+            </summary>
+            <seealso href="https://docs.aws.amazon.com/AmazonS3/latest/dev/ServerSideEncryptionCustomerKeys.html">
+            Server-Side Encryption (Using Customer-Provided Encryption Keys.
+            </seealso>
+        </member>
+        <member name="P:Amazon.S3.Model.SelectObjectContentRequest.ServerSideEncryptionCustomerProvidedKeyMD5">
+            <summary>
+            The SSE Customer Key MD5.
+            </summary>
+            <seealso href="https://docs.aws.amazon.com/AmazonS3/latest/dev/ServerSideEncryptionCustomerKeys.html">
+            Server-Side Encryption (Using Customer-Provided Encryption Keys.
+            </seealso>
+        </member>
+        <member name="P:Amazon.S3.Model.SelectObjectContentRequest.Expression">
+            <summary>
+            The expression that is used to query the object.
+            </summary>
+        </member>
+        <member name="P:Amazon.S3.Model.SelectObjectContentRequest.ExpressionType">
+            <summary>
+            The type of the provided expression (e.g., SQL).
+            </summary>
+        </member>
+        <member name="P:Amazon.S3.Model.SelectObjectContentRequest.RequestProgress">
+            <summary>
+            Specifies if periodic request progress information should be enabled.
+            </summary>
+        </member>
+        <member name="P:Amazon.S3.Model.SelectObjectContentRequest.InputSerialization">
+            <summary>
+            Describes the format of the data in the object that is being queried.
+            </summary>
+        </member>
+        <member name="P:Amazon.S3.Model.SelectObjectContentRequest.OutputSerialization">
+            <summary>
+            Describes the format of the data that you want Amazon S3 to return in response.
+            </summary>
+        </member>
+        <member name="T:Amazon.S3.Model.SelectObjectContentResponse">
+            <summary>
+            Contains the response Payload for the SelectObjectContent request
+            </summary>
+        </member>
+        <member name="P:Amazon.S3.Model.SelectObjectContentResponse.Payload">
+            <summary>
+            The Event Stream result of SelectObjectContent
             </summary>
         </member>
         <member name="T:Amazon.S3.Model.SelectParameters">
@@ -12790,6 +13286,36 @@
             Converts the string to RestoreRequestType instance
             </summary>
         </member>
+        <member name="T:Amazon.S3.JsonType">
+            <summary>
+            The type of JSON.
+            </summary>
+        </member>
+        <member name="M:Amazon.S3.JsonType.FindValue(System.String)">
+            <summary>
+            Finds the JsonType instance for the string value
+            </summary>
+        </member>
+        <member name="M:Amazon.S3.JsonType.op_Implicit(System.String)~Amazon.S3.JsonType">
+            <summary>
+            Converts the string to JsonType instance
+            </summary>
+        </member>
+        <member name="T:Amazon.S3.CompressionType">
+            <summary>
+            Specifies object's compression format.
+            </summary>
+        </member>
+        <member name="M:Amazon.S3.CompressionType.FindValue(System.String)">
+            <summary>
+            Finds the CompressionType instance for the string value
+            </summary>
+        </member>
+        <member name="M:Amazon.S3.CompressionType.op_Implicit(System.String)~Amazon.S3.CompressionType">
+            <summary>
+            Converts the string to CompressionType instance
+            </summary>
+        </member>
         <member name="T:Amazon.S3.Util.AmazonS3Uri">
             <summary>
             Uri wrapper that can parse out information (bucket, key, region, style) from an
@@ -14014,7 +14540,7 @@
             <summary>
             Aborts a multipart upload.
             
-            
+             
             <para>
             To verify that all parts have been removed, so you don't get charged for the part
             storage, you should call the List Parts operation and ensure the parts list is empty.
@@ -14030,7 +14556,7 @@
             <summary>
             Aborts a multipart upload.
             
-            
+             
             <para>
             To verify that all parts have been removed, so you don't get charged for the part
             storage, you should call the List Parts operation and ensure the parts list is empty.
@@ -14044,7 +14570,7 @@
             <summary>
             Aborts a multipart upload.
             
-            
+             
             <para>
             To verify that all parts have been removed, so you don't get charged for the part
             storage, you should call the List Parts operation and ensure the parts list is empty.
@@ -15411,9 +15937,9 @@
             <summary>
             Initiates a multipart upload and returns an upload ID.
             
-            
+             
             <para>
-            <b>Note:</b> After you initiate multipart upload and upload one or more parts, you
+             <b>Note:</b> After you initiate multipart upload and upload one or more parts, you
             must either complete or abort multipart upload in order to stop getting charged for
             storage of the uploaded parts. Only after you either complete or abort multipart upload,
             Amazon S3 frees up the parts storage and stops charging you for the parts storage.
@@ -15428,9 +15954,9 @@
             <summary>
             Initiates a multipart upload and returns an upload ID.
             
-            
+             
             <para>
-            <b>Note:</b> After you initiate multipart upload and upload one or more parts, you
+             <b>Note:</b> After you initiate multipart upload and upload one or more parts, you
             must either complete or abort multipart upload in order to stop getting charged for
             storage of the uploaded parts. Only after you either complete or abort multipart upload,
             Amazon S3 frees up the parts storage and stops charging you for the parts storage.
@@ -15444,9 +15970,9 @@
             <summary>
             Initiates a multipart upload and returns an upload ID.
             
-            
+             
             <para>
-            <b>Note:</b> After you initiate multipart upload and upload one or more parts, you
+             <b>Note:</b> After you initiate multipart upload and upload one or more parts, you
             must either complete or abort multipart upload in order to stop getting charged for
             storage of the uploaded parts. Only after you either complete or abort multipart upload,
             Amazon S3 frees up the parts storage and stops charging you for the parts storage.
@@ -16472,13 +16998,37 @@
             </param>
             <returns>The task object representing the asynchronous operation.</returns>
         </member>
+        <member name="M:Amazon.S3.IAmazonS3.SelectObjectContent(Amazon.S3.Model.SelectObjectContentRequest)">
+            <summary>
+            This operation filters the contents of an Amazon S3 object based on a simple Structured
+            Query Language (SQL) statement. In the request, along with the SQL expression, you
+            must also specify a data serialization format (JSON or CSV) of the object. Amazon
+            S3 uses this to parse object data into records, and returns only records that match
+            the specified SQL expression. You must also specify the data serialization format
+            for the response.
+            </summary>
+            <param name="request">Container for the necessary parameters to execute the SelectObjectContent service method.</param>
+            
+            <returns>The response from the SelectObjectContent service method, as returned by S3.</returns>
+        </member>
+        <member name="M:Amazon.S3.IAmazonS3.SelectObjectContentAsync(Amazon.S3.Model.SelectObjectContentRequest,System.Threading.CancellationToken)">
+            <summary>
+            Initiates the asynchronous execution of the SelectObjectContent operation.
+            </summary>
+            
+            <param name="request">Container for the necessary parameters to execute the SelectObjectContent operation.</param>
+            <param name="cancellationToken">
+                A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+            </param>
+            <returns>The task object representing the asynchronous operation.</returns>
+        </member>
         <member name="M:Amazon.S3.IAmazonS3.UploadPart(Amazon.S3.Model.UploadPartRequest)">
             <summary>
             Uploads a part in a multipart upload.
             
-            
+             
             <para>
-            <b>Note:</b> After you initiate multipart upload and upload one or more parts, you
+             <b>Note:</b> After you initiate multipart upload and upload one or more parts, you
             must either complete or abort multipart upload in order to stop getting charged for
             storage of the uploaded parts. Only after you either complete or abort multipart upload,
             Amazon S3 frees up the parts storage and stops charging you for the parts storage.
