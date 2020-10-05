@@ -26,8 +26,22 @@ then
      # defines BUGSPLAT_USER and BUGSPLAT_PASS
      source "$build_secrets_checkout/bugsplat/bugsplat.sh"
 
-     args=(/a "$viewer_channel" /v "$version" /b "$BUGSPLAT_DB" \
-           /f "$(wildjoin ';' "${build_dir}/newview/Release"/secondlife-bin.{pdb,exe})")
+     # for some reason bugsplat requires uploading exe and pdb that match the ones we ship to users
+     # Win 10 specific. Upload files using final exe name (viewer will be adjused separately to use
+     # same name)
+     pdb_file="${build_dir}/newview/Release/SecondLifeViewer.pdb"
+     if [ -e "$pdb_file" ]
+     then
+         files="$(wildjoin ';' "${build_dir}/newview/Release"/SecondLifeViewer.{pdb,exe})"
+     else
+         # Test build without packaging?
+         files="$(wildjoin ';' "${build_dir}/newview/Release"/secondlife-bin.{pdb,exe})"
+     fi
+
+     args=(/a "$viewer_channel" \
+           /v "$version" \
+           /b "$BUGSPLAT_DB" \
+           /f "$files")
      echo "$SendPdbs" /u xxx /p xxx "${args[@]}"
      "$SendPdbs" /u "$BUGSPLAT_USER" /p "$BUGSPLAT_PASS" "${args[@]}"
      rc=$?
