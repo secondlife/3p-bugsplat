@@ -30,6 +30,9 @@ then
            /f "$(wildjoin ';' "${build_dir}/newview/Release"/secondlife-bin.{pdb,exe})")
      echo "$SendPdbs" /u xxx /p xxx "${args[@]}"
      "$SendPdbs" /u "$BUGSPLAT_USER" /p "$BUGSPLAT_PASS" "${args[@]}"
+     rc=$?
 
      set -x
+
+     [ $rc -eq 0 ] || fatal "BugSplat SendPdbs failed"
 fi
