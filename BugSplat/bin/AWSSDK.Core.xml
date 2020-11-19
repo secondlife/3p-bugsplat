@@ -2954,6 +2954,14 @@
             Unmarshaller for int fields
             </summary>
         </member>
+        <member name="T:Amazon.Runtime.Internal.Transform.NullableIntUnmarshaller">
+            <summary>
+            Unmarshaller for nullable int fields. Implemented only for JSON context
+            to handle cases where value can be null e.g. {'Priority': null}.
+            This unmarshaller is not implemented for XML context, as XML responses
+            will null elements (xsi:nil='true') will be skipped by the XML parser.
+            </summary>
+        </member>
         <member name="T:Amazon.Runtime.Internal.Transform.LongUnmarshaller">
             <summary>
             Unmarshaller for long fields
@@ -2992,6 +3000,24 @@
         <member name="T:Amazon.Runtime.Internal.Transform.DateTimeUnmarshaller">
             <summary>
             Unmarshaller for DateTime fields
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.Internal.Transform.DateTimeUnmarshaller.UnmarshallInternal(System.String,System.Boolean)">
+            <summary>
+             Unmarshalls given string as a DateTime. Handles cases where we want to unmarshall 
+             as just a DateTime or a nullable Datetime.
+            </summary>
+            <param name="text">Value to be parsed</param>
+            <param name="treatAsNullable">If true, the method will return null if text is null. 
+            If false, the method will return default(DateTime), if text is null.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Amazon.Runtime.Internal.Transform.NullableDateTimeUnmarshaller">
+            <summary>
+            Unmarshaller for nullable DateTime fields. Implemented only for JSON context
+            to handle cases where value can be null e.g. {'Priority': null}.
+            This unmarshaller is not implemented for XML context, as XML responses
+            will null elements (xsi:nil='true') will be skipped by the XML parser.
             </summary>
         </member>
         <member name="T:Amazon.Runtime.Internal.Transform.MemoryStreamUnmarshaller">
@@ -3383,6 +3409,11 @@
             Class to invoke actions on a background thread.
             Uses a single background thread and invokes actions
             on it in the order they were invoked through the instance.
+            </summary>
+        </member>
+        <member name="T:Amazon.Runtime.Internal.Util.EndianConversionUtility">
+            <summary>
+            PCL doesn't have IPAddress. These methods are copied from the Microsoft source code.
             </summary>
         </member>
         <member name="M:Amazon.Runtime.Internal.Util.Extensions.HasRequestData(Amazon.Runtime.Internal.IRequest)">
@@ -4262,6 +4293,26 @@
             Utilities for converting objects to strings. Used by the marshaller classes.
             </summary>
         </member>
+        <member name="M:Amazon.Runtime.Internal.Util.StringUtils.FromDateTime(System.DateTime)">
+            <summary>
+            Converts a DateTime to ISO8601 formatted string.
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.Internal.Util.StringUtils.FromDateTimeToISO8601(System.DateTime)">
+            <summary>
+            Converts a DateTime to ISO8601 formatted string. Calls StringUtils.FromDateTime method.
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.Internal.Util.StringUtils.FromDateTimeToRFC822(System.DateTime)">
+            <summary>
+            Converts a DateTime to RFC822 formatted string.
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.Internal.Util.StringUtils.FromDateTimeToUnixTimestamp(System.DateTime)">
+            <summary>
+            Converts a DateTime to Unix epoch time formatted string.
+            </summary>
+        </member>
         <member name="T:Amazon.Runtime.Internal.Util.WrapperStream">
             <summary>
             A wrapper stream.
@@ -4882,6 +4933,13 @@
             <param name="targetType"></param>
             <param name="sourceLevels"></param>
             <returns></returns>
+        </member>
+        <member name="T:Amazon.Runtime.Internal.AsyncRunner">
+            <summary>
+            This class is no longer used anymore and should be avoided as it is just meant
+            as a last resort when blending async and sync operations. The code is still
+            here to support versions before 3.3.9.0 of AWSSDK.DynamoDBv2.
+            </summary>
         </member>
         <member name="T:Amazon.Runtime.Internal.ParameterCollection">
             <summary>
@@ -7245,6 +7303,10 @@
             If AWS_CONTAINER_CREDENTIALS_RELATIVE_URI environment variable is set, we want to attempt to retrieve credentials
             using ECS endpoint instead of referring to instance profile credentials.
         </member>
+        <member name="M:Amazon.Runtime.FallbackCredentialsFactory.ECSEC2CredentialsWrapper(System.Net.IWebProxy)">
+            If AWS_CONTAINER_CREDENTIALS_RELATIVE_URI environment variable is set, we want to attempt to retrieve credentials
+            using ECS endpoint instead of referring to instance profile credentials.
+        </member>
         <member name="T:Amazon.Runtime.ImmutableCredentials">
             <summary>
             Immutable representation of AWS credentials.
@@ -7471,12 +7533,29 @@
             </summary>
             <param name="role">Role to use</param>
         </member>
+        <member name="M:Amazon.Runtime.InstanceProfileAWSCredentials.#ctor(System.String,System.Net.IWebProxy)">
+            <summary>
+            Constructs a InstanceProfileAWSCredentials object for specific role
+            </summary>
+            <param name="role">Role to use</param>
+        </member>
         <member name="M:Amazon.Runtime.InstanceProfileAWSCredentials.#ctor">
             <summary>
             Constructs a InstanceProfileAWSCredentials object for the first found role
             </summary>
         </member>
+        <member name="M:Amazon.Runtime.InstanceProfileAWSCredentials.#ctor(System.Net.IWebProxy)">
+            <summary>
+            Constructs a InstanceProfileAWSCredentials object for the first found role
+            </summary>
+        </member>
         <member name="M:Amazon.Runtime.InstanceProfileAWSCredentials.GetAvailableRoles">
+            <summary>
+            Retrieves a list of all roles available through current InstanceProfile service
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Amazon.Runtime.InstanceProfileAWSCredentials.GetAvailableRoles(System.Net.IWebProxy)">
             <summary>
             Retrieves a list of all roles available through current InstanceProfile service
             </summary>
@@ -8083,6 +8162,911 @@
             <summary>
             An unrecognized error type was returned.
             </summary>
+        </member>
+        <member name="T:Amazon.Runtime.EventStreams.EventStreamErrorCodeException">
+            <summary>
+            Superclass for Exceptions that come over the event stream, or to wrap other kinds of generic exceptions.
+            </summary>
+        </member>
+        <member name="P:Amazon.Runtime.EventStreams.EventStreamErrorCodeException.ErrorCode">
+            <summary>
+            The numeric code identifier for the type of error.
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.EventStreamErrorCodeException.#ctor(System.Int32)">
+            <summary>
+            Constructs an EventStreamError.
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.EventStreamErrorCodeException.#ctor(System.Int32,System.String)">
+            <summary>
+            Constructs an EventStreamError.
+            </summary>
+            <param name="errorCode">The error code.</param>
+            <param name="message">The error message.</param>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.EventStreamErrorCodeException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Constructs a new instance of the EventStreamErrorCodeException class with serialized data.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo" /> that holds the serialized object data about the exception being thrown.</param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext" /> that contains contextual information about the source or destination.</param>
+            <exception cref="T:System.ArgumentNullException">The <paramref name="info" /> parameter is null. </exception>
+            <exception cref="T:System.Runtime.Serialization.SerializationException">The class name is null or <see cref="P:System.Exception.HResult" /> is zero (0). </exception>
+        </member>
+        <member name="T:Amazon.Runtime.EventStreams.EventStreamEventReceivedArgs`1">
+            <summary>
+            Event args that contain an <see cref="T:Amazon.Runtime.EventStreams.Internal.IEventStreamEvent"/>.
+            </summary>
+            <typeparam name="T">The <see cref="T:Amazon.Runtime.EventStreams.Internal.IEventStreamEvent"/></typeparam>
+        </member>
+        <member name="P:Amazon.Runtime.EventStreams.EventStreamEventReceivedArgs`1.EventStreamEvent">
+            <summary>
+            The EventStream Event.
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.EventStreamEventReceivedArgs`1.#ctor(`0)">
+            <summary>
+            Constructs an EventStreamEventReceivedArgs.
+            </summary>
+            <param name="eventStreamEvent">The EventStream Event.</param>
+        </member>
+        <member name="T:Amazon.Runtime.EventStreams.EventStreamExceptionReceivedArgs`1">
+            <summary>
+            Event args that contain an <see cref="P:Amazon.Runtime.EventStreams.EventStreamExceptionReceivedArgs`1.EventStreamException"/>.
+            </summary>
+            <typeparam name="T">The <see cref="P:Amazon.Runtime.EventStreams.EventStreamExceptionReceivedArgs`1.EventStreamException"/>.</typeparam>
+        </member>
+        <member name="P:Amazon.Runtime.EventStreams.EventStreamExceptionReceivedArgs`1.EventStreamException">
+            <summary>
+            The EventStream Exception.
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.EventStreamExceptionReceivedArgs`1.#ctor(`0)">
+            <summary>
+            Constructs an EventStreamExceptionReceivedArgs.
+            </summary>
+            <param name="eventStreamException">The EventStream Exception.</param>
+        </member>
+        <member name="T:Amazon.Runtime.EventStreams.EventStreamHeaderType">
+            <summary>
+             Supported Header types for vnd.amazon.event-stream
+            </summary>
+        </member>
+        <member name="P:Amazon.Runtime.EventStreams.IEventStreamHeader.Name">
+            <summary>
+            Name for the Header. Maximum of 255 bytes.
+            </summary>
+        </member>
+        <member name="P:Amazon.Runtime.EventStreams.IEventStreamHeader.HeaderType">
+            <summary>
+            Header type id
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.IEventStreamHeader.GetWireSize">
+            <summary>
+            Computes the amount of memory neccesary to serialize this Header.
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.IEventStreamHeader.WriteToBuffer(System.Byte[],System.Int32)">
+            <summary>
+            Writes this Header to buffer starting at offset
+            Keep in mind, this API assumes buffer is large enough
+            for the operation.
+            </summary>
+            <param name="buffer">buffer to serialize this Header to</param>
+            <param name="offset">offset to begin writing at.</param>
+            <returns>
+            the new offset.
+            </returns>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.IEventStreamHeader.AsBool">
+            <summary>
+            Returns the current value as a bool
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.IEventStreamHeader.SetBool(System.Boolean)">
+            <summary>
+            Sets the current value
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.IEventStreamHeader.AsByte">
+            <summary>
+            Returns the current value as a byte
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.IEventStreamHeader.SetByte(System.Byte)">
+            <summary>
+            Sets the current value
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.IEventStreamHeader.AsInt16">
+            <summary>
+            Gets the current value as a 16 bit integer. (Host Order).
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.IEventStreamHeader.SetInt16(System.Int16)">
+            <summary>
+            Sets the current value. (Host Order)
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.IEventStreamHeader.AsInt32">
+            <summary>
+            Returns the current value as a 32 bit integer. (Host Order)
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.IEventStreamHeader.SetInt32(System.Int32)">
+            <summary>
+            Sets the current value
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.IEventStreamHeader.AsInt64">
+            <summary>
+            returns the current value as a 64-bit integer. (Host Order)
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.IEventStreamHeader.SetInt64(System.Int64)">
+            <summary>
+            Sets the current value. (Host Order)
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.IEventStreamHeader.AsByteBuf">
+            <summary>
+            Returns the current value as a byte buffer.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.IEventStreamHeader.SetByteBuf(System.Byte[])">
+            <summary>
+            Sets the current value. Max length is 2^15 - 1
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.IEventStreamHeader.AsString">
+            <summary>
+            Returns the current value as a utf-8 string.
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.IEventStreamHeader.SetString(System.String)">
+            <summary>
+            Sets the current value. Utf-8 encoded. Max byte size is 2^16 - 1
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.IEventStreamHeader.AsTimestamp">
+            <summary>
+            Gets the current value as a DateTime.
+            Note: You do not need to compensate for unix epoch on this API.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.IEventStreamHeader.SetTimestamp(System.DateTime)">
+            <summary>
+            Sets the current value.
+            Note: You do not need to compensate for unix epoch on this API.
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.IEventStreamHeader.AsUUID">
+            <summary>
+            Returns the current value as a Guid (UUID)
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.IEventStreamHeader.SetUUID(System.Guid)">
+            <summary>
+            Sets the current value
+            </summary>
+        </member>
+        <member name="T:Amazon.Runtime.EventStreams.EventStreamHeader">
+            <summary>
+            Header Data for an EventStreamMessage
+            
+            Each header is of format:
+            [name len] (1) | [utf-8 name] (v)
+            [type (1)]
+            [value (v)]
+            </summary>
+        </member>
+        <member name="P:Amazon.Runtime.EventStreams.EventStreamHeader.Name">
+            <summary>
+            Name for the Header. Maximum of 255 bytes.
+            </summary>
+        </member>
+        <member name="P:Amazon.Runtime.EventStreams.EventStreamHeader.HeaderType">
+            <summary>
+            Header type id
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.EventStreamHeader.#ctor(System.String)">
+            <summary>
+            Initializes this Header with name.
+            </summary>
+            <param name="name">utf-8 string, max length is 255</param>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.EventStreamHeader.FromBuffer(System.Byte[],System.Int32,System.Int32@)">
+            <summary>
+            Deserializes the header in buffer.
+            </summary>
+            <param buffer="buffer">buffer constaining the header</param>
+            <param offset="offset">index to start from in the buffer.</param>
+            <param offset="newOffset">updated offset with new value for offset</param>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.EventStreamHeader.WriteToBuffer(System.Byte[],System.Int32)">
+            <summary>
+            Writes this Header to buffer starting at offset
+            Keep in mind, this API assumes buffer is large enough
+            for the operation.
+            </summary>
+            <param name="buffer">buffer to serialize this Header to</param>
+            <param name="offset">offset to begin writing at.</param>
+            <returns>
+            the new offset.
+            </returns>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.EventStreamHeader.GetWireSize">
+            <summary>
+            Computes the amount of memory neccesary to serialize this Header.
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.EventStreamHeader.AsBool">
+            <summary>
+            Returns the current value as a bool
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.EventStreamHeader.SetBool(System.Boolean)">
+            <summary>
+            Sets the current value
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.EventStreamHeader.AsByte">
+            <summary>
+            Returns the current value as a byte
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.EventStreamHeader.SetByte(System.Byte)">
+            <summary>
+            Sets the current value
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.EventStreamHeader.AsInt16">
+            <summary>
+            Gets the current value as a 16 bit integer. (Host Order).
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.EventStreamHeader.SetInt16(System.Int16)">
+            <summary>
+            Sets the current value. (Host Order)
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.EventStreamHeader.AsInt32">
+            <summary>
+            Returns the current value as a 32 bit integer. (Host Order)
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.EventStreamHeader.SetInt32(System.Int32)">
+            <summary>
+            Sets the current value
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.EventStreamHeader.AsInt64">
+            <summary>
+            returns the current value as a 64-bit integer. (Host Order)
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.EventStreamHeader.SetInt64(System.Int64)">
+            <summary>
+            Sets the current value. (Host Order)
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.EventStreamHeader.AsByteBuf">
+            <summary>
+            Returns the current value as a byte buffer.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.EventStreamHeader.SetByteBuf(System.Byte[])">
+            <summary>
+            Sets the current value. Max length is 2^15 - 1
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.EventStreamHeader.AsString">
+            <summary>
+            Returns the current value as a utf-8 string.
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.EventStreamHeader.SetString(System.String)">
+            <summary>
+            Sets the current value. Utf-8 encoded. Max byte size is 2^16 - 1
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.EventStreamHeader.AsTimestamp">
+            <summary>
+            Gets the current value as a DateTime.
+            Note: You do not need to compensate for unix epoch on this API.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.EventStreamHeader.SetTimestamp(System.DateTime)">
+            <summary>
+            Sets the current value.
+            Note: You do not need to compensate for unix epoch on this API.
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.EventStreamHeader.AsUUID">
+            <summary>
+            Returns the current value as a Guid (UUID)
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.EventStreamHeader.SetUUID(System.Guid)">
+            <summary>
+            Sets the current value
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.EventStreamParseException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Constructs a new instance of the EventStreamParseException class with serialized data.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo" /> that holds the serialized object data about the exception being thrown.</param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext" /> that contains contextual information about the source or destination.</param>
+            <exception cref="T:System.ArgumentNullException">The <paramref name="info" /> parameter is null. </exception>
+            <exception cref="T:System.Runtime.Serialization.SerializationException">The class name is null or <see cref="P:System.Exception.HResult" /> is zero (0). </exception>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.EventStreamChecksumFailureException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Constructs a new instance of the EventStreamChecksumFailureException class with serialized data.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo" /> that holds the serialized object data about the exception being thrown.</param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext" /> that contains contextual information about the source or destination.</param>
+            <exception cref="T:System.ArgumentNullException">The <paramref name="info" /> parameter is null. </exception>
+            <exception cref="T:System.Runtime.Serialization.SerializationException">The class name is null or <see cref="P:System.Exception.HResult" /> is zero (0). </exception>
+        </member>
+        <member name="P:Amazon.Runtime.EventStreams.IEventStreamMessage.Headers">
+            <summary>
+            Headers for the message. Can be null.
+            </summary>
+        </member>
+        <member name="P:Amazon.Runtime.EventStreams.IEventStreamMessage.Payload">
+            <summary>
+            Payload for the message. Can be null.
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.IEventStreamMessage.ToByteArray">
+            <summary>
+            Converts a message into a byte buffer (usually for network transmission).
+            </summary>
+        </member>
+        <member name="T:Amazon.Runtime.EventStreams.EventStreamMessage">
+            <summary>
+            Message is a single datagram. The format is as follows:
+            [ total length (4) ] | [ headers_length (4)] | [ prelude crc(4)]
+            [ headers (v)]       
+            [ payload (v)}
+            [ trailing crc ]
+            
+            CRCs use the CRC32 algorithm.
+            </summary>
+        </member>
+        <member name="F:Amazon.Runtime.EventStreams.EventStreamMessage.ContentType">
+            <summary>
+            Content type for EventStreams.
+            </summary>
+        </member>
+        <member name="P:Amazon.Runtime.EventStreams.EventStreamMessage.Headers">
+            <summary>
+            Headers for the message. Can be null.
+            </summary>
+        </member>
+        <member name="P:Amazon.Runtime.EventStreams.EventStreamMessage.Payload">
+            <summary>
+            Payload for the message. Can be null.
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.EventStreamMessage.#ctor(System.Collections.Generic.List{Amazon.Runtime.EventStreams.IEventStreamHeader},System.Byte[])">
+            <summary>
+            Initialize a message with headers and a payload.
+            </summary>
+            <param name="headers">list of headers for the message, can be null.</param>
+            <param name="payload">payload for the message, can be null.</param>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.EventStreamMessage.FromBuffer(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Builds a message from buffer.
+            </summary>
+            <param name="buffer">buffer to read</param>
+            <param name="offset">offset to start reading</param>
+            <param name="length">buffer length.</param>
+            <returns>
+            parsed instance of EventStreamMessage. Doesn't return null,
+            does throw if CRCs don't match.
+            </returns>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.EventStreamMessage.ToByteArray">
+            <summary>
+            Converts a message into a byte buffer (usually for network transmission).
+            </summary>
+        </member>
+        <member name="T:Amazon.Runtime.EventStreams.EventStreamValidationException">
+            <summary>
+            Defines exceptions that arise from an <see cref="T:Amazon.Runtime.EventStreams.EventStreamMessage"/> not conforming to specification.
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.EventStreamValidationException.#ctor">
+            <summary>
+            Constructs an EventStreamValidationException.
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.EventStreamValidationException.#ctor(System.String)">
+            <summary>
+            Constructs an EventStreamValidationException.
+            </summary>
+            <param name="message">The exception message.</param>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.EventStreamValidationException.#ctor(System.String,System.Exception)">
+            <summary>
+            Constructs an EventStreamValidationException.
+            </summary>
+            <param name="message">The exception message.</param>
+            <param name="innerException">The inner exception.</param>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.EventStreamValidationException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Constructs a new instance of the EventStreamValidationException class with serialized data.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo" /> that holds the serialized object data about the exception being thrown.</param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext" /> that contains contextual information about the source or destination.</param>
+            <exception cref="T:System.ArgumentNullException">The <paramref name="info" /> parameter is null. </exception>
+            <exception cref="T:System.Runtime.Serialization.SerializationException">The class name is null or <see cref="P:System.Exception.HResult" /> is zero (0). </exception>
+        </member>
+        <member name="T:Amazon.Runtime.EventStreams.Internal.IEnumerableEventStream`2">
+            <summary>
+            The contract for the <see cref="T:Amazon.Runtime.EventStreams.Internal.EnumerableEventStream`2"/>.
+            </summary>
+            <typeparam name="T">An implementation of IEventStreamEvent (e.g. IS3Event).</typeparam>
+            <typeparam name="TE">An implementation of EventStreamException (e.g. S3EventStreamException).</typeparam>
+        </member>
+        <member name="T:Amazon.Runtime.EventStreams.Internal.EnumerableEventStream`2">
+            <summary>
+            A subclass of <see cref="T:Amazon.Runtime.EventStreams.Internal.EventStream`2" /> that enables an enumerable interface for interacting with Events.
+            </summary>
+            <typeparam name="T">An implementation of IEventStreamEvent (e.g. IS3Event).</typeparam>
+            <typeparam name="TE">An implementation of EventStreamException (e.g. S3EventStreamException).</typeparam>
+        </member>
+        <member name="P:Amazon.Runtime.EventStreams.Internal.EnumerableEventStream`2.IsEnumerated">
+            <summary>
+            Flag if the stream was chosen to be enumerated.
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.Internal.EnumerableEventStream`2.#ctor(System.IO.Stream)">
+            <summary>
+            A Stream of Events. Events can be retrieved from this stream by either
+            <list type="bullet">
+              <item><description>attaching handlers to listen events, and then call StartProcessing <i>or</i></description></item>
+              <item><description>enumerating over the events.</description></item>
+            </list>
+            <para></para>
+            These options should be treated as mutually exclusive.
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.Internal.EnumerableEventStream`2.#ctor(System.IO.Stream,Amazon.Runtime.EventStreams.Internal.IEventStreamDecoder)">
+            <summary>
+            A Stream of Events. Events can be retrieved from this stream by either
+            <list type="bullet">
+              <item><description>attaching handlers to listen events, and then call StartProcessing <i>or</i></description></item>
+              <item><description>enumerating over the events.</description></item>
+            </list>
+            <para></para>
+            These options should be treated as mutually exclusive.
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.Internal.EnumerableEventStream`2.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the collection.
+            </summary>
+            <returns>An enumerator that can be used to iterate through the collection.</returns>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.Internal.EnumerableEventStream`2.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through a collection.
+            </summary>
+            <returns>An <see cref="T:System.Collections.IEnumerator" /> object that can be used to iterate through the collection.</returns>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.Internal.EnumerableEventStream`2.StartProcessing">
+            <summary>
+            Starts the background thread to start reading events from the network stream.
+            </summary>
+        </member>
+        <member name="T:Amazon.Runtime.EventStreams.Internal.IEventStream`2">
+            <summary>
+            The contract for the <see cref="T:Amazon.Runtime.EventStreams.Internal.EventStream`2"/>.
+            </summary>
+            <typeparam name="T">An implementation of IEventStreamEvent (e.g. IS3Event).</typeparam>
+            <typeparam name="TE">An implementation of EventStreamException (e.g. S3EventStreamException).</typeparam>
+        </member>
+        <member name="P:Amazon.Runtime.EventStreams.Internal.IEventStream`2.BufferSize">
+            <summary>
+            The size of the buffer for reading from the network stream.
+            </summary>
+        </member>
+        <member name="E:Amazon.Runtime.EventStreams.Internal.IEventStream`2.EventReceived">
+            <summary>
+            Fires when an event is received.
+            </summary>
+        </member>
+        <member name="E:Amazon.Runtime.EventStreams.Internal.IEventStream`2.ExceptionReceived">
+            <summary>
+            Fired when an exception or error is raised.
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.Internal.IEventStream`2.StartProcessing">
+            <summary>
+            Starts the background thread to start reading events from the network stream.
+            </summary>
+        </member>
+        <member name="T:Amazon.Runtime.EventStreams.Internal.EventStream`2">
+            <summary>
+            The superclass for all EventStreams. It contains the common processing logic needed to retreive events from a network Stream. It
+            also contains the mechanisms needed to have a background loop raise events.
+            </summary>
+            <typeparam name="T">An implementation of IEventStreamEvent (e.g. IS3Event).</typeparam>
+            <typeparam name="TE">An implementation of EventStreamException (e.g. S3EventStreamException).</typeparam>
+        </member>
+        <member name="F:Amazon.Runtime.EventStreams.Internal.EventStream`2.UnknownEventKey">
+            <summary>
+            "Unique" key for unknown event lookup.
+            </summary>
+        </member>
+        <member name="F:Amazon.Runtime.EventStreams.Internal.EventStream`2.HeaderMessageType">
+            <summary>
+            Header key for message type.
+            </summary>
+        </member>
+        <member name="F:Amazon.Runtime.EventStreams.Internal.EventStream`2.HeaderEventType">
+            <summary>
+            Header key for event type.
+            </summary>
+        </member>
+        <member name="F:Amazon.Runtime.EventStreams.Internal.EventStream`2.HeaderExceptionType">
+            <summary>
+            Header key for exception type.
+            </summary>
+        </member>
+        <member name="F:Amazon.Runtime.EventStreams.Internal.EventStream`2.HeaderErrorCode">
+            <summary>
+            Header key for error code.
+            </summary>
+        </member>
+        <member name="F:Amazon.Runtime.EventStreams.Internal.EventStream`2.HeaderErrorMessage">
+            <summary>
+            Header key for error message.
+            </summary>
+        </member>
+        <member name="F:Amazon.Runtime.EventStreams.Internal.EventStream`2.EventHeaderMessageTypeValue">
+            <summary>
+            Value of <see cref="F:Amazon.Runtime.EventStreams.Internal.EventStream`2.HeaderMessageType"/> when the message is an event.
+            </summary>
+        </member>
+        <member name="F:Amazon.Runtime.EventStreams.Internal.EventStream`2.ExceptionHeaderMessageTypeValue">
+            <summary>
+            Value of <see cref="F:Amazon.Runtime.EventStreams.Internal.EventStream`2.HeaderMessageType"/> when the message is an exception.
+            </summary>
+        </member>
+        <member name="F:Amazon.Runtime.EventStreams.Internal.EventStream`2.ErrorHeaderMessageTypeValue">
+            <summary>
+            Value of <see cref="F:Amazon.Runtime.EventStreams.Internal.EventStream`2.HeaderMessageType"/> when the message is an error.
+            </summary>
+        </member>
+        <member name="P:Amazon.Runtime.EventStreams.Internal.EventStream`2.BufferSize">
+            <summary>
+            The size of the buffer for reading from the network stream.
+            Default is 8192.
+            </summary>
+        </member>
+        <member name="P:Amazon.Runtime.EventStreams.Internal.EventStream`2.NetworkStream">
+            <summary>
+            The underlying stream to read events from.
+            </summary>
+        </member>
+        <member name="P:Amazon.Runtime.EventStreams.Internal.EventStream`2.Decoder">
+            <summary>
+            Responsible for decoding events from sequences of bytes.
+            </summary>
+        </member>
+        <member name="E:Amazon.Runtime.EventStreams.Internal.EventStream`2.EventReceived">
+            <summary>
+            Fires when an event is recieved.
+            </summary>
+        </member>
+        <member name="E:Amazon.Runtime.EventStreams.Internal.EventStream`2.ExceptionReceived">
+            <summary>
+            Fired when an exception or error is raised.
+            </summary>
+        </member>
+        <member name="P:Amazon.Runtime.EventStreams.Internal.EventStream`2.EventMapping">
+            <summary>
+            The mapping of event message to a generator function to construct the matching Event Stream event.
+            </summary>
+        </member>
+        <member name="P:Amazon.Runtime.EventStreams.Internal.EventStream`2.ExceptionMapping">
+            <summary>
+            The mapping of event message to a generator function to construct the matching Event Stream exception.
+            </summary>
+        </member>
+        <member name="P:Amazon.Runtime.EventStreams.Internal.EventStream`2.IsProcessing">
+            <summary>
+            Whether the Stream is currently being processed.
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.Internal.EventStream`2.#ctor(System.IO.Stream)">
+            <summary>
+            A Stream of Events. Events can be retrieved from this stream by attaching handlers to listen events, and then calling StartProcessing.
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.Internal.EventStream`2.#ctor(System.IO.Stream,Amazon.Runtime.EventStreams.Internal.IEventStreamDecoder)">
+            <summary>
+            A Stream of Events. Events can be retrieved from this stream by attaching handlers to listen events, and then calling StartProcessing.
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.Internal.EventStream`2.ConvertMessageToEvent(Amazon.Runtime.EventStreams.EventStreamMessage)">
+            <summary>
+            Converts an EventStreamMessage to an event.
+            </summary>
+            <param name="eventStreamMessage">The event stream message to be converted.</param>
+            <returns>The event</returns>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.Internal.EventStream`2.Process">
+            <summary>
+            Abstraction for cross-framework initiation of the background thread.
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.Internal.EventStream`2.ProcessLoop">
+            <summary>
+            The background thread main loop. It will constantly read from the network stream until IsProcessing is false, or an error occurs.
+            <para></para>
+            This stub exists due to FXCop.
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.Internal.EventStream`2.ProcessLoop(System.Object)">
+            <summary>
+            The background thread main loop. It will constantly read from the network stream until IsProcessing is false, or an error occurs.
+            </summary>
+            <param name="state">Needed for 3.5 support. Not used.</param>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.Internal.EventStream`2.ReadFromStream(System.Byte[])">
+            <summary>
+            Reads from the stream into the buffer. It then passes the buffer to the decoder, which raises an event for
+            each message it decodes.
+            </summary>
+            <param name="buffer">The buffer to store the read bytes from the stream.</param>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.Internal.EventStream`2.WrapException(System.Exception)">
+            <summary>
+            Wraps exceptions in an outer exception so they can be passed to event handlers. If the Exception is already of a compatable type,
+            the method returns what it was given.
+            </summary>
+            <param name="ex">The exception to wrap.</param>
+            <returns>An exception of type TE</returns>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.Internal.EventStream`2.StartProcessing">
+            <summary>
+            Starts the background thread to start reading events from the network stream.
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.Internal.EventStream`2.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.Internal.EventStream`2.Dispose(System.Boolean)">
+            <summary>
+            Disposes the resources of this stream.
+            </summary>
+            <param name="disposing">Should dispose of unmanged resources.</param>
+        </member>
+        <member name="T:Amazon.Runtime.EventStreams.Internal.EventStreamMessageReceivedEventArgs">
+            <summary>
+            Event Arguments for EventStreamDecoder.MessageReceived.
+            </summary>
+        </member>
+        <member name="P:Amazon.Runtime.EventStreams.Internal.EventStreamMessageReceivedEventArgs.Message">
+            <summary>
+            Received message.
+            </summary>
+        </member>
+        <member name="P:Amazon.Runtime.EventStreams.Internal.EventStreamMessageReceivedEventArgs.Context">
+            <summary>
+            Additional object context
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.Internal.EventStreamMessageReceivedEventArgs.#ctor(Amazon.Runtime.EventStreams.EventStreamMessage)">
+            <summary>
+            Initialize this with message
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.Internal.EventStreamMessageReceivedEventArgs.#ctor(Amazon.Runtime.EventStreams.EventStreamMessage,System.Object)">
+            <summary>
+            Initialize this with message and object conetext
+            </summary>
+        </member>
+        <member name="T:Amazon.Runtime.EventStreams.Internal.EventStreamDecoderIllegalStateException">
+            <summary>
+            Exception thrown when a request is made of the Decoder, but the internal state
+            machine is an invalid state. This is usually the result of an interanl exception
+            being thrown during parsing of the network stream.
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.Internal.EventStreamDecoderIllegalStateException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Constructs a new instance of the EventStreamDecoderIllegalStateException class with serialized data.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo" /> that holds the serialized object data about the exception being thrown.</param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext" /> that contains contextual information about the source or destination.</param>
+            <exception cref="T:System.ArgumentNullException">The <paramref name="info" /> parameter is null. </exception>
+            <exception cref="T:System.Runtime.Serialization.SerializationException">The class name is null or <see cref="P:System.Exception.HResult" /> is zero (0). </exception>
+        </member>
+        <member name="T:Amazon.Runtime.EventStreams.Internal.IEventStreamDecoder">
+            <summary>
+            Contract for EventStreamDecoder
+            </summary>
+        </member>
+        <member name="E:Amazon.Runtime.EventStreams.Internal.IEventStreamDecoder.MessageReceived">
+            <summary>
+            Invoked anytime an EventStreamMessage is found.
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.Internal.IEventStreamDecoder.ProcessData(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Processes data starting at offset up to length.
+            Invokes MessageRecieved for each message encountered.
+            If an exception is thrown, this object is not safe for reuse.
+            </summary>
+            <param name="data">buffer to read</param>
+            <param name="offset">offset in buffer to start reading.</param>
+            <param name="length">length of data.</param>
+        </member>
+        <member name="T:Amazon.Runtime.EventStreams.Internal.EventStreamDecoder">
+            <summary>
+            Streaming decoder for listening for incoming EventStreamMessage datagrams.
+            </summary>
+        </member>
+        <member name="E:Amazon.Runtime.EventStreams.Internal.EventStreamDecoder.MessageReceived">
+            <summary>
+            Invoked anytime an EventStreamMessage is found.
+            </summary>
+        </member>
+        <member name="P:Amazon.Runtime.EventStreams.Internal.EventStreamDecoder.MessageReceivedContext">
+            <summary>
+            Object data (optional) that can be passed to the event handler for MessageReceived.
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.Internal.EventStreamDecoder.#ctor">
+            <summary>
+            Default constructor. Initializes internal _state machine.
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.Internal.EventStreamDecoder.ProcessData(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Processes data starting at offset up to length.
+            Invokes MessageRecieved for each message encountered.
+            If an exception is thrown, this object is not safe for reuse.
+            </summary>
+            <param name="data">buffer to read</param>
+            <param name="offset">offset in buffer to start reading.</param>
+            <param name="length">length of data.</param>
+        </member>
+        <member name="T:Amazon.Runtime.EventStreams.Internal.EventStreamException">
+            <summary>
+            Superclass for Exceptions that come over the event stream, or to wrap other kinds of generic exceptions.
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.Internal.EventStreamException.#ctor">
+            <summary>
+            Constructs an EventStreamException.
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.Internal.EventStreamException.#ctor(System.String)">
+            <summary>
+            Constructs an EventStreamException.
+            </summary>
+            <param name="message">The exception message.</param>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.Internal.EventStreamException.#ctor(System.String,System.Exception)">
+            <summary>
+            Constructs an EventStreamException.
+            </summary>
+            <param name="message">The exception message.</param>
+            <param name="innerException">The inner exception.</param>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.Internal.EventStreamException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Constructs a new instance of the EventStreamException class with serialized data.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo" /> that holds the serialized object data about the exception being thrown.</param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext" /> that contains contextual information about the source or destination.</param>
+            <exception cref="T:System.ArgumentNullException">The <paramref name="info" /> parameter is null. </exception>
+            <exception cref="T:System.Runtime.Serialization.SerializationException">The class name is null or <see cref="P:System.Exception.HResult" /> is zero (0). </exception>
+        </member>
+        <member name="T:Amazon.Runtime.EventStreams.Internal.IEventStreamEvent">
+            <summary>
+            The contract for EventStream events.
+            </summary>
+        </member>
+        <member name="T:Amazon.Runtime.EventStreams.Internal.IEventStreamTerminalEvent">
+            <summary>
+            The contract for EventStream terminal events.
+            </summary>
+        </member>
+        <member name="T:Amazon.Runtime.EventStreams.Internal.UnknownEventStreamEvent">
+            <summary>
+            This Event is returned if an event is retrieved from the event stream, but a generator function
+            for the event is not defined. This can occur if the SDK is not updated after a new event type is introduced.
+            </summary>
+        </member>
+        <member name="P:Amazon.Runtime.EventStreams.Internal.UnknownEventStreamEvent.ReceivedMessage">
+            <summary>
+            The Message recieved from the event stream before conversion.
+            </summary>
+        </member>
+        <member name="P:Amazon.Runtime.EventStreams.Internal.UnknownEventStreamEvent.EventType">
+            <summary>
+            The event type.
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.Internal.UnknownEventStreamEvent.#ctor">
+            <summary>
+            Constructs an UnknownEventStreamEvent.
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.Internal.UnknownEventStreamEvent.#ctor(Amazon.Runtime.EventStreams.IEventStreamMessage,System.String)">
+            <summary>
+            Constructs an UnknownEventStreamEvent.
+            </summary>
+            <param name="receivedMessage">The Message recieved from the event stream before conversion.</param>
+            <param name="eventType">The event type.</param>
+        </member>
+        <member name="T:Amazon.Runtime.EventStreams.UnknownEventStreamMessageTypeException">
+            <summary>
+            Signals that an an <see cref="T:Amazon.Runtime.EventStreams.EventStreamMessage"/> has an unknown message type. These exceptions whould be
+            swallowed to allow future expansion of the EventStream specification without breaking existing clients.
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.UnknownEventStreamMessageTypeException.#ctor">
+            <summary>
+            Constructs an UnknownEventStreamMessageTypeException.
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.UnknownEventStreamMessageTypeException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Constructs a new instance of the UnknownEventStreamMessageTypeException class with serialized data.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo" /> that holds the serialized object data about the exception being thrown.</param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext" /> that contains contextual information about the source or destination.</param>
+            <exception cref="T:System.ArgumentNullException">The <paramref name="info" /> parameter is null. </exception>
+            <exception cref="T:System.Runtime.Serialization.SerializationException">The class name is null or <see cref="P:System.Exception.HResult" /> is zero (0). </exception>
+        </member>
+        <member name="T:Amazon.Runtime.EventStreams.UnknownEventStreamException">
+            <summary>
+            This exception is thrown if an exception is retrieved from the event stream and should be modeled,
+            but a generator function for the strongly-typed exception is not defined.
+            </summary>
+        </member>
+        <member name="P:Amazon.Runtime.EventStreams.UnknownEventStreamException.ExceptionType">
+            <summary>
+            The exception type.
+            </summary>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.UnknownEventStreamException.#ctor(System.String)">
+            <summary>
+            Constructs an EventStreamException.
+            </summary>
+            <param name="exceptionType">The exception type.</param>
+        </member>
+        <member name="M:Amazon.Runtime.EventStreams.UnknownEventStreamException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Constructs a new instance of the UnknownEventStreamException class with serialized data.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo" /> that holds the serialized object data about the exception being thrown.</param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext" /> that contains contextual information about the source or destination.</param>
+            <exception cref="T:System.ArgumentNullException">The <paramref name="info" /> parameter is null. </exception>
+            <exception cref="T:System.Runtime.Serialization.SerializationException">The class name is null or <see cref="P:System.Exception.HResult" /> is zero (0). </exception>
         </member>
         <member name="T:Amazon.Runtime.IAmazonService">
             <summary>
@@ -9346,6 +10330,12 @@
             parses it to a collection of address range objects.
             </summary>
         </member>
+        <member name="M:Amazon.Util.AWSPublicIpAddressRanges.Load(System.Net.IWebProxy)">
+            <summary>
+            Downloads the most recent copy of the endpoint address file and
+            parses it to a collection of address range objects.
+            </summary>
+        </member>
         <member name="T:Amazon.Util.AWSPublicIpAddressRange">
             <summary>
             Represents the IP address range for a single region and service key.
@@ -9887,6 +10877,11 @@
         </member>
         <member name="P:Amazon.Util.EC2InstanceMetadata.IsIMDSEnabled">
             <summary>
+            </summary>
+        </member>
+        <member name="P:Amazon.Util.EC2InstanceMetadata.Proxy">
+            <summary>
+            Allows to configure the proxy used for HTTP requests. The default value is null.
             </summary>
         </member>
         <member name="P:Amazon.Util.EC2InstanceMetadata.AmiId">
@@ -11369,6 +12364,11 @@
         <member name="F:Amazon.LogMetricsFormatOption.JSON">
             <summary>
             Emit metrics as JSON data
+            </summary>
+        </member>
+        <member name="P:Amazon.Internal.RegionEndpointProviderV2.Proxy">
+            <summary>
+            Allows to configure the proxy used for HTTP requests. The default value is null.
             </summary>
         </member>
         <member name="T:Amazon.Internal.RegionEndpointProviderV2.RegionEndpoint">

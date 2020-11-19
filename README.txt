@@ -29,3 +29,8 @@ This overwrote the contents of Carthage/Build/Mac/BugsplatMac.framework.
 Happily, since that's what was packaged in the previous BugSplat binary
 framework drops, that was exactly right. I committed that on branch 'vendor'
 and merged to branch 'default'.
+
+Windows Updates
+-------------------
+
+See https://www.bugsplat.com/docs/sdk/
