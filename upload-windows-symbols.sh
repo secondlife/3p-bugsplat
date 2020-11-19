@@ -26,15 +26,15 @@ then
      # defines BUGSPLAT_USER and BUGSPLAT_PASS
      source "$build_secrets_checkout/bugsplat/bugsplat.sh"
 
-     # for some reason bugsplat requires uploading exe and pdb that match the ones we ship to users
-     # Win 10 specific. Upload files using final exe name (viewer will be adjused separately to use
-     # same name)
-     pdb_file="${build_dir}/newview/Release/SecondLifeViewer.pdb"
-     if [ -e "$pdb_file" ]
+     # for some reason bugsplat requires uploading exe that match the ones we ship to users
+     # Win 10 specific. Upload files using final exe name (viewer will be adjused separately
+     # to use same name)
+     exe_file="${build_dir}/newview/Release/SecondLifeViewer.exe"
+     if [ -e "$exe_file" ]
      then
-         files="$(wildjoin ';' "${build_dir}/newview/Release"/SecondLifeViewer.{pdb,exe})"
+         files="$(wildjoin ';' "${build_dir}/newview/Release"/{secondlife-bin.pdb,SecondLifeViewer.exe})"
      else
-         # Test build without packaging?
+         # Compatibility for older builds
          files="$(wildjoin ';' "${build_dir}/newview/Release"/secondlife-bin.{pdb,exe})"
      fi
 
