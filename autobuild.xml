@@ -4,7 +4,7 @@
     <key>package_description</key>
     <map>
       <key>canonical_repo</key>
-      <string>https://bitbucket.org/lindenlab/3p-bugsplat</string>
+      <string>https://github.com/secondlife/3p-bugsplat</string>
       <key>copyright</key>
       <string>Copyright 2003-2017, BugSplat</string>
       <key>description</key>
