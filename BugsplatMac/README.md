@@ -5,7 +5,7 @@ The BugsplatMac macOS framework enables posting crash reports from Cocoa applica
 ## 1. Requirements
 
 * BugsplatMac supports macOS 10.9 and later.
-* BugsplatMac supports x86_64 applications only.
+* BugsplatMac supports x86_64 and Apple silicon applications.
 
 ## 2. Integration
 
@@ -55,6 +55,9 @@ github "BugsplatGit/BugsplatMac"
 ```
 
 Run `carthage` to build the framework and drag the built `BugsplatMac.framework` into your Xcode project.
+
+### Swift Package Manager
+BugsplatMac framework binaries are also now distributed via Swift Package Manager. You can now add BugsplatMac as a dependency in the Swift Packages configuration in your Xcode project by pointing to <https://github.com/BugSplat-Git/BugSplatMac-SP>
 
 ### Manual Setup
 
@@ -234,11 +237,9 @@ Additional languages may be supported by adding the language bundle and strings 
 
 We have provided BugsplatTester as a sample application for you to test BugSplat. There are 2 targets - an ObjC version and a Swift version. The quickest way to test BugSplat is to do the following:
 
-1. Clone the BugsplatMac repo and run the following: 
-	- `git submodule init`
-	- `git submodule update`
+1. Clone the [BugsplatMac repo](https://github.com/BugSplat-Git/BugSplatMac.git).
 
-1. Open the BugsplatTester.xcworkspace file. Select the scheme based on which target you want to run.  Edit the scheme and uncheck "Debug executable" in the Run section, close the scheme editor and run the application.
+1. Open the BugsplatTester.xcworkspace file in Xcode. Select the scheme based on which target you want to run.  Edit the scheme and uncheck "Debug executable" in the Run section, close the scheme editor and run the application.
 
 2. Click the "crash" button when prompted.
 
@@ -246,7 +247,7 @@ We have provided BugsplatTester as a sample application for you to test BugSplat
 
 4. Fill out the crash dialog and submit the crash report.
 
-5. Visit BugSplat's [All Crash](https://app.bugsplat.com/allcrash/) page. When prompted for credentials enter user "Fred" and password "Flintstone". The crash you posted from BugsplatTester should be at the top of the list of crashes.
+5. Visit BugSplat's [Crashes](https://app.bugsplat.com/v2/crashes) page. When prompted for credentials enter user "fred@bugsplat.com" and password "Flintstone". The crash you posted from BugsplatTester should be at the top of the list of crashes.
 
 6. Click the link in the "Crash Id" column to view more details about your crash.
 
