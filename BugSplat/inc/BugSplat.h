@@ -33,6 +33,7 @@
 #include <signal.h>
 #include <Windows.h>
 
+
 //! If a callback function is registered with MiniDmpSender
 //! it is notified when data or information is required from the main app
 //! A list of callback codes appears at the end of this file...
@@ -117,6 +118,9 @@ public:
     //! Use to change the generic app identifier field at runtime.
     void resetAppIdentifier(const __wchar_t * wszDescription);
 
+	//! Use to set value for the Notes field in the web app
+	void setNotes(const __wchar_t* wszNotes);
+
     //! Send additional file(s) along with the crash report; may be called repeatedly to send multiple files.
     void sendAdditionalFile(const __wchar_t * wszPath);
 
@@ -145,6 +149,9 @@ public:
     //! For example, you could send a report directly from your own try/catch clause.
     void createReport(EXCEPTION_POINTERS * pExcepInfo);
 
+	//! Use to send an Address Sanitizer report to BugSplat.
+	void createAsanReport(const char* asanMessage);
+
 	//! Use to send a report to BugSplat, bypassing minidump creation.  
 	//! See myConsoleCrasher for an example of the XML required schema.
 	//! This function does not exit, normal program flow continues.
@@ -164,6 +171,9 @@ public:
 
 	//! Set the size of the guard byte buffer.  See the MDSF_USEGUARDMEMORY flag
 	int setGuardByteBufferSize(int nbytes);
+
+	//! Set the timeout in ms used to determine if a process is hung. Default is 5000.
+	int setHangDetectionTimeout(int ms);
 
     //! Internal method.
     LPVOID imp();
@@ -270,19 +280,13 @@ inline void SetGlobalCRTExceptionBehavior()
 	_set_new_mode(1);
 }
 
+
 // This call should be made in each thread of your application to enable collection of certain CRT exceptions
 inline void SetPerThreadCRTExceptionBehavior()
 {
 	// Signal handling, required for each thread, at least for SIGABRT
 	signal(SIGABRT, signal_handler);
 	_set_abort_behavior(0, _WRITE_ABORT_MSG | _CALL_REPORTFAULT);
-	
-
-	// In a multithreaded environment, unexpected functions are maintained separately for each thread. 
-	// Each new thread needs to install its own unexpected function. Thus, each thread is in charge of 
-	// its own unexpected handling.
-	// See https://docs.microsoft.com/en-us/cpp/c-runtime-library/reference/set-unexpected-crt?view=vs-2019
-	set_unexpected(&terminator);
 }
 
 #endif //~BUGSPLAT_H
