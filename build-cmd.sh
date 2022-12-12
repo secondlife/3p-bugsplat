@@ -75,6 +75,8 @@ case "$AUTOBUILD_PLATFORM" in
         # There's only one SendPdbs.exe, and it's in bin, not in bin64.
         # Include SendPdbs.exe.config.
         cp -v "$BUGSPLAT_DIR/bin"/SendPdbs.exe* "$stage/bin/release/"
+        cp -v "$BUGSPLAT_DIR/bin/Meziantou.Framework.Win32.CredentialManager.dll" "$stage/bin/release/"
+        cp -v "$BUGSPLAT_DIR/bin/PdbLibrary.dll" "$stage/bin/release/"
         cp -v "$top/upload-windows-symbols.sh" "$stage/upload-extensions/"
     ;;
     darwin*)
@@ -82,7 +84,9 @@ case "$AUTOBUILD_PLATFORM" in
         framework="$top/Carthage/Build/Mac/BugsplatMac.framework"
         Info_plist="$framework/Resources/Info.plist"
         BUGSPLAT_VERSION="$(python -c "import plistlib
-print plistlib.readPlist('$Info_plist')['CFBundleShortVersionString']")"
+with open('$Info_plist', 'rb') as fp :
+    manifest = plistlib.loads(fp.read())
+print (manifest['CFBundleShortVersionString'])")"
         # Because of its embedded directory symlinks, copying the framework
         # works much better if we kill the previous copy first.
         stage_framework="$stage/lib/release/$(basename "$framework")"
