@@ -46,16 +46,14 @@ case "$AUTOBUILD_PLATFORM" in
 
         if [ "$AUTOBUILD_PLATFORM" == "windows64" ]
         then
-            lib="lib64"
-            bin="bin64"
             sfx="64"
             rcdll="BugSplatRc64.dll"
         else
-            lib="lib"
-            bin="bin"
             sfx=""
             rcdll="BugSplatRC.dll"
         fi
+        lib="lib$sfx"
+        bin="bin$sfx"
 
         # BugSplat version info seems to be platform-dependent and even
         # component-dependent?! Query the Windows version by asking for the
