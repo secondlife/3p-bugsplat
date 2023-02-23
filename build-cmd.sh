@@ -80,7 +80,7 @@ case "$AUTOBUILD_PLATFORM" in
         framework="$top/Carthage/Build/Mac/BugsplatMac.framework"
         Info_plist="$framework/Resources/Info.plist"
         BUGSPLAT_VERSION="$(python -c "import plistlib
-print(plistlib.readPlist('$Info_plist')['CFBundleShortVersionString'])")"
+print(plistlib.load(open('$Info_plist'))['CFBundleShortVersionString'])")"
         # Because of its embedded directory symlinks, copying the framework
         # works much better if we kill the previous copy first.
         stage_framework="$stage/lib/release/$(basename "$framework")"
