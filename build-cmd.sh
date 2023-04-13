@@ -66,6 +66,8 @@ case "$AUTOBUILD_PLATFORM" in
           "(Get-Command $(cygpath -w $BUGSPLAT_DIR/bin/BsSndRpt.exe)).FileVersionInfo.FileVersion")"
         # PowerShell returns a version like "4, 0, 3, 0" -- use dots instead
         BUGSPLAT_VERSION="${BUGSPLAT_VERSION//, /.}"
+        # PowerShell also embeds a sneakly \r which breaks packaging so we must remove it
+        BUGSPLAT_VERSION="${BUGSPLAT_VERSION/$'\r'/}"
 
         # copy files
         cp "$BUGSPLAT_DIR/inc/BugSplat.h" "$stage/include/bugsplat"
