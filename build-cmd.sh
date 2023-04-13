@@ -83,7 +83,7 @@ case "$AUTOBUILD_PLATFORM" in
         # BugsplatMac version embedded in the framework's Info.plist
         framework="$top/Carthage/Build/Mac/BugsplatMac.framework"
         Info_plist="$framework/Resources/Info.plist"
-        BUGSPLAT_VERSION="$(python -c "import plistlib
+        BUGSPLAT_VERSION="$(python3 -c "import plistlib
 with open('$Info_plist', 'rb') as fp :
     manifest = plistlib.loads(fp.read())
 print (manifest['CFBundleShortVersionString'])")"
