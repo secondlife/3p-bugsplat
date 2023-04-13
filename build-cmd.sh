@@ -59,10 +59,13 @@ case "$AUTOBUILD_PLATFORM" in
 
         # BugSplat version info seems to be platform-dependent and even
         # component-dependent?! Query the Windows version by asking for the
-        # version stamped into this BugSplat .exe.
-        BUGSPLAT_VERSION="$("$top/query_version.sh" "$BUGSPLAT_DIR/bin/BsSndRpt.exe")"
-        # and remove extraneous newlines
-        BUGSPLAT_VERSION="${BUGSPLAT_VERSION//[$'\r\n']}"
+        # version stamped into this BugSplat .exe. Magic courtesy of Raymond
+        # Chen:
+        # https://devblogs.microsoft.com/oldnewthing/20180529-00/?p=98855
+        BUGSPLAT_VERSION="$(powershell -Command \
+          "(Get-Command $(cygpath -w $BUGSPLAT_DIR/bin/BsSndRpt.exe)).FileVersionInfo.FileVersion")"
+        # PowerShell returns a version like "4, 0, 3, 0" -- use dots instead
+        BUGSPLAT_VERSION="${BUGSPLAT_VERSION//, /.}"
 
         # copy files
         cp "$BUGSPLAT_DIR/inc/BugSplat.h" "$stage/include/bugsplat"
