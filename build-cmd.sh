@@ -57,6 +57,8 @@ case "$AUTOBUILD_PLATFORM" in
             rcdll="BugSplatRC.dll"
         fi
 
+        # cygwin bash incantation to eliminate FRIGGING CARRIAGE RETURN
+        set -o igncr
         # BugSplat version info seems to be platform-dependent and even
         # component-dependent?! Query the Windows version by asking for the
         # version stamped into this BugSplat .exe. Magic courtesy of Raymond
