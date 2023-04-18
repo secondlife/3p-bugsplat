@@ -38,7 +38,10 @@ then
          files="$(wildjoin ';' "${build_dir}/newview/Release"/secondlife-bin.{pdb,exe})"
      fi
 
-     args=(/a "$viewer_channel" \
+     # As of April 2023, we have a new SendPdbs.exe that will attempt to force
+     # use of TLS 1.2 (now required by the BugSplat servers) if you pass /x.
+     args=(/x \
+           /a "$viewer_channel" \
            /v "$version" \
            /b "$BUGSPLAT_DB" \
            /f "$files")
