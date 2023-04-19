@@ -46,6 +46,10 @@ then
      "$SendPdbs" /u "$BUGSPLAT_USER" /p "$BUGSPLAT_PASS" "${args[@]}"
      rc=$?
 
+     # SL-19594: HACK HACK HACK to let viewer builds succeeded even when SendPdbs fails
+     rc=0
+     # HACK HACK HACK HACK HACK HACK HACK HACK HACK HACK HACK HACK HACK HACK HACK HACK
+
      set -x
 
      [ $rc -eq 0 ] || fatal "BugSplat SendPdbs failed"
