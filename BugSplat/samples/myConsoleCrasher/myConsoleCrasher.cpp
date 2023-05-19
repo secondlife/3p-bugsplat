@@ -3,7 +3,7 @@
 //
 //        The shared sample database 'Fred' is used in this example.
 //        You may view crashes for the Fred account by logging in at https://www.bugsplat.com:
-//        Account (Email Address): Fred 
+//        Account (Email Address): Fred@bugsplat.com
 //                       Password: Flintstone
 //
 //        In order to assure that crashes sent to the BugSplat website yield exception stack traces with file/line # information, 
@@ -48,7 +48,7 @@ int wmain(int argc, wchar_t **argv)
 	}
 
 	// BugSplat initialization.  Post crash reports to the "Fred" database for application "myConsoleCrasher" version "1.0"
-	mpSender = new MiniDmpSender(L"Fred", L"myConsoleCrasher", L"1.0", NULL, MDSF_USEGUARDMEMORY | MDSF_LOGFILE | MDSF_PREVENTHIJACKING);
+	mpSender = new MiniDmpSender(L"Fred", L"MyConsoleCrasher", L"1.0", NULL, MDSF_USEGUARDMEMORY | MDSF_LOGFILE | MDSF_PREVENTHIJACKING);
 
 	// The following calls add support for collecting crashes for abort(), vectored exceptions, out of memory,
 	// pure virtual function calls, and for invalid parameters for OS functions.
@@ -63,6 +63,9 @@ int wmain(int argc, wchar_t **argv)
 	mpSender->setDefaultUserName(_T("Fred"));
 	mpSender->setDefaultUserEmail(_T("fred@bedrock.com"));
 	mpSender->setDefaultUserDescription(_T("This is the default user crash description."));
+
+	// Set optional notes field
+	mpSender->setNotes(_T("Additional 'notes' data supplied through API"));
 
 	// Process command line args that we need prior to crashing
 	for (int i = 1; i < argc; i++) {

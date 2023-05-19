@@ -55,12 +55,17 @@ case "$AUTOBUILD_PLATFORM" in
         lib="lib$sfx"
         bin="bin$sfx"
 
+        # cygwin bash incantation to eliminate FRIGGING CARRIAGE RETURN
+        set -o igncr
         # BugSplat version info seems to be platform-dependent and even
         # component-dependent?! Query the Windows version by asking for the
-        # version stamped into this BugSplat .exe.
-        BUGSPLAT_VERSION="$("$top/query_version.sh" "$BUGSPLAT_DIR/bin/BsSndRpt.exe")"
-        # and remove extraneous newlines
-        BUGSPLAT_VERSION="${BUGSPLAT_VERSION//[$'\r\n']}"
+        # version stamped into this BugSplat .exe. Magic courtesy of Raymond
+        # Chen:
+        # https://devblogs.microsoft.com/oldnewthing/20180529-00/?p=98855
+        BUGSPLAT_VERSION="$(powershell -Command \
+          "(Get-Command $(cygpath -w $BUGSPLAT_DIR/bin/BsSndRpt.exe)).FileVersionInfo.FileVersion")"
+        # PowerShell returns a version like "4, 0, 3, 0" -- use dots instead
+        BUGSPLAT_VERSION="${BUGSPLAT_VERSION//, /.}"
 
         # copy files
         cp "$BUGSPLAT_DIR/inc/BugSplat.h" "$stage/include/bugsplat"
@@ -73,14 +78,18 @@ case "$AUTOBUILD_PLATFORM" in
         # There's only one SendPdbs.exe, and it's in bin, not in bin64.
         # Include SendPdbs.exe.config.
         cp -v "$BUGSPLAT_DIR/bin"/SendPdbs.exe* "$stage/bin/release/"
+        cp -v "$BUGSPLAT_DIR/bin/Meziantou.Framework.Win32.CredentialManager.dll" "$stage/bin/release/"
+        cp -v "$BUGSPLAT_DIR/bin/PdbLibrary.dll" "$stage/bin/release/"
         cp -v "$top/upload-windows-symbols.sh" "$stage/upload-extensions/"
     ;;
     darwin*)
         # BugsplatMac version embedded in the framework's Info.plist
         framework="$top/Carthage/Build/Mac/BugsplatMac.framework"
         Info_plist="$framework/Resources/Info.plist"
-        BUGSPLAT_VERSION="$(python -c "import plistlib
-print(plistlib.load(open('$Info_plist', 'rb'))['CFBundleShortVersionString'])")"
+        BUGSPLAT_VERSION="$(python3 -c "import plistlib
+with open('$Info_plist', 'rb') as fp :
+    manifest = plistlib.loads(fp.read())
+print (manifest['CFBundleShortVersionString'])")"
         # Because of its embedded directory symlinks, copying the framework
         # works much better if we kill the previous copy first.
         stage_framework="$stage/lib/release/$(basename "$framework")"

@@ -190,8 +190,8 @@ IDC_CRASHDLGHEADER      BITMAP                  "res\\crashDlgHeader.bmp"
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,0,0,1
- PRODUCTVERSION 1,0,0,1
+ FILEVERSION 4,0,0,0
+ PRODUCTVERSION 4,0,0,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -208,12 +208,12 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "BugSplat, LLC"
             VALUE "FileDescription", "Crash reporting module, BugSplatRc"
-            VALUE "FileVersion", "1, 0, 0, 1"
+            VALUE "FileVersion", "4.0.0.0"
             VALUE "InternalName", "BugSplatRc"
-            VALUE "LegalCopyright", "Copyright BugSplat, LLC (C) 2003"
+            VALUE "LegalCopyright", "Copyright BugSplat, LLC (C)"
             VALUE "OriginalFilename", "BugSplatRc.DLL"
             VALUE "ProductName", "BugSplatRc Dynamic Link Library"
-            VALUE "ProductVersion", "1, 0, 0, 1"
+            VALUE "ProductVersion", "4.0.0.0"
         END
     END
     BLOCK "VarFileInfo"
