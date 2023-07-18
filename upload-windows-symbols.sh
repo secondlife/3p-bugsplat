@@ -20,7 +20,7 @@ then
      }
 
      # upload to BugSplat -- don't echo credentials
-     set +x
+###     set +x
 
      # for some reason bugsplat requires uploading exe that match the ones we ship to users
      # Win 10 specific. Upload files using final exe name (viewer will be adjusted separately
