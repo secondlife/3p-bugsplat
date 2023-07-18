@@ -13,7 +13,7 @@ then
 
      # SendPdbs wants a single /f argument in which individual pathnames are
      # separated by ';'
-     function wildjoin {
+     function strjoin {
          local IFS="$1"
          shift
          echo "$*"
@@ -22,33 +22,27 @@ then
      # upload to BugSplat -- don't echo credentials
      set +x
 
-     # need BugSplat credentials to post symbol files
-     # defines BUGSPLAT_USER and BUGSPLAT_PASS
-     source "$build_secrets_checkout/bugsplat/bugsplat.sh"
-
      # for some reason bugsplat requires uploading exe that match the ones we ship to users
-     # Win 10 specific. Upload files using final exe name (viewer will be adjused separately
+     # Win 10 specific. Upload files using final exe name (viewer will be adjusted separately
      # to use same name)
-     exe_file="${build_dir}/newview/Release/SecondLifeViewer.exe"
+     reldir="${build_dir}/newview/Release"
+     filelist=("$reldir/secondlife-bin.pdb")
+     exe_file="$reldir/SecondLifeViewer.exe"
      if [ -e "$exe_file" ]
      then
-         files="$(wildjoin ';' "${build_dir}/newview/Release"/{secondlife-bin.pdb,SecondLifeViewer.exe})"
+         filelist+=("$exe_file")
      else
          # Compatibility for older builds
-         files="$(wildjoin ';' "${build_dir}/newview/Release"/secondlife-bin.{pdb,exe})"
+         filelist+=("$reldir/secondlife-bin.exe")
      fi
 
      args=(/a "$viewer_channel" \
            /v "$version" \
            /b "$BUGSPLAT_DB" \
-           /f "$files")
+           /f "$(strjoin ';' "${filelist[@]}")")
      echo "$SendPdbs" /u xxx /p xxx "${args[@]}"
      "$SendPdbs" /u "$BUGSPLAT_USER" /p "$BUGSPLAT_PASS" "${args[@]}"
      rc=$?
-
-     # SL-19594: HACK HACK HACK to let viewer builds succeeded even when SendPdbs fails
-     rc=0
-     # HACK HACK HACK HACK HACK HACK HACK HACK HACK HACK HACK HACK HACK HACK HACK HACK
 
      set -x
 
