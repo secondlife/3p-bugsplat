@@ -85,11 +85,8 @@ case "$AUTOBUILD_PLATFORM" in
     darwin*)
         # BugsplatMac version embedded in the framework's Info.plist
         framework="$top/Carthage/Build/Mac/BugsplatMac.framework"
-        Info_plist="$framework/Resources/Info.plist"
-        BUGSPLAT_VERSION="$(python3 -c "import plistlib
-with open('$Info_plist', 'rb') as fp :
-    manifest = plistlib.loads(fp.read())
-print (manifest['CFBundleShortVersionString'])")"
+        BUGSPLAT_VERSION="$(/usr/libexec/PlistBuddy -c 'Print CFBundleShortVersionString' \
+                            "$framework/Resources/Info.plist")"
         # Because of its embedded directory symlinks, copying the framework
         # works much better if we kill the previous copy first.
         stage_framework="$stage/lib/release/$(basename "$framework")"
@@ -126,5 +123,5 @@ print (manifest['CFBundleShortVersionString'])")"
         echo "This project is not currently supported for $AUTOBUILD_PLATFORM" 1>&2 ; exit 1
     ;;
 esac
-echo "$BUGSPLAT_VERSION.$build" > "$stage/version.txt"
+echo "$BUGSPLAT_VERSION-$build" > "$stage/version.txt"
 cp "$BUGSPLAT_DIR/BUGSPLAT_LICENSE.txt" "$stage/LICENSES"
