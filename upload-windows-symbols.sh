@@ -19,9 +19,6 @@ then
          echo "$*"
      }
 
-     # upload to BugSplat -- don't echo credentials
-     set +x
-
      # for some reason bugsplat requires uploading exe that match the ones we ship to users
      # Win 10 specific. Upload files using final exe name (viewer will be adjusted separately
      # to use same name)
@@ -36,20 +33,22 @@ then
          filelist+=("$reldir/secondlife-bin.exe")
      fi
 
-     # SL-19854: despite the /u argument below, we keep hitting
+     # don't echo credentials
+     set +x
+     # SL-19854: specifying /u and /p arguments, we kept hitting
      # ERROR: The /u (user) or /credentials argument must be specified or set
      # by environment variable 'BugSplatUser'
-     # So, suspenders and belt: try setting BugSplatUser.
+     # ERROR: The /p (password) or /credentials argument must be specified or
+     # set by environment variable 'BugSplatPassword'
+     # Shrug, setting those environment variables seems to work better.
      export BugSplatUser="$BUGSPLAT_USER"
-     args=(/a "$viewer_channel" \
-           /v "$version" \
-           /b "$BUGSPLAT_DB" \
-           /f "$(strjoin ';' "${filelist[@]}")")
-     echo "$SendPdbs" /u xxx /p xxx "${args[@]}"
-     "$SendPdbs" /u "$BUGSPLAT_USER" /p "$BUGSPLAT_PASS" "${args[@]}"
-     rc=$?
-
+     export BugSplatPassword="$BUGSPLAT_PASS"
      set -x
 
-     [ $rc -eq 0 ] || fatal "BugSplat SendPdbs failed"
+     "$SendPdbs" \
+         /a "$viewer_channel" \
+         /v "$version" \
+         /b "$BUGSPLAT_DB" \
+         /f "$(strjoin ';' "${filelist[@]}")" || \
+         fatal "BugSplat SendPdbs failed"
 fi
