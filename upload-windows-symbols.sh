@@ -36,6 +36,11 @@ then
          filelist+=("$reldir/secondlife-bin.exe")
      fi
 
+     # SL-19854: despite the /u argument below, we keep hitting
+     # ERROR: The /u (user) or /credentials argument must be specified or set
+     # by environment variable 'BugSplatUser'
+     # So, suspenders and belt: try setting BugSplatUser.
+     export BugSplatUser="$BUGSPLAT_USER"
      args=(/a "$viewer_channel" \
            /v "$version" \
            /b "$BUGSPLAT_DB" \
