@@ -5,11 +5,12 @@
 if [ "$variant" == "Release" ]
 then
      # Our build-cmd.sh copies SendPdbs.exe to bin/release, and our
-     # autobuild.xml ensures that it's packaged in the tarball
-     SendPdbs="${build_dir}/packages/bin/release/SendPdbs.exe"
+     # autobuild.xml ensures that it's packaged in the tarball.
+     # Because we invoke SendPdbs via SendPdbs.bat, use native_path.
+     export SendPdbs="$(native_path "${build_dir}/packages/bin/release/SendPdbs.exe")"
 
      # viewer version -- explicitly ditch '\r' as bash only strips '\n'
-     version="$(tr <"${build_dir}/newview/viewer_version.txt" -d '\r')"
+     export version="$(tr <"${build_dir}/newview/viewer_version.txt" -d '\r')"
 
      # SendPdbs wants a single /f argument in which individual pathnames are
      # separated by ';'
@@ -23,14 +24,14 @@ then
      # Win 10 specific. Upload files using final exe name (viewer will be adjusted separately
      # to use same name)
      reldir="${build_dir}/newview/Release"
-     filelist=("$reldir/secondlife-bin.pdb")
+     filelist=("$(native_path "$reldir/secondlife-bin.pdb")")
      exe_file="$reldir/SecondLifeViewer.exe"
      if [ -e "$exe_file" ]
      then
-         filelist+=("$exe_file")
+         filelist+=("$(native_path "$exe_file")")
      else
          # Compatibility for older builds
-         filelist+=("$reldir/secondlife-bin.exe")
+         filelist+=("$(native_path "$reldir/secondlife-bin.exe")")
      fi
 
      # don't echo credentials
@@ -45,10 +46,10 @@ then
      export BugSplatPassword="$BUGSPLAT_PASS"
      set -x
 
-     "$SendPdbs" \
-         /a "$viewer_channel" \
-         /v "$version" \
-         /b "$BUGSPLAT_DB" \
-         /f "$(strjoin ';' "${filelist[@]}")" || \
-         fatal "BugSplat SendPdbs failed"
+     export files="$(strjoin ';' "${filelist[@]}")"
+
+     # All parameters are passed via environment variables, which is why
+     # various variables set above are exported.
+     mydir="$(dirname "$BASH_SOURCE")"
+     "$mydir/SendPdbs.bat" || fatal "BugSplat SendPdbs failed"
 fi
