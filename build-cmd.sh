@@ -81,6 +81,7 @@ case "$AUTOBUILD_PLATFORM" in
         cp -v "$BUGSPLAT_DIR/bin/Meziantou.Framework.Win32.CredentialManager.dll" "$stage/bin/release/"
         cp -v "$BUGSPLAT_DIR/bin/PdbLibrary.dll" "$stage/bin/release/"
         cp -v "$top/upload-windows-symbols.sh" "$stage/upload-extensions/"
+        cp -v "$top/SendPdbs.bat" "$stage/upload-extensions/"
     ;;
     darwin*)
         # BugsplatMac version embedded in the framework's Info.plist
