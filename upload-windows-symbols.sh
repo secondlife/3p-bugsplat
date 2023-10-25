@@ -5,52 +5,51 @@
 if [ "$variant" == "Release" ]
 then
      # Our build-cmd.sh copies SendPdbs.exe to bin/release, and our
-     # autobuild.xml ensures that it's packaged in the tarball
-     SendPdbs="${build_dir}/packages/bin/release/SendPdbs.exe"
+     # autobuild.xml ensures that it's packaged in the tarball.
+     # Because we invoke SendPdbs via SendPdbs.bat, use native_path.
+     export SendPdbs="$(native_path "${build_dir}/packages/bin/release/SendPdbs.exe")"
 
      # viewer version -- explicitly ditch '\r' as bash only strips '\n'
-     version="$(tr <"${build_dir}/newview/viewer_version.txt" -d '\r')"
+     export version="$(tr <"${build_dir}/newview/viewer_version.txt" -d '\r')"
 
      # SendPdbs wants a single /f argument in which individual pathnames are
      # separated by ';'
-     function wildjoin {
+     function strjoin {
          local IFS="$1"
          shift
          echo "$*"
      }
 
-     # upload to BugSplat -- don't echo credentials
-     set +x
-
-     # need BugSplat credentials to post symbol files
-     # defines BUGSPLAT_USER and BUGSPLAT_PASS
-     source "$build_secrets_checkout/bugsplat/bugsplat.sh"
-
      # for some reason bugsplat requires uploading exe that match the ones we ship to users
-     # Win 10 specific. Upload files using final exe name (viewer will be adjused separately
+     # Win 10 specific. Upload files using final exe name (viewer will be adjusted separately
      # to use same name)
-     exe_file="${build_dir}/newview/Release/SecondLifeViewer.exe"
+     reldir="${build_dir}/newview/Release"
+     filelist=("$(native_path "$reldir/secondlife-bin.pdb")")
+     exe_file="$reldir/SecondLifeViewer.exe"
      if [ -e "$exe_file" ]
      then
-         files="$(wildjoin ';' "${build_dir}/newview/Release"/{secondlife-bin.pdb,SecondLifeViewer.exe})"
+         filelist+=("$(native_path "$exe_file")")
      else
          # Compatibility for older builds
-         files="$(wildjoin ';' "${build_dir}/newview/Release"/secondlife-bin.{pdb,exe})"
+         filelist+=("$(native_path "$reldir/secondlife-bin.exe")")
      fi
 
-     args=(/a "$viewer_channel" \
-           /v "$version" \
-           /b "$BUGSPLAT_DB" \
-           /f "$files")
-     echo "$SendPdbs" /u xxx /p xxx "${args[@]}"
-     "$SendPdbs" /u "$BUGSPLAT_USER" /p "$BUGSPLAT_PASS" "${args[@]}"
-     rc=$?
-
-     # SL-19594: HACK HACK HACK to let viewer builds succeeded even when SendPdbs fails
-     rc=0
-     # HACK HACK HACK HACK HACK HACK HACK HACK HACK HACK HACK HACK HACK HACK HACK HACK
-
+     # don't echo credentials
+     set +x
+     # SL-19854: specifying /u and /p arguments, we kept hitting
+     # ERROR: The /u (user) or /credentials argument must be specified or set
+     # by environment variable 'BugSplatUser'
+     # ERROR: The /p (password) or /credentials argument must be specified or
+     # set by environment variable 'BugSplatPassword'
+     # Shrug, setting those environment variables seems to work better.
+     export BugSplatUser="$BUGSPLAT_USER"
+     export BugSplatPassword="$BUGSPLAT_PASS"
      set -x
 
-     [ $rc -eq 0 ] || fatal "BugSplat SendPdbs failed"
+     export files="$(strjoin ';' "${filelist[@]}")"
+
+     # All parameters are passed via environment variables, which is why
+     # various variables set above are exported.
+     mydir="$(dirname "$BASH_SOURCE")"
+     "$mydir/SendPdbs.bat" || fatal "BugSplat SendPdbs failed"
 fi

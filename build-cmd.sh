@@ -46,16 +46,14 @@ case "$AUTOBUILD_PLATFORM" in
 
         if [ "$AUTOBUILD_PLATFORM" == "windows64" ]
         then
-            lib="lib64"
-            bin="bin64"
             sfx="64"
             rcdll="BugSplatRc64.dll"
         else
-            lib="lib"
-            bin="bin"
             sfx=""
             rcdll="BugSplatRC.dll"
         fi
+        lib="lib$sfx"
+        bin="bin$sfx"
 
         # cygwin bash incantation to eliminate FRIGGING CARRIAGE RETURN
         set -o igncr
@@ -83,15 +81,13 @@ case "$AUTOBUILD_PLATFORM" in
         cp -v "$BUGSPLAT_DIR/bin/Meziantou.Framework.Win32.CredentialManager.dll" "$stage/bin/release/"
         cp -v "$BUGSPLAT_DIR/bin/PdbLibrary.dll" "$stage/bin/release/"
         cp -v "$top/upload-windows-symbols.sh" "$stage/upload-extensions/"
+        cp -v "$top/SendPdbs.bat" "$stage/upload-extensions/"
     ;;
     darwin*)
         # BugsplatMac version embedded in the framework's Info.plist
         framework="$top/Carthage/Build/Mac/BugsplatMac.framework"
-        Info_plist="$framework/Resources/Info.plist"
-        BUGSPLAT_VERSION="$(python3 -c "import plistlib
-with open('$Info_plist', 'rb') as fp :
-    manifest = plistlib.loads(fp.read())
-print (manifest['CFBundleShortVersionString'])")"
+        BUGSPLAT_VERSION="$(/usr/libexec/PlistBuddy -c 'Print CFBundleShortVersionString' \
+                            "$framework/Resources/Info.plist")"
         # Because of its embedded directory symlinks, copying the framework
         # works much better if we kill the previous copy first.
         stage_framework="$stage/lib/release/$(basename "$framework")"
@@ -128,5 +124,5 @@ print (manifest['CFBundleShortVersionString'])")"
         echo "This project is not currently supported for $AUTOBUILD_PLATFORM" 1>&2 ; exit 1
     ;;
 esac
-echo "$BUGSPLAT_VERSION.$build" > "$stage/version.txt"
+echo "$BUGSPLAT_VERSION-$build" > "$stage/version.txt"
 cp "$BUGSPLAT_DIR/BUGSPLAT_LICENSE.txt" "$stage/LICENSES"
