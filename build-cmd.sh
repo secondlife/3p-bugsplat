@@ -63,7 +63,7 @@ case "$AUTOBUILD_PLATFORM" in
         # Chen:
         # https://devblogs.microsoft.com/oldnewthing/20180529-00/?p=98855
         BUGSPLAT_VERSION="$(powershell -Command \
-          "(Get-Command $(cygpath -w $BUGSPLAT_DIR/Tools/BsSndRpt.exe)).FileVersionInfo.FileVersion")"
+          "(Get-Command $(cygpath -w $BUGSPLAT_DIR/BugSplat/Win32/Release/BsSndRpt.exe)).FileVersionInfo.FileVersion")"
         # PowerShell returns a version like "4, 0, 3, 0" -- use dots instead
         BUGSPLAT_VERSION="${BUGSPLAT_VERSION//, /.}"
 
