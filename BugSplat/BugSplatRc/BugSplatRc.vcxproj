@@ -115,10 +115,10 @@
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">BugSplatRc</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">BugSplatRc64</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Gaming.Desktop.x64'">BugSplatRc64</TargetName>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\BugSplat\bin\</OutDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\BugSplat\bin64\</OutDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\BugSplat\bin\</OutDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\BugSplat\bin64\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\BugSplat\$(Platform)\$(Configuration)\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\BugSplat\$(Platform)\$(Configuration)\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\BugSplat\$(Platform)\$(Configuration)\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\BugSplat\$(Platform)\$(Configuration)\</OutDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">BugSplatRc</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">BugSplatRc64</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Gaming.Desktop.x64'">BugSplatRc64</TargetName>
@@ -166,7 +166,6 @@
       <AdditionalIncludeDirectories>../sbSenderRes;..\BugSplat\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
-      <AdditionalOptions>/MACHINE:I386 %(AdditionalOptions)</AdditionalOptions>
       <AdditionalDependencies>wininet.lib;shlwapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <GenerateDebugInformation>false</GenerateDebugInformation>
@@ -176,7 +175,8 @@
       </DataExecutionPrevention>
       <DelayLoadDLLs>
       </DelayLoadDLLs>
-      <ImportLibrary>..\BugSplat\lib\BugSplatRcD.lib</ImportLibrary>
+      <ImportLibrary>
+      </ImportLibrary>
       <MinimumRequiredVersion>
       </MinimumRequiredVersion>
     </Link>
@@ -214,7 +214,6 @@
       <AdditionalIncludeDirectories>..\BugSplat\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
-      <AdditionalOptions>/MACHINE:I386 %(AdditionalOptions)</AdditionalOptions>
       <AdditionalDependencies>wininet.lib;shlwapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <GenerateDebugInformation>false</GenerateDebugInformation>
@@ -224,7 +223,8 @@
       </DataExecutionPrevention>
       <DelayLoadDLLs>
       </DelayLoadDLLs>
-      <ImportLibrary>..\BugSplat\lib\BugSplatRcD.lib</ImportLibrary>
+      <ImportLibrary>
+      </ImportLibrary>
       <MinimumRequiredVersion>
       </MinimumRequiredVersion>
     </Link>
@@ -262,7 +262,6 @@
       <AdditionalIncludeDirectories>..\BugSplat\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
-      <AdditionalOptions>/MACHINE:I386 %(AdditionalOptions)</AdditionalOptions>
       <AdditionalDependencies>wininet.lib;shlwapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <GenerateDebugInformation>false</GenerateDebugInformation>
@@ -272,7 +271,8 @@
       </DataExecutionPrevention>
       <DelayLoadDLLs>
       </DelayLoadDLLs>
-      <ImportLibrary>..\BugSplat\lib\BugSplatRcD.lib</ImportLibrary>
+      <ImportLibrary>
+      </ImportLibrary>
       <MinimumRequiredVersion>
       </MinimumRequiredVersion>
     </Link>
@@ -311,7 +311,6 @@
       <AdditionalIncludeDirectories>../sbSenderRes;..\BugSplat\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
-      <AdditionalOptions>/MACHINE:I386 %(AdditionalOptions)</AdditionalOptions>
       <AdditionalDependencies>wininet.lib;shlwapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <GenerateDebugInformation>false</GenerateDebugInformation>
@@ -320,7 +319,8 @@
       <RandomizedBaseAddress>true</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <ImportLibrary>..\BugSplat\lib\BugSplatRc.lib</ImportLibrary>
+      <ImportLibrary>
+      </ImportLibrary>
       <DelayLoadDLLs>
       </DelayLoadDLLs>
       <MinimumRequiredVersion>
@@ -360,7 +360,6 @@
       <AdditionalIncludeDirectories>..\BugSplat\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
-      <AdditionalOptions>/MACHINE:I386 %(AdditionalOptions)</AdditionalOptions>
       <AdditionalDependencies>wininet.lib;shlwapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <GenerateDebugInformation>false</GenerateDebugInformation>
@@ -369,7 +368,8 @@
       <RandomizedBaseAddress>true</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <ImportLibrary>..\BugSplat\lib\BugSplatRc.lib</ImportLibrary>
+      <ImportLibrary>
+      </ImportLibrary>
       <DelayLoadDLLs>
       </DelayLoadDLLs>
       <MinimumRequiredVersion>
@@ -409,7 +409,6 @@
       <AdditionalIncludeDirectories>..\BugSplat\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
-      <AdditionalOptions>/MACHINE:I386 %(AdditionalOptions)</AdditionalOptions>
       <AdditionalDependencies>wininet.lib;shlwapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <GenerateDebugInformation>false</GenerateDebugInformation>
@@ -418,7 +417,8 @@
       <RandomizedBaseAddress>true</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <ImportLibrary>..\BugSplat\lib\BugSplatRc.lib</ImportLibrary>
+      <ImportLibrary>
+      </ImportLibrary>
       <DelayLoadDLLs>
       </DelayLoadDLLs>
       <MinimumRequiredVersion>
@@ -448,18 +448,18 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">mc.exe "%(FullPath)"</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">mc.exe "%(FullPath)"</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Gaming.Desktop.x64'">mc.exe "%(FullPath)"</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(RootDir)%(Directory)\%(Filename).rc;$(ProjectDir)\%(Filename).h;%(Outputs)</Outputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(RootDir)%(Directory)\%(Filename).rc;$(ProjectDir)\%(Filename).h;%(Outputs)</Outputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Gaming.Desktop.x64'">%(RootDir)%(Directory)\%(Filename).rc;$(ProjectDir)\%(Filename).h;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)%(Filename).rc;$(ProjectDir)%(Filename).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)%(Filename).rc;$(ProjectDir)%(Filename).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Gaming.Desktop.x64'">$(ProjectDir)%(Filename).rc;$(ProjectDir)%(Filename).h</Outputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Compiling message...</Message>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Compiling message...</Message>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Gaming.Desktop.x64'">Compiling message...</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">mc.exe "%(FullPath)"</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">mc.exe "%(FullPath)"</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Gaming.Desktop.x64'">mc.exe "%(FullPath)"</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(RootDir)%(Directory)\res\%(Filename).rc;%(RootDir)%(Directory)\%(Filename).h;%(Outputs)</Outputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(RootDir)%(Directory)\res\%(Filename).rc;%(RootDir)%(Directory)\%(Filename).h;%(Outputs)</Outputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Gaming.Desktop.x64'">%(RootDir)%(Directory)\res\%(Filename).rc;%(RootDir)%(Directory)\%(Filename).h;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)%(Filename).rc;$(ProjectDir)%(Filename).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)%(Filename).rc;$(ProjectDir)%(Filename).h</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Gaming.Desktop.x64'">$(ProjectDir)%(Filename).rc;$(ProjectDir)%(Filename).h</Outputs>
     </CustomBuild>
     <None Include="res\icon1.ico" />
     <None Include="res\tick.ico" />
