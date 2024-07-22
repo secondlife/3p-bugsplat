@@ -122,4 +122,4 @@ curl -b "${COOKIEPATH}" -c "${COOKIEPATH}" --data-urlencode "currusername=${BUGS
 
 echo "Uploading ${FILE} to ${UPLOAD_URL}"
 
-curl -i -b "${COOKIEPATH}" -c "${COOKIEPATH}" -F filedata=@"${FILE}" -F appName="${PRODUCT_NAME}" -F appVer="${APP_VERSION}" -F buildId="${UUID_CMD_OUT}" $UPLOAD_URL
+curl -i -b "${COOKIEPATH}" -c "${COOKIEPATH}" -F filedata=@"${FILE}" -F appName="${PRODUCT_NAME}" -F appVer="${APP_VERSION} (${APP_VERSION})" -F buildId="${UUID_CMD_OUT}" $UPLOAD_URL
