@@ -72,4 +72,4 @@ curl -b "${COOKIEPATH}" -c "${COOKIEPATH}" --data-urlencode "currusername=${BUGS
 
 echo "Uploading /tmp/${PRODUCT_NAME}.xcarchive.zip to ${UPLOAD_URL}" >> $LOG 2>&1
 
-curl -i -b "${COOKIEPATH}" -c "${COOKIEPATH}" -F filedata=@"/tmp/${PRODUCT_NAME}.xcarchive.zip" -F appName="${PRODUCT_NAME}" -F appVer="${APP_VERSION}" -F buildId="${UUID_CMD_OUT}" $UPLOAD_URL >> $LOG 2>&1
+curl -i -b "${COOKIEPATH}" -c "${COOKIEPATH}" -F filedata=@"/tmp/${PRODUCT_NAME}.xcarchive.zip" -F appName="${PRODUCT_NAME}" -F appVer="${APP_VERSION} (${APP_VERSION})" -F buildId="${UUID_CMD_OUT}" $UPLOAD_URL >> $LOG 2>&1
