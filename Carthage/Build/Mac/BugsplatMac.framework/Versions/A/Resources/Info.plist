@@ -3,13 +3,13 @@
 <plist version="1.0">
 <dict>
 	<key>BuildMachineOSBuild</key>
-	<string>17G65</string>
+	<string>23A344</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
 	<string>BugsplatMac</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.bugsplatsoftware.BugsplatMac</string>
+	<string>com.bugsplat.BugsplatMac</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>FMWK</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.7</string>
+	<string>1.1.1</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleSupportedPlatforms</key>
@@ -29,17 +29,21 @@
 	<key>DTCompiler</key>
 	<string>com.apple.compilers.llvm.clang.1_0</string>
 	<key>DTPlatformBuild</key>
-	<string>9F2000</string>
+	<string></string>
+	<key>DTPlatformName</key>
+	<string>macosx</string>
 	<key>DTPlatformVersion</key>
-	<string>GM</string>
+	<string>14.0</string>
 	<key>DTSDKBuild</key>
-	<string>17E189</string>
+	<string>23A334</string>
 	<key>DTSDKName</key>
-	<string>macosx10.13</string>
+	<string>macosx14.0</string>
 	<key>DTXcode</key>
-	<string>0941</string>
+	<string>1500</string>
 	<key>DTXcodeBuild</key>
-	<string>9F2000</string>
+	<string>15A240d</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>10.13</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2016 Bugsplat. All rights reserved.</string>
 </dict>

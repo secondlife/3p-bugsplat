@@ -47,13 +47,13 @@ case "$AUTOBUILD_PLATFORM" in
         if [ "$AUTOBUILD_PLATFORM" == "windows64" ]
         then
             sfx="64"
+            bin="Bugsplat/x64/Release"
             rcdll="BugSplatRc64.dll"
         else
             sfx=""
+            bin="Bugsplat/Win32/Release"
             rcdll="BugSplatRC.dll"
         fi
-        lib="lib$sfx"
-        bin="bin$sfx"
 
         # cygwin bash incantation to eliminate FRIGGING CARRIAGE RETURN
         set -o igncr
@@ -63,23 +63,21 @@ case "$AUTOBUILD_PLATFORM" in
         # Chen:
         # https://devblogs.microsoft.com/oldnewthing/20180529-00/?p=98855
         BUGSPLAT_VERSION="$(powershell -Command \
-          "(Get-Command $(cygpath -w $BUGSPLAT_DIR/bin/BsSndRpt.exe)).FileVersionInfo.FileVersion")"
+          "(Get-Command $(cygpath -w $BUGSPLAT_DIR/BugSplat/Win32/Release/BsSndRpt.exe)).FileVersionInfo.FileVersion")"
         # PowerShell returns a version like "4, 0, 3, 0" -- use dots instead
         BUGSPLAT_VERSION="${BUGSPLAT_VERSION//, /.}"
 
         # copy files
-        cp "$BUGSPLAT_DIR/inc/BugSplat.h" "$stage/include/bugsplat"
+        cp "$BUGSPLAT_DIR/BugSplat/inc/BugSplat.h" "$stage/include/bugsplat"
         # force to simple name since we can't branch on 32/64 in CMake files
-        cp "$BUGSPLAT_DIR/$lib/BugSplat$sfx.lib" "$stage/lib/release/BugSplat.lib"
+        cp "$BUGSPLAT_DIR/$bin/BugSplat$sfx.lib" "$stage/lib/release/BugSplat.lib"
         cp "$BUGSPLAT_DIR/$bin/BsSndRpt$sfx.exe" "$stage/lib/release"
         cp "$BUGSPLAT_DIR/$bin/BugSplat$sfx.dll" "$stage/lib/release"
         cp "$BUGSPLAT_DIR/$bin/$rcdll" "$stage/lib/release"
 
         # There's only one SendPdbs.exe, and it's in bin, not in bin64.
         # Include SendPdbs.exe.config.
-        cp -v "$BUGSPLAT_DIR/bin"/SendPdbs.exe* "$stage/bin/release/"
-        cp -v "$BUGSPLAT_DIR/bin/Meziantou.Framework.Win32.CredentialManager.dll" "$stage/bin/release/"
-        cp -v "$BUGSPLAT_DIR/bin/PdbLibrary.dll" "$stage/bin/release/"
+        cp -v "$BUGSPLAT_DIR/Tools"/SendPdbs.exe* "$stage/bin/release/"
         cp -v "$top/upload-windows-symbols.sh" "$stage/upload-extensions/"
         cp -v "$top/SendPdbs.bat" "$stage/upload-extensions/"
     ;;
