@@ -7,7 +7,7 @@ then
      # Our build-cmd.sh copies SendPdbs.exe to bin/release, and our
      # autobuild.xml ensures that it's packaged in the tarball.
      # Because we invoke SendPdbs via SendPdbs.bat, use native_path.
-     export SendPdbs="$(native_path "${build_dir}/packages/bin/release/SendPdbs.exe")"
+     export SendPdbs="$(native_path "${build_dir}/packages/bin/release/symbol-upload-windows.exe")"
 
      # viewer version -- explicitly ditch '\r' as bash only strips '\n'
      export version="$(tr <"${build_dir}/newview/viewer_version.txt" -d '\r')"

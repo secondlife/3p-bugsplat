@@ -75,9 +75,8 @@ case "$AUTOBUILD_PLATFORM" in
         cp "$BUGSPLAT_DIR/$bin/BugSplat$sfx.dll" "$stage/lib/release"
         cp "$BUGSPLAT_DIR/$bin/$rcdll" "$stage/lib/release"
 
-        # There's only one SendPdbs.exe, and it's in bin, not in bin64.
-        # Include SendPdbs.exe.config.
-        cp -v "$BUGSPLAT_DIR/Tools"/SendPdbs.exe* "$stage/bin/release/"
+        # There's only one symbol-upload-windows.exe, and it's in tools.
+        cp -v "$BUGSPLAT_DIR/Tools"/symbol-upload-windows.exe* "$stage/bin/release/"
         cp -v "$top/upload-windows-symbols.sh" "$stage/upload-extensions/"
         cp -v "$top/SendPdbs.bat" "$stage/upload-extensions/"
     ;;
