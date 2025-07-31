@@ -62,7 +62,7 @@ int wmain(int argc, wchar_t **argv)
 	}
 
 	// BugSplat initialization.  Post crash reports to the "Fred" database for application "myConsoleCrasher" version "1.0"
-	mpSender = new MiniDmpSender(BUGSPLAT_DATABASE, APPLICATION_NAME, APPLICATION_VERSION, NULL, MDSF_USEGUARDMEMORY | MDSF_LOGFILE | MDSF_LOG_VERBOSE );
+	mpSender = new MiniDmpSender(BUGSPLAT_DATABASE, APPLICATION_NAME, APPLICATION_VERSION, NULL, MDSF_USEGUARDMEMORY | MDSF_LOGFILE | MDSF_LOG_VERBOSE);
 
 	// The following calls add support for collecting crashes for abort(), vectored exceptions, out of memory,
 	// pure virtual function calls, and for invalid parameters for OS functions.
@@ -82,7 +82,7 @@ int wmain(int argc, wchar_t **argv)
 	mpSender->setNotes(L"Additional 'notes' data supplied through API");
 
 	// Set optional custom crash attributes
-	mpSender->setAttribute(L"GPU", L"GeForce '{}!@#45(じみー です。)678()<>,./?[] RTX 4060 Ti");
+	mpSender->setAttribute(L"GPU", L"GeForce '{}!@#4\t5(\rじみー\n で\"す。)678()<>{},./?[] RTX 4060 Ti");
 	mpSender->setAttribute(L"Region", L"Europe");
 
 	// Process command line args that we need prior to crashing

@@ -1,0 +1,543 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 60;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6341B28C2BDC514C007EE8AC /* HockeySDK.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63598C3C2B9BBD6600770E43 /* HockeySDK.xcframework */; };
+		63598C432BA0CCD500770E43 /* BugSplat.m in Sources */ = {isa = PBXBuildFile; fileRef = 63598C422BA0CCD500770E43 /* BugSplat.m */; };
+		63598C442BA0CCD500770E43 /* BugSplat.m in Sources */ = {isa = PBXBuildFile; fileRef = 63598C422BA0CCD500770E43 /* BugSplat.m */; };
+		637DF0452D49A49C00DDD8FE /* BugSplatUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 637DF0442D49A49C00DDD8FE /* BugSplatUtilities.h */; };
+		637DF0462D49A49C00DDD8FE /* BugSplatUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 637DF0442D49A49C00DDD8FE /* BugSplatUtilities.h */; };
+		637DF0482D49A50800DDD8FE /* BugSplatUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 637DF0472D49A50800DDD8FE /* BugSplatUtilities.m */; };
+		637DF0492D49A50800DDD8FE /* BugSplatUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 637DF0472D49A50800DDD8FE /* BugSplatUtilities.m */; };
+		638D38DC2BA0CEE900DC37A8 /* BugSplatDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6344718C2B9695C500EBEBEB /* BugSplatDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		638D38DD2BA0CEEA00DC37A8 /* BugSplatDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6344718C2B9695C500EBEBEB /* BugSplatDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		63905E962D83912E009CDBEE /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 63905E952D83912E009CDBEE /* PrivacyInfo.xcprivacy */; };
+		63905E972D83912E009CDBEE /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 63905E952D83912E009CDBEE /* PrivacyInfo.xcprivacy */; };
+		63C6E2032B92852500AED3E3 /* BugSplat.h in Headers */ = {isa = PBXBuildFile; fileRef = 63C6E1FE2B9283B000AED3E3 /* BugSplat.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		63D006F62BBF5F3600587FBF /* HockeySDK.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63598C3C2B9BBD6600770E43 /* HockeySDK.xcframework */; };
+		63D006FA2BBF785B00587FBF /* BugSplatMac.h in Headers */ = {isa = PBXBuildFile; fileRef = 63D006F92BBF785B00587FBF /* BugSplatMac.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		63E233802B9710420066C7FC /* BugSplatAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E2337A2B9710410066C7FC /* BugSplatAttachment.m */; };
+		63E233822B9710420066C7FC /* BugSplatAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = 63E2337C2B9710420066C7FC /* BugSplatAttachment.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		63E233842B9711AB0066C7FC /* BugSplatAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = 63E2337C2B9710420066C7FC /* BugSplatAttachment.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		63E233852B9711B10066C7FC /* BugSplatAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E2337A2B9710410066C7FC /* BugSplatAttachment.m */; };
+		63E233862B9715B50066C7FC /* BugSplat.h in Headers */ = {isa = PBXBuildFile; fileRef = 63C6E1FE2B9283B000AED3E3 /* BugSplat.h */; settings = {ATTRIBUTES = (Public, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		6344718C2B9695C500EBEBEB /* BugSplatDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BugSplatDelegate.h; sourceTree = "<group>"; };
+		63598C3C2B9BBD6600770E43 /* HockeySDK.xcframework */ = {isa = PBXFileReference; expectedSignature = "AppleDeveloperProgram:TN6R4Q475K:BugSplat, LLC"; lastKnownFileType = wrapper.xcframework; name = HockeySDK.xcframework; path = Vendor/HockeySDK.xcframework; sourceTree = "<group>"; };
+		63598C422BA0CCD500770E43 /* BugSplat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BugSplat.m; sourceTree = "<group>"; };
+		637DF0442D49A49C00DDD8FE /* BugSplatUtilities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BugSplatUtilities.h; sourceTree = "<group>"; };
+		637DF0472D49A50800DDD8FE /* BugSplatUtilities.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BugSplatUtilities.m; sourceTree = "<group>"; };
+		63905E952D83912E009CDBEE /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		63C6E1ED2B92831A00AED3E3 /* BugSplatMac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BugSplatMac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		63C6E1FC2B9283B000AED3E3 /* BugSplat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BugSplat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		63C6E1FE2B9283B000AED3E3 /* BugSplat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BugSplat.h; sourceTree = "<group>"; };
+		63D006F92BBF785B00587FBF /* BugSplatMac.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BugSplatMac.h; sourceTree = "<group>"; };
+		63E2337A2B9710410066C7FC /* BugSplatAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BugSplatAttachment.m; sourceTree = "<group>"; };
+		63E2337C2B9710420066C7FC /* BugSplatAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BugSplatAttachment.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		63C6E1EA2B92831A00AED3E3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6341B28C2BDC514C007EE8AC /* HockeySDK.xcframework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63C6E1F92B9283B000AED3E3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63D006F62BBF5F3600587FBF /* HockeySDK.xcframework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		63C6E1E32B92831A00AED3E3 = {
+			isa = PBXGroup;
+			children = (
+				63905E952D83912E009CDBEE /* PrivacyInfo.xcprivacy */,
+				63C6E1FE2B9283B000AED3E3 /* BugSplat.h */,
+				63598C422BA0CCD500770E43 /* BugSplat.m */,
+				63D006F92BBF785B00587FBF /* BugSplatMac.h */,
+				63E2337C2B9710420066C7FC /* BugSplatAttachment.h */,
+				63E2337A2B9710410066C7FC /* BugSplatAttachment.m */,
+				6344718C2B9695C500EBEBEB /* BugSplatDelegate.h */,
+				637DF0442D49A49C00DDD8FE /* BugSplatUtilities.h */,
+				637DF0472D49A50800DDD8FE /* BugSplatUtilities.m */,
+				63C6E1EE2B92831A00AED3E3 /* Products */,
+				63C6E2062B9285F400AED3E3 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		63C6E1EE2B92831A00AED3E3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				63C6E1ED2B92831A00AED3E3 /* BugSplatMac.framework */,
+				63C6E1FC2B9283B000AED3E3 /* BugSplat.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		63C6E2062B9285F400AED3E3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				63598C3C2B9BBD6600770E43 /* HockeySDK.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		63C6E1E82B92831A00AED3E3 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63C6E2032B92852500AED3E3 /* BugSplat.h in Headers */,
+				63D006FA2BBF785B00587FBF /* BugSplatMac.h in Headers */,
+				638D38DD2BA0CEEA00DC37A8 /* BugSplatDelegate.h in Headers */,
+				63E233822B9710420066C7FC /* BugSplatAttachment.h in Headers */,
+				637DF0452D49A49C00DDD8FE /* BugSplatUtilities.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63C6E1F72B9283B000AED3E3 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63E233862B9715B50066C7FC /* BugSplat.h in Headers */,
+				638D38DC2BA0CEE900DC37A8 /* BugSplatDelegate.h in Headers */,
+				63E233842B9711AB0066C7FC /* BugSplatAttachment.h in Headers */,
+				637DF0462D49A49C00DDD8FE /* BugSplatUtilities.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		63C6E1EC2B92831A00AED3E3 /* BugSplatMac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 63C6E1F42B92831A00AED3E3 /* Build configuration list for PBXNativeTarget "BugSplatMac" */;
+			buildPhases = (
+				63C6E1E82B92831A00AED3E3 /* Headers */,
+				63C6E1E92B92831A00AED3E3 /* Sources */,
+				63C6E1EA2B92831A00AED3E3 /* Frameworks */,
+				63C6E1EB2B92831A00AED3E3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BugSplatMac;
+			productName = BugSplat;
+			productReference = 63C6E1ED2B92831A00AED3E3 /* BugSplatMac.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		63C6E1FB2B9283B000AED3E3 /* BugSplat */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 63C6E2002B9283B000AED3E3 /* Build configuration list for PBXNativeTarget "BugSplat" */;
+			buildPhases = (
+				63C6E1F72B9283B000AED3E3 /* Headers */,
+				63C6E1F82B9283B000AED3E3 /* Sources */,
+				63C6E1F92B9283B000AED3E3 /* Frameworks */,
+				63C6E1FA2B9283B000AED3E3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BugSplat;
+			productName = BugSplat;
+			productReference = 63C6E1FC2B9283B000AED3E3 /* BugSplat.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		63C6E1E42B92831A00AED3E3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1520;
+				TargetAttributes = {
+					63C6E1EC2B92831A00AED3E3 = {
+						CreatedOnToolsVersion = 15.2;
+					};
+					63C6E1FB2B9283B000AED3E3 = {
+						CreatedOnToolsVersion = 15.2;
+					};
+				};
+			};
+			buildConfigurationList = 63C6E1E72B92831A00AED3E3 /* Build configuration list for PBXProject "BugSplat" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 63C6E1E32B92831A00AED3E3;
+			productRefGroup = 63C6E1EE2B92831A00AED3E3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				63C6E1EC2B92831A00AED3E3 /* BugSplatMac */,
+				63C6E1FB2B9283B000AED3E3 /* BugSplat */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		63C6E1EB2B92831A00AED3E3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63905E962D83912E009CDBEE /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63C6E1FA2B9283B000AED3E3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63905E972D83912E009CDBEE /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		63C6E1E92B92831A00AED3E3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63E233802B9710420066C7FC /* BugSplatAttachment.m in Sources */,
+				637DF0482D49A50800DDD8FE /* BugSplatUtilities.m in Sources */,
+				63598C432BA0CCD500770E43 /* BugSplat.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63C6E1F82B9283B000AED3E3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63E233852B9711B10066C7FC /* BugSplatAttachment.m in Sources */,
+				637DF0492D49A50800DDD8FE /* BugSplatUtilities.m in Sources */,
+				63598C442BA0CCD500770E43 /* BugSplat.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		63C6E1F22B92831A00AED3E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				ENABLE_MODULE_VERIFIER = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		63C6E1F32B92831A00AED3E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				ENABLE_MODULE_VERIFIER = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		63C6E1F52B92831A00AED3E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = TN6R4Q475K;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bugsplat.BugSplatMac;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = macosx;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		63C6E1F62B92831A00AED3E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = TN6R4Q475K;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bugsplat.BugSplatMac;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = macosx;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		63C6E2012B9283B000AED3E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = TN6R4Q475K;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Vendor/",
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bugsplat.BugSplat;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		63C6E2022B9283B000AED3E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = TN6R4Q475K;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Vendor/",
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bugsplat.BugSplat;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		63C6E1E72B92831A00AED3E3 /* Build configuration list for PBXProject "BugSplat" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				63C6E1F22B92831A00AED3E3 /* Debug */,
+				63C6E1F32B92831A00AED3E3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		63C6E1F42B92831A00AED3E3 /* Build configuration list for PBXNativeTarget "BugSplatMac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				63C6E1F52B92831A00AED3E3 /* Debug */,
+				63C6E1F62B92831A00AED3E3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		63C6E2002B9283B000AED3E3 /* Build configuration list for PBXNativeTarget "BugSplat" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				63C6E2012B9283B000AED3E3 /* Debug */,
+				63C6E2022B9283B000AED3E3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 63C6E1E42B92831A00AED3E3 /* Project object */;
+}
