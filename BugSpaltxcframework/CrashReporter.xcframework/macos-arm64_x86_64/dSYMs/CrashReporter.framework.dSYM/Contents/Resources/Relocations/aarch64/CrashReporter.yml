@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/runner/Library/Developer/Xcode/DerivedData/CrashReporter-ecyjwbibvevwixcxumumoirqffcf/Build/Intermediates.noindex/ArchiveIntermediates/CrashReporter macOS Framework/InstallationBuildProductsLocation/Library/Frameworks/CrashReporter.framework/Versions/A/CrashReporter'
+relocations:     []
+...
