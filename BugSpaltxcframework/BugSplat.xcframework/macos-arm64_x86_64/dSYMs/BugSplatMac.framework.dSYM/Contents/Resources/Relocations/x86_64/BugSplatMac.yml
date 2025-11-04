@@ -1,0 +1,83 @@
+---
+triple:          'x86_64-apple-darwin'
+binary-path:     '/Users/runner/Library/Developer/Xcode/DerivedData/BugSplat-douyppktwfamgcamyisjlvrqwpof/Build/Intermediates.noindex/ArchiveIntermediates/BugSplatMac/InstallationBuildProductsLocation/Library/Frameworks/BugSplatMac.framework/Versions/A/BugSplatMac'
+relocations:
+  - { offsetInCU: 0x34, offset: 0xC8683, size: 0x8, addend: 0x0, symName: _BugSplatMacVersionString, symObjAddr: 0x0, symBinAddr: 0x4940, symSize: 0x0 }
+  - { offsetInCU: 0x69, offset: 0xC86B8, size: 0x8, addend: 0x0, symName: _BugSplatMacVersionNumber, symObjAddr: 0x30, symBinAddr: 0x4970, symSize: 0x0 }
+  - { offsetInCU: 0x27, offset: 0xC86F5, size: 0x8, addend: 0x0, symName: '-[BugSplatAttachment initWithFilename:attachmentData:contentType:]', symObjAddr: 0x0, symBinAddr: 0x138C, symSize: 0xC4 }
+  - { offsetInCU: 0xAC, offset: 0xC877A, size: 0x8, addend: 0x0, symName: '-[BugSplatAttachment initWithFilename:attachmentData:contentType:]', symObjAddr: 0x0, symBinAddr: 0x138C, symSize: 0xC4 }
+  - { offsetInCU: 0x1DD, offset: 0xC88AB, size: 0x8, addend: 0x0, symName: '-[BugSplatAttachment filename]', symObjAddr: 0xC4, symBinAddr: 0x1450, symSize: 0xA }
+  - { offsetInCU: 0x212, offset: 0xC88E0, size: 0x8, addend: 0x0, symName: '-[BugSplatAttachment setFilename:]', symObjAddr: 0xCE, symBinAddr: 0x145A, symSize: 0x11 }
+  - { offsetInCU: 0x251, offset: 0xC891F, size: 0x8, addend: 0x0, symName: '-[BugSplatAttachment attachmentData]', symObjAddr: 0xDF, symBinAddr: 0x146B, symSize: 0xA }
+  - { offsetInCU: 0x286, offset: 0xC8954, size: 0x8, addend: 0x0, symName: '-[BugSplatAttachment setAttachmentData:]', symObjAddr: 0xE9, symBinAddr: 0x1475, symSize: 0x11 }
+  - { offsetInCU: 0x2C5, offset: 0xC8993, size: 0x8, addend: 0x0, symName: '-[BugSplatAttachment contentType]', symObjAddr: 0xFA, symBinAddr: 0x1486, symSize: 0xA }
+  - { offsetInCU: 0x2FA, offset: 0xC89C8, size: 0x8, addend: 0x0, symName: '-[BugSplatAttachment setContentType:]', symObjAddr: 0x104, symBinAddr: 0x1490, symSize: 0x11 }
+  - { offsetInCU: 0x339, offset: 0xC8A07, size: 0x8, addend: 0x0, symName: '-[BugSplatAttachment .cxx_destruct]', symObjAddr: 0x115, symBinAddr: 0x14A1, symSize: 0x33 }
+  - { offsetInCU: 0x27, offset: 0xC8AB0, size: 0x8, addend: 0x0, symName: '+[NSArray(XMLArrayUtility) validTokenPairRanges:]', symObjAddr: 0x0, symBinAddr: 0x14D4, symSize: 0x251 }
+  - { offsetInCU: 0x3D, offset: 0xC8AC6, size: 0x8, addend: 0x0, symName: '+[NSArray(XMLArrayUtility) validTokenPairRanges:]', symObjAddr: 0x0, symBinAddr: 0x14D4, symSize: 0x251 }
+  - { offsetInCU: 0x294, offset: 0xC8D1D, size: 0x8, addend: 0x0, symName: '___49+[NSArray(XMLArrayUtility) validTokenPairRanges:]_block_invoke', symObjAddr: 0x251, symBinAddr: 0x1725, symSize: 0xA4 }
+  - { offsetInCU: 0x39C, offset: 0xC8E25, size: 0x8, addend: 0x0, symName: '-[NSString(XMLStringUtility) stringByEscapingXMLCharactersIgnoringCDataAndComments]', symObjAddr: 0x2F5, symBinAddr: 0x17C9, symSize: 0x16F }
+  - { offsetInCU: 0x4E3, offset: 0xC8F6C, size: 0x8, addend: 0x0, symName: '-[NSString(XMLStringUtility) stringByEscapingSpecialXMLCharacters]', symObjAddr: 0x464, symBinAddr: 0x1938, symSize: 0x8C5 }
+  - { offsetInCU: 0xA0E, offset: 0xC9497, size: 0x8, addend: 0x0, symName: '___66-[NSString(XMLStringUtility) stringByEscapingSpecialXMLCharacters]_block_invoke', symObjAddr: 0xD29, symBinAddr: 0x21FD, symSize: 0x89 }
+  - { offsetInCU: 0xACA, offset: 0xC9553, size: 0x8, addend: 0x0, symName: ___copy_helper_block_e8_32s, symObjAddr: 0xDB2, symBinAddr: 0x2286, symSize: 0xF }
+  - { offsetInCU: 0xAFD, offset: 0xC9586, size: 0x8, addend: 0x0, symName: ___destroy_helper_block_e8_32s, symObjAddr: 0xDC1, symBinAddr: 0x2295, symSize: 0xF }
+  - { offsetInCU: 0xB28, offset: 0xC95B1, size: 0x8, addend: 0x0, symName: '-[NSString(XMLStringUtility) stringByXMLEscapingWithExclusionRanges:]', symObjAddr: 0xDD0, symBinAddr: 0x22A4, symSize: 0x3BD }
+  - { offsetInCU: 0xE9F, offset: 0xC9928, size: 0x8, addend: 0x0, symName: '-[NSString(XMLStringUtility) tokenPairRangesForStartToken:endToken:error:]', symObjAddr: 0x118D, symBinAddr: 0x2661, symSize: 0x29E }
+  - { offsetInCU: 0x1170, offset: 0xC9BF9, size: 0x8, addend: 0x0, symName: '-[NSString(XMLStringUtility) isValidXMLEntity]', symObjAddr: 0x142B, symBinAddr: 0x28FF, symSize: 0x92 }
+  - { offsetInCU: 0x27, offset: 0xC9EDD, size: 0x8, addend: 0x0, symName: '+[BugSplat shared]', symObjAddr: 0x0, symBinAddr: 0x2991, symSize: 0x30 }
+  - { offsetInCU: 0x41, offset: 0xC9EF7, size: 0x8, addend: 0x0, symName: _kHockeyIdentifierPlaceholder, symObjAddr: 0x2430, symBinAddr: 0x6118, symSize: 0x0 }
+  - { offsetInCU: 0x61, offset: 0xC9F17, size: 0x8, addend: 0x0, symName: _kBugSplatUserDefaultsUserID, symObjAddr: 0x2438, symBinAddr: 0x6120, symSize: 0x0 }
+  - { offsetInCU: 0x77, offset: 0xC9F2D, size: 0x8, addend: 0x0, symName: _kBugSplatUserDefaultsUserName, symObjAddr: 0x2440, symBinAddr: 0x6128, symSize: 0x0 }
+  - { offsetInCU: 0x8D, offset: 0xC9F43, size: 0x8, addend: 0x0, symName: _kBugSplatUserDefaultsUserEmail, symObjAddr: 0x2448, symBinAddr: 0x6130, symSize: 0x0 }
+  - { offsetInCU: 0xA3, offset: 0xC9F59, size: 0x8, addend: 0x0, symName: _kBugSplatUserDefaultsAttributes, symObjAddr: 0x2450, symBinAddr: 0x6138, symSize: 0x0 }
+  - { offsetInCU: 0xB9, offset: 0xC9F6F, size: 0x8, addend: 0x0, symName: __bugSplatDatabase, symObjAddr: 0xC0C8, symBinAddr: 0x7BA8, symSize: 0x0 }
+  - { offsetInCU: 0xC3, offset: 0xC9F79, size: 0x8, addend: 0x0, symName: '+[BugSplat shared]', symObjAddr: 0x0, symBinAddr: 0x2991, symSize: 0x30 }
+  - { offsetInCU: 0xED, offset: 0xC9FA3, size: 0x8, addend: 0x0, symName: _shared.sharedInstance, symObjAddr: 0xC0D0, symBinAddr: 0x7BB0, symSize: 0x0 }
+  - { offsetInCU: 0x103, offset: 0xC9FB9, size: 0x8, addend: 0x0, symName: _shared.pred, symObjAddr: 0xC0D8, symBinAddr: 0x7BB8, symSize: 0x0 }
+  - { offsetInCU: 0x375, offset: 0xCA22B, size: 0x8, addend: 0x0, symName: '___18+[BugSplat shared]_block_invoke', symObjAddr: 0x30, symBinAddr: 0x29C1, symSize: 0xE5 }
+  - { offsetInCU: 0x433, offset: 0xCA2E9, size: 0x8, addend: 0x0, symName: '-[BugSplat init]', symObjAddr: 0x115, symBinAddr: 0x2AA6, symSize: 0xEF }
+  - { offsetInCU: 0x506, offset: 0xCA3BC, size: 0x8, addend: 0x0, symName: '-[BugSplat start]', symObjAddr: 0x204, symBinAddr: 0x2B95, symSize: 0x1CA }
+  - { offsetInCU: 0x665, offset: 0xCA51B, size: 0x8, addend: 0x0, symName: '-[BugSplat setDelegate:]', symObjAddr: 0x3CE, symBinAddr: 0x2D5F, symSize: 0x92 }
+  - { offsetInCU: 0x711, offset: 0xCA5C7, size: 0x8, addend: 0x0, symName: '-[BugSplat bundle]', symObjAddr: 0x460, symBinAddr: 0x2DF1, symSize: 0x19 }
+  - { offsetInCU: 0x750, offset: 0xCA606, size: 0x8, addend: 0x0, symName: '-[BugSplat bugSplatDatabase]', symObjAddr: 0x479, symBinAddr: 0x2E0A, symSize: 0x85 }
+  - { offsetInCU: 0x7F3, offset: 0xCA6A9, size: 0x8, addend: 0x0, symName: '-[BugSplat setBugSplatDatabase:]', symObjAddr: 0x4FE, symBinAddr: 0x2E8F, symSize: 0x92 }
+  - { offsetInCU: 0x8AB, offset: 0xCA761, size: 0x8, addend: 0x0, symName: '-[BugSplat userID]', symObjAddr: 0x590, symBinAddr: 0x2F21, symSize: 0x5E }
+  - { offsetInCU: 0x90A, offset: 0xCA7C0, size: 0x8, addend: 0x0, symName: '-[BugSplat setUserID:]', symObjAddr: 0x5EE, symBinAddr: 0x2F7F, symSize: 0x74 }
+  - { offsetInCU: 0x9A6, offset: 0xCA85C, size: 0x8, addend: 0x0, symName: '-[BugSplat userName]', symObjAddr: 0x662, symBinAddr: 0x2FF3, symSize: 0x5E }
+  - { offsetInCU: 0xA05, offset: 0xCA8BB, size: 0x8, addend: 0x0, symName: '-[BugSplat setUserName:]', symObjAddr: 0x6C0, symBinAddr: 0x3051, symSize: 0x74 }
+  - { offsetInCU: 0xAA1, offset: 0xCA957, size: 0x8, addend: 0x0, symName: '-[BugSplat userEmail]', symObjAddr: 0x734, symBinAddr: 0x30C5, symSize: 0x5E }
+  - { offsetInCU: 0xB00, offset: 0xCA9B6, size: 0x8, addend: 0x0, symName: '-[BugSplat setUserEmail:]', symObjAddr: 0x792, symBinAddr: 0x3123, symSize: 0x74 }
+  - { offsetInCU: 0xB9C, offset: 0xCAA52, size: 0x8, addend: 0x0, symName: '-[BugSplat setAutoSubmitCrashReport:]', symObjAddr: 0x806, symBinAddr: 0x3197, symSize: 0x85 }
+  - { offsetInCU: 0xC47, offset: 0xCAAFD, size: 0x8, addend: 0x0, symName: '-[BugSplat setValue:forAttribute:]', symObjAddr: 0x88B, symBinAddr: 0x321C, symSize: 0x1B4 }
+  - { offsetInCU: 0xE13, offset: 0xCACC9, size: 0x8, addend: 0x0, symName: '-[BugSplat setBannerImage:]', symObjAddr: 0xA3F, symBinAddr: 0x33D0, symSize: 0xBE }
+  - { offsetInCU: 0xEF2, offset: 0xCADA8, size: 0x8, addend: 0x0, symName: '-[BugSplat setAskUserDetails:]', symObjAddr: 0xAFD, symBinAddr: 0x348E, symSize: 0x85 }
+  - { offsetInCU: 0xF9D, offset: 0xCAE53, size: 0x8, addend: 0x0, symName: '-[BugSplat setExpirationTimeInterval:]', symObjAddr: 0xB82, symBinAddr: 0x3513, symSize: 0x84 }
+  - { offsetInCU: 0x104A, offset: 0xCAF00, size: 0x8, addend: 0x0, symName: '-[BugSplat setPresentModally:]', symObjAddr: 0xC06, symBinAddr: 0x3597, symSize: 0x79 }
+  - { offsetInCU: 0x10DB, offset: 0xCAF91, size: 0x8, addend: 0x0, symName: '-[BugSplat applicationLogForCrashManager:]', symObjAddr: 0xC7F, symBinAddr: 0x3610, symSize: 0x93 }
+  - { offsetInCU: 0x1168, offset: 0xCB01E, size: 0x8, addend: 0x0, symName: '-[BugSplat attachmentForCrashManager:]', symObjAddr: 0xD12, symBinAddr: 0x36A3, symSize: 0x2A7 }
+  - { offsetInCU: 0x1424, offset: 0xCB2DA, size: 0x8, addend: 0x0, symName: '-[BugSplat attachmentsForCrashManager:]', symObjAddr: 0xFB9, symBinAddr: 0x394A, symSize: 0x5F5 }
+  - { offsetInCU: 0x1973, offset: 0xCB829, size: 0x8, addend: 0x0, symName: '-[BugSplat applicationKeyForCrashManager:signal:exceptionName:exceptionReason:]', symObjAddr: 0x15AE, symBinAddr: 0x3F3F, symSize: 0xF2 }
+  - { offsetInCU: 0x1AA4, offset: 0xCB95A, size: 0x8, addend: 0x0, symName: '-[BugSplat crashManagerWillShowSubmitCrashReportAlert:]', symObjAddr: 0x16A0, symBinAddr: 0x4031, symSize: 0x8B }
+  - { offsetInCU: 0x1B3C, offset: 0xCB9F2, size: 0x8, addend: 0x0, symName: '-[BugSplat crashManagerWillCancelSendingCrashReport:]', symObjAddr: 0x172B, symBinAddr: 0x40BC, symSize: 0x8B }
+  - { offsetInCU: 0x1BD4, offset: 0xCBA8A, size: 0x8, addend: 0x0, symName: '-[BugSplat crashManagerWillSendCrashReport:]', symObjAddr: 0x17B6, symBinAddr: 0x4147, symSize: 0x8B }
+  - { offsetInCU: 0x1C6C, offset: 0xCBB22, size: 0x8, addend: 0x0, symName: '-[BugSplat crashManager:didFailWithError:]', symObjAddr: 0x1841, symBinAddr: 0x41D2, symSize: 0x95 }
+  - { offsetInCU: 0x1D36, offset: 0xCBBEC, size: 0x8, addend: 0x0, symName: '-[BugSplat crashManagerDidFinishSendingCrashReport:]', symObjAddr: 0x18D6, symBinAddr: 0x4267, symSize: 0x8B }
+  - { offsetInCU: 0x1DCE, offset: 0xCBC84, size: 0x8, addend: 0x0, symName: '-[BugSplat bugSplatAttachmentWithAttributes:]', symObjAddr: 0x1961, symBinAddr: 0x42F2, symSize: 0x371 }
+  - { offsetInCU: 0x205E, offset: 0xCBF14, size: 0x8, addend: 0x0, symName: '-[BugSplat userIDForHockeyManager:componentManager:]', symObjAddr: 0x1CD2, symBinAddr: 0x4663, symSize: 0x12 }
+  - { offsetInCU: 0x20C3, offset: 0xCBF79, size: 0x8, addend: 0x0, symName: '-[BugSplat userNameForHockeyManager:componentManager:]', symObjAddr: 0x1CE4, symBinAddr: 0x4675, symSize: 0x12 }
+  - { offsetInCU: 0x2128, offset: 0xCBFDE, size: 0x8, addend: 0x0, symName: '-[BugSplat userEmailForHockeyManager:componentManager:]', symObjAddr: 0x1CF6, symBinAddr: 0x4687, symSize: 0x12 }
+  - { offsetInCU: 0x218D, offset: 0xCC043, size: 0x8, addend: 0x0, symName: '-[BugSplat userProvidedData:hockeyManager:componentManager:]', symObjAddr: 0x1D08, symBinAddr: 0x4699, symSize: 0xFC }
+  - { offsetInCU: 0x22E9, offset: 0xCC19F, size: 0x8, addend: 0x0, symName: '-[BugSplat delegate]', symObjAddr: 0x1E04, symBinAddr: 0x4795, symSize: 0x16 }
+  - { offsetInCU: 0x2320, offset: 0xCC1D6, size: 0x8, addend: 0x0, symName: '-[BugSplat autoSubmitCrashReport]', symObjAddr: 0x1E1A, symBinAddr: 0x47AB, symSize: 0xA }
+  - { offsetInCU: 0x2355, offset: 0xCC20B, size: 0x8, addend: 0x0, symName: '-[BugSplat bannerImage]', symObjAddr: 0x1E24, symBinAddr: 0x47B5, symSize: 0xA }
+  - { offsetInCU: 0x238A, offset: 0xCC240, size: 0x8, addend: 0x0, symName: '-[BugSplat askUserDetails]', symObjAddr: 0x1E2E, symBinAddr: 0x47BF, symSize: 0xA }
+  - { offsetInCU: 0x23BF, offset: 0xCC275, size: 0x8, addend: 0x0, symName: '-[BugSplat persistUserDetails]', symObjAddr: 0x1E38, symBinAddr: 0x47C9, symSize: 0xA }
+  - { offsetInCU: 0x23F4, offset: 0xCC2AA, size: 0x8, addend: 0x0, symName: '-[BugSplat setPersistUserDetails:]', symObjAddr: 0x1E42, symBinAddr: 0x47D3, symSize: 0x9 }
+  - { offsetInCU: 0x2431, offset: 0xCC2E7, size: 0x8, addend: 0x0, symName: '-[BugSplat expirationTimeInterval]', symObjAddr: 0x1E4B, symBinAddr: 0x47DC, symSize: 0xB }
+  - { offsetInCU: 0x2466, offset: 0xCC31C, size: 0x8, addend: 0x0, symName: '-[BugSplat presentModally]', symObjAddr: 0x1E56, symBinAddr: 0x47E7, symSize: 0xA }
+  - { offsetInCU: 0x249B, offset: 0xCC351, size: 0x8, addend: 0x0, symName: '-[BugSplat isStartInvoked]', symObjAddr: 0x1E60, symBinAddr: 0x47F1, symSize: 0xA }
+  - { offsetInCU: 0x24D0, offset: 0xCC386, size: 0x8, addend: 0x0, symName: '-[BugSplat setIsStartInvoked:]', symObjAddr: 0x1E6A, symBinAddr: 0x47FB, symSize: 0x9 }
+  - { offsetInCU: 0x250D, offset: 0xCC3C3, size: 0x8, addend: 0x0, symName: '-[BugSplat attributes]', symObjAddr: 0x1E73, symBinAddr: 0x4804, symSize: 0xA }
+  - { offsetInCU: 0x2542, offset: 0xCC3F8, size: 0x8, addend: 0x0, symName: '-[BugSplat setAttributes:]', symObjAddr: 0x1E7D, symBinAddr: 0x480E, symSize: 0x11 }
+  - { offsetInCU: 0x2581, offset: 0xCC437, size: 0x8, addend: 0x0, symName: '-[BugSplat .cxx_destruct]', symObjAddr: 0x1E8E, symBinAddr: 0x481F, symSize: 0x31 }
+...
