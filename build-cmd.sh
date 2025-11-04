@@ -81,39 +81,28 @@ case "$AUTOBUILD_PLATFORM" in
         cp -v "$top/SendPdbs.bat" "$stage/upload-extensions/"
     ;;
     darwin*)
+	# Establish locations of prebuilt frameworks
+        bgst_framework="$top/BugSpaltxcframework/BugSplat.xcframework/macos-arm64_x86_64/BugsplatMac.framework"
+        crprt_framework="$top/BugSpaltxcframework/CrashReporter.xcframework/macos-arm64_x86_64/CrashReporter.framework"
+        hockey_framework="$top/BugSpaltxcframework/HockeySDK.xcframework/macos-arm64_x86_64/HockeySDK.framework"
+
         # BugsplatMac version embedded in the framework's Info.plist
-        framework="$top/Carthage/Build/Mac/BugsplatMac.framework"
-        BUGSPLAT_VERSION="$(/usr/libexec/PlistBuddy -c 'Print CFBundleShortVersionString' \
-                            "$framework/Resources/Info.plist")"
+        BUGSPLAT_VERSION="1.2.6"
+
         # Because of its embedded directory symlinks, copying the framework
         # works much better if we kill the previous copy first.
-        stage_framework="$stage/lib/release/$(basename "$framework")"
+        stage_framework="$stage/lib/release/$(basename "$bgst_framework")"
         [ -d "$stage_framework" ] && rm -rf "$stage_framework"
-        # We don't (yet) build from BugsplatMac source -- we just check in,
-        # and copy, the prebuilt version downloaded from BugSplat (sigh).
-        cp -R "$framework" "$stage/lib/release"
-        if false; then
-        ## nat 2018-08-17: The BugsplatMac 1.0.4 update went right into the
-        ## Carthage/Build/Mac subdirectory (courtesy of Carthage) rather than
-        ## having its source updated into the BugsplatMac subdirectory. I
-        ## don't yet know how to separate out the Carthage actions of
-        ## (download source to specified directory) versus (build framework
-        ## from specified directory). But that means that our patched
-        ## upload-archive.sh in the BugsplatMac subdirectory is now
-        ## *obsolete*. We've merged our Linden patches over to the
-        ## Carthage/Build/Mac instance of the upload-archive.sh script;
-        ## hopefully those will be carried forward across future vendor-branch
-        ## updates to the Carthage/Build/Mac tree. But despite the worrisome
-        ## issue of having two different Sources of Truth for that script,
-        ## I've refrained from removing the BugsplatMac source subdirectory:
-        ## there remains the possibility that at some point we may need to
-        ## build it with Linden patches fed into the build process.
-        # However, we do have a patched version of their upload-archive.sh
-        # script in the BugsplatMac source tree. Make sure that gets into the
-        # newly-copied framework.
-        cp -v "$top/BugsplatMac/upload-archive.sh" \
-              "$stage_framework/Versions/Current/Resources/"
-        fi
+        stage_framework="$stage/lib/release/$(basename "$crprt_framework")"
+        [ -d "$stage_framework" ] && rm -rf "$stage_framework"
+        stage_framework="$stage/lib/release/$(basename "$hockey_framework")"
+        [ -d "$stage_framework" ] && rm -rf "$stage_framework"
+
+        # Extract the content.
+        cp -R "$bgst_framework" "$stage/lib/release"
+        cp -R "$crprt_framework" "$stage/lib/release"
+        cp -R "$hockey_framework" "$stage/lib/release"
+
         # Now set up the upload-extensions script that will engage it.
         cp -v "$top/upload-mac-symbols.sh" "$stage/upload-extensions/"
     ;;
