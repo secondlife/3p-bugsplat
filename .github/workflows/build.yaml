@@ -6,9 +6,6 @@ jobs:
       matrix:
         os: [windows-2022, macos-15]
         addrsize: ["64"]
-        include:
-          - os: windows-2022
-            addrsize: "32"
     continue-on-error: false
     runs-on: ${{ matrix.os }}
     steps:

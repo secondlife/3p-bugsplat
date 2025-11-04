@@ -68,33 +68,6 @@
           <key>name</key>
           <string>darwin64</string>
         </map>
-        <key>windows</key>
-        <map>
-          <key>configurations</key>
-          <map>
-            <key>default</key>
-            <map>
-              <key>build</key>
-              <map>
-              </map>
-              <key>default</key>
-              <boolean>true</boolean>
-              <key>name</key>
-              <string>default</string>
-            </map>
-          </map>
-          <key>manifest</key>
-          <array>
-            <string>include/bugsplat/BugSplat.h</string>
-            <string>lib/release/BugSplat.lib</string>
-            <string>lib/release/BsSndRpt.exe</string>
-            <string>lib/release/BugSplat.dll</string>
-            <string>lib/release/BugSplatRC.dll</string>
-            <string>bin</string>
-          </array>
-          <key>name</key>
-          <string>windows</string>
-        </map>
         <key>windows64</key>
         <map>
           <key>configurations</key>
@@ -114,9 +87,8 @@
           <array>
             <string>include/bugsplat/BugSplat.h</string>
             <string>lib/release/BugSplat.lib</string>
-            <string>lib/release/BsSndRpt64.exe</string>
-            <string>lib/release/BugSplat64.dll</string>
-            <string>lib/release/BugSplatRc64.dll</string>
+            <string>lib/release/BugSplatMonitor.exe</string>
+            <string>lib/release/BugSplatRC.dll</string>
             <string>bin</string>
           </array>
           <key>name</key>
