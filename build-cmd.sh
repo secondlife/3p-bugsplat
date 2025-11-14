@@ -93,6 +93,7 @@ case "$AUTOBUILD_PLATFORM" in
         cp -R "$hockey_framework" "$stage/lib/release"
 
         # Now set up the upload-extensions script that will engage it.
+        cp -v "$top/upload-archive.sh" "$stage/upload-extensions/"
         cp -v "$top/upload-mac-symbols.sh" "$stage/upload-extensions/"
     ;;
     linux*)
