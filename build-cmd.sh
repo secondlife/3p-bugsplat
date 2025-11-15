@@ -43,7 +43,17 @@ mkdir -p "$stage/upload-extensions"
 case "$AUTOBUILD_PLATFORM" in
     windows*)
         load_vsvars
-        bin="Bugsplat/x64/Release"
+
+        if [ "$AUTOBUILD_PLATFORM" == "windows64" ]
+        then
+            sfx="64"
+            bin="Bugsplat/x64/Release"
+            rcdll="BugSplatRc64.dll"
+        else
+            sfx=""
+            bin="Bugsplat/Win32/Release"
+            rcdll="BugSplatRC.dll"
+        fi
 
         # cygwin bash incantation to eliminate FRIGGING CARRIAGE RETURN
         set -o igncr
@@ -60,9 +70,10 @@ case "$AUTOBUILD_PLATFORM" in
         # copy files
         cp "$BUGSPLAT_DIR/BugSplat/inc/BugSplat.h" "$stage/include/bugsplat"
         # force to simple name since we can't branch on 32/64 in CMake files
-        cp "$BUGSPLAT_DIR/$bin/BugSplat.lib" "$stage/lib/release/BugSplat.lib"
-        cp "$BUGSPLAT_DIR/$bin/BugSplatMonitor.exe" "$stage/lib/release"
-        cp "$BUGSPLAT_DIR/$bin/BugSplatRc.dll" "$stage/lib/release"
+        cp "$BUGSPLAT_DIR/$bin/BugSplat$sfx.lib" "$stage/lib/release/BugSplat.lib"
+        cp "$BUGSPLAT_DIR/$bin/BsSndRpt$sfx.exe" "$stage/lib/release"
+        cp "$BUGSPLAT_DIR/$bin/BugSplat$sfx.dll" "$stage/lib/release"
+        cp "$BUGSPLAT_DIR/$bin/$rcdll" "$stage/lib/release"
 
         # There's only one symbol-upload-windows.exe, and it's in tools.
         cp -v "$BUGSPLAT_DIR/Tools"/symbol-upload-windows.exe* "$stage/bin/release/"
